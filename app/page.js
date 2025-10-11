@@ -1,3 +1,4 @@
+import SlidingBanner from "@/components/slidingBanner";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -5,7 +6,7 @@ export default function Home() {
   return (
     <>
       <div className="h-screen bg-[#f2f2f2] flex flex-col">
-        <header className="topBar bg-white flex justify-between items-center px-12 pt-5">
+        <header className="topBar bg-white flex justify-between items-center relative z-10 px-12 pt-5">
           <div className="bg-[#fff] relative">
             <Image
               src={"/logo.png"}
@@ -49,8 +50,12 @@ export default function Home() {
             </svg>
           </button>
         </header>
-        <section className="flex-1"></section>
+
+        <SlidingBanner />
+
+        
       </div>
+
     </>
   );
 }
