@@ -17,7 +17,7 @@ export default function Home() {
             />
             <div className="absolute -bottom-6 border-b-3 border-[#FF6F61] bg-white z-0 -left-4 w-[110px] h-[30px] shadow-lg shadow-[#FF6F61]"></div>
           </div>
-          <nav className="text-black flex gap-5 text-sm font-medium">
+          <nav className="text-gray-500 flex gap-5 text-sm font-medium">
             <Link className="" href={"#"}>
               HOME
             </Link>
