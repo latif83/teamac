@@ -1,5 +1,7 @@
 import ServiceCountryFilter from "@/components/filter";
 import SocialSidebar from "@/components/socialIconsSideBar";
+import { faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -15,11 +17,11 @@ export default function Home() {
             <div className="h-screen flex flex-col relative">
 
 
-                <header className="px-12 relative z-10 flex justify-between items-center" style={{ height: '20%' }}>
+                <header className="px-3 md:px-6 lg:px-12 relative z-10 flex justify-between items-center md:h-1/5 h-1/6">
 
-                    <Image className="w-[80px] h-auto" src={'/logo.png'} width={200} height={200} alt="Logo" />
+                    <Image className="md:w-[80px] w-[70px] h-auto" src={'/logo.png'} width={200} height={200} alt="Logo" />
 
-                    <nav className="text-gray-600 flex items-center gap-6 font-semibold text-sm">
+                    <nav className="hidden md:flex text-gray-600 items-center gap-6 font-semibold text-sm">
 
                         <Link href="/">
                             HOME</Link>
@@ -34,7 +36,7 @@ export default function Home() {
 
                     </nav>
 
-                    <button className="bg-[#FF6F61] hover:bg-black cursor-pointer transition duration-2000 text-sm rounded-md shadow-lg text-white p-3 px-6 flex items-center justify-center gap-2" type="button">
+                    <button className="bg-[#FF6F61] hover:bg-black cursor-pointer transition duration-2000 text-sm rounded-md shadow-lg text-white p-3 px-6 md:flex hidden items-center justify-center gap-2" type="button">
                         <span>View Offers</span>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="m9 12.75 3 3m0 0 3-3m-3 3v-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
@@ -42,11 +44,15 @@ export default function Home() {
 
                     </button>
 
+                    <button type="button" className="md:hidden block ">
+                        <FontAwesomeIcon icon={faBarsStaggered} width={25} height={25} className="text-gray-600 text-2xl" />
+                        </button>
+
                 </header>
 
-                <div className="flex flex-1 px-12 gap-4 relative" style={{ height: '80%' }}>
-                    <Image src={'/dots.png'} width={1000} height={1000} alt="Dots" className="absolute bottom-0 left-0 sm:w-[700px] w-[600px] object-cover object-center" />
-                    <div className="relative z-10 flex flex-col pt-6 text-gray-600 w-2/5">
+                <div className="flex flex-1 px-3 md:px-6 lg:px-12 gap-4 relative md:flex-nowrap flex-wrap md:h-4/5 h-5/6">
+                    <Image src={'/dots.png'} width={1000} height={1000} alt="Dots" className="absolute md:bottom-0 bottom-0 top-5 left-0 sm:w-[700px] w-[600px] object-cover object-center" />
+                    <div className="relative z-10 flex flex-col pt-6 text-gray-600 md:w-2/5 w-full">
 
                         <div><button type="button" className="bg-white rounded-full shadow-xl text-sm border border-[#00B4D8] text-[#00B4D8] px-5 py-3 my-5">
                             Book With Us!
@@ -64,7 +70,7 @@ export default function Home() {
 
                     </div>
 
-                    <div className="relative w-3/5 h-full flex justify-center items-center flex-wrap">
+                    <div className="relative md:w-3/5 w-full h-full flex justify-center items-center flex-wrap">
 
                         <div className="bg-black w-1/2 h-1/2 rounded-xl border-3 border-[#f2f2f2] overflow-hidden">
                             <Image src={'/bg.jpg'} width={500} height={500} alt="Student" className="w-full h-full object-cover object-center" />
@@ -80,8 +86,8 @@ export default function Home() {
                         </div>
 
                         {/* Center Circle */}
-                        <div className="absolute w-32 h-32 rounded-full border-4 border-[#f2f2f2] shadow-[0_0_30px_rgba(255,111,97,0.4)] flex flex-col items-center justify-center text-white text-center bg-linear-to-r to-[#00B4D8] from-[#FF6F61]">
-                            <h2 className="text-2xl font-bold leading-none">10+</h2>
+                        <div className="absolute md:w-32 md:h-32 w-28 h-28 rounded-full border-4 border-[#f2f2f2] shadow-[0_0_30px_rgba(255,111,97,0.4)] flex flex-col items-center justify-center text-white text-center bg-linear-to-r to-[#00B4D8] from-[#FF6F61]">
+                            <h2 className="md:text-2xl text-xl font-bold leading-none">10+</h2>
                             <p className="text-xs font-medium uppercase tracking-wide mt-1">Years Of</p>
                             <p className="text-xs font-medium uppercase tracking-wide -mt-1">Experience</p>
                         </div>
@@ -91,7 +97,7 @@ export default function Home() {
 
                 </div>
 
-                <div className="absolute -bottom-32 w-full left-0 px-12">
+                <div className="absolute md:block hidden -bottom-32 w-full left-0 px-12">
 
                     <div className="bg-[#f2f2f2]/70 border border-[#FF6F61] w-2/3 rounded-md py-4 px-10">
                         <h3 className="font-bold"> Find Available Offers. </h3>
@@ -142,7 +148,7 @@ export default function Home() {
 
             </div>
 
-            <section className="pt-40 pb-16 bg-[url(/bg1.png)] px-12">
+            <section className="md:pt-40 pt-60 pb-16 bg-[url(/bg1.png)] px-12">
 
                 <h1 className="text-xl font-bold"> RECENT OFFERS </h1>
 
@@ -151,7 +157,7 @@ export default function Home() {
                     <span className="bg-linear-to-r from-[#FF6F61] to-[#00B4D8] w-3 h-3 rounded-full absolute left-6 -top-1"></span>
                 </div>
 
-                <div className="mt-5 grid grid-cols-4 gap-4">
+                <div className="mt-5 grid md:grid-cols-4 sm:grid-cols-2 gap-4">
 
                     <div className="bg-white rounded-lg shadow-lg">
                         <Image src={'/grad.jpg'} width={400} height={300} alt="Offer 1" className="w-full h-48 object-cover rounded-md" />
@@ -197,7 +203,7 @@ export default function Home() {
                     <span className="bg-linear-to-r from-[#FF6F61] to-[#00B4D8] w-3 h-3 rounded-full absolute left-6 -top-1"></span>
                 </div>
 
-                <div className="mt-5 grid grid-cols-3 gap-6">
+                <div className="mt-5 grid md:grid-cols-3 grid-cols-1 gap-6">
 
                     <div className="bg-white rounded-lg shadow-lg p-6">
                         <h2 className="font-bold mt-3 text-black">Study Abroad Consulting</h2>
@@ -222,7 +228,7 @@ export default function Home() {
                     <hr className="w-16 h-1 rounded-md mt-2 bg-linear-to-r from-[#FF6F61] to-[#00B4D8] border-none" />
                     <span className="bg-linear-to-r from-[#FF6F61] to-[#00B4D8] w-3 h-3 rounded-full absolute left-6 -top-1"></span>
                 </div>
-                <div className="mt-5 grid grid-cols-3 gap-6">
+                <div className="mt-5 grid md:grid-cols-3 gap-6">
 
                     <div className="bg-white rounded-lg shadow-lg p-6">
                         <h2 className="font-bold mt-3">Expertise & Experience</h2>
