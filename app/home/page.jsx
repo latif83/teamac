@@ -1,6 +1,9 @@
+import WhyChooseUs from "@/components/chooseUs";
 import ServiceCountryFilter from "@/components/filter";
+import QuickServices from "@/components/quickServices";
 import RecentOffers from "@/components/recentOffers";
 import SocialSidebar from "@/components/socialIconsSideBar";
+import Testimonials from "@/components/testimonials";
 import { faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
@@ -151,56 +154,11 @@ export default function Home() {
 
             <RecentOffers />
 
-            <section className="bg-black py-12 px-12">
+            <QuickServices />
 
-                <h1 className="text-xl font-bold text-white"> OUR SERVICES </h1>
-                <div className="w-16 ml-8 relative">
-                    <hr className="w-16 h-1 rounded-md mt-2 bg-linear-to-r from-[#FF6F61] to-[#00B4D8] border-none" />
-                    <span className="bg-linear-to-r from-[#FF6F61] to-[#00B4D8] w-3 h-3 rounded-full absolute left-6 -top-1"></span>
-                </div>
+            <WhyChooseUs />
 
-                <div className="mt-5 grid md:grid-cols-3 grid-cols-1 gap-6">
-
-                    <div className="bg-white rounded-lg shadow-lg p-6">
-                        <h2 className="font-bold mt-3 text-black">Study Abroad Consulting</h2>
-                        <p className="text-sm text-gray-600 mt-1">Personalized guidance on university selection, application processes, and visa assistance.</p>
-                    </div>
-                    <div className="bg-white rounded-lg shadow-lg p-6">
-                        <h2 className="font-bold mt-3 text-black">Travel Packages</h2>
-                        <p className="text-sm text-gray-600 mt-1">Customized travel itineraries, flight bookings, and accommodation arrangements.</p>
-                    </div>
-                    <div className="bg-white rounded-lg shadow-lg p-6">
-                        <h2 className="font-bold mt-3 text-black">Accommodation Services</h2>
-                        <p className="text-sm text-gray-600 mt-1">Assistance in finding suitable housing options, from student dorms to private rentals.</p>
-                    </div>
-                </div>
-
-            </section>
-
-            <section className="px-12 py-12">
-
-                <h1 className="text-xl font-bold"> WHY CHOOSE US? </h1>
-                <div className="w-16 ml-8 relative">
-                    <hr className="w-16 h-1 rounded-md mt-2 bg-linear-to-r from-[#FF6F61] to-[#00B4D8] border-none" />
-                    <span className="bg-linear-to-r from-[#FF6F61] to-[#00B4D8] w-3 h-3 rounded-full absolute left-6 -top-1"></span>
-                </div>
-                <div className="mt-5 grid md:grid-cols-3 gap-6">
-
-                    <div className="bg-white rounded-lg shadow-lg p-6">
-                        <h2 className="font-bold mt-3">Expertise & Experience</h2>
-                        <p className="text-sm text-gray-600 mt-1">Years of experience in the industry with a deep understanding of global education and travel landscapes.</p>
-                    </div>
-                    <div className="bg-white rounded-lg shadow-lg p-6">
-                        <h2 className="font-bold mt-3">Personalized Services</h2>
-                        <p className="text-sm text-gray-600 mt-1">Tailored solutions to meet individual needs and preferences.</p>
-                    </div>
-                    <div className="bg-white rounded-lg shadow-lg p-6">
-                        <h2 className="font-bold mt-3">Comprehensive Support</h2>
-                        <p className="text-sm text-gray-600 mt-1">End-to-end assistance from initial consultation to post-arrival support.</p>
-                    </div>
-                </div>
-
-            </section>
+            <Testimonials />
 
             {/* CTA Section */}
             <section className="bg-[#00B4D8] py-12 px-12 text-center text-white">
