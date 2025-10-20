@@ -1,4 +1,5 @@
 import ServiceCountryFilter from "@/components/filter";
+import RecentOffers from "@/components/recentOffers";
 import SocialSidebar from "@/components/socialIconsSideBar";
 import { faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,10 +15,10 @@ export default function Home() {
     return (
         <>
             <SocialSidebar />
-            <div className="h-screen flex flex-col relative">
+            <div className="sm:h-screen flex flex-col relative">
 
 
-                <header className="px-3 md:px-6 lg:px-12 relative z-10 flex justify-between items-center md:h-1/5 h-1/6">
+                <header className="px-3 md:px-6 md:py-0 py-4 lg:px-12 relative z-10 flex justify-between items-center md:h-2/10">
 
                     <Image className="md:w-[80px] w-[70px] h-auto" src={'/logo.png'} width={200} height={200} alt="Logo" />
 
@@ -44,13 +45,13 @@ export default function Home() {
 
                     </button>
 
-                    <button type="button" className="md:hidden block ">
-                        <FontAwesomeIcon icon={faBarsStaggered} width={25} height={25} className="text-gray-600 text-2xl" />
-                        </button>
+                    <button type="button" className="md:hidden block bg-white p-4 rounded-full shadow-md">
+                        <FontAwesomeIcon icon={faBarsStaggered} width={25} height={25} className="text-black text-xl m-0 p-0" />
+                    </button>
 
                 </header>
 
-                <div className="flex flex-1 px-3 md:px-6 lg:px-12 gap-4 relative md:flex-nowrap flex-wrap md:h-4/5 h-5/6">
+                <div className="flex flex-1 px-3 md:px-6 lg:px-12 sm:gap-4 gap-8 relative md:flex-nowrap flex-wrap md:h-8/10">
                     <Image src={'/dots.png'} width={1000} height={1000} alt="Dots" className="absolute md:bottom-0 bottom-0 top-5 left-0 sm:w-[700px] w-[600px] object-cover object-center" />
                     <div className="relative z-10 flex flex-col pt-6 text-gray-600 md:w-2/5 w-full">
 
@@ -70,7 +71,7 @@ export default function Home() {
 
                     </div>
 
-                    <div className="relative md:w-3/5 w-full h-full flex justify-center items-center flex-wrap">
+                    <div className="relative md:w-3/5 w-full md:h-full h-[400px] flex justify-center items-center flex-wrap">
 
                         <div className="bg-black w-1/2 h-1/2 rounded-xl border-3 border-[#f2f2f2] overflow-hidden">
                             <Image src={'/bg.jpg'} width={500} height={500} alt="Student" className="w-full h-full object-cover object-center" />
@@ -148,52 +149,7 @@ export default function Home() {
 
             </div>
 
-            <section className="md:pt-40 pt-60 pb-16 bg-[url(/bg1.png)] px-12">
-
-                <h1 className="text-xl font-bold"> RECENT OFFERS </h1>
-
-                <div className="w-16 ml-8 relative">
-                    <hr className="w-16 h-1 rounded-md mt-2 bg-linear-to-r from-[#FF6F61] to-[#00B4D8] border-none" />
-                    <span className="bg-linear-to-r from-[#FF6F61] to-[#00B4D8] w-3 h-3 rounded-full absolute left-6 -top-1"></span>
-                </div>
-
-                <div className="mt-5 grid md:grid-cols-4 sm:grid-cols-2 gap-4">
-
-                    <div className="bg-white rounded-lg shadow-lg">
-                        <Image src={'/grad.jpg'} width={400} height={300} alt="Offer 1" className="w-full h-48 object-cover rounded-md" />
-                        <div className="p-4">
-                            <h2 className="font-bold mt-3">Study in Canada</h2>
-                            <p className="text-sm text-gray-600 mt-1">Get a 20% discount on tuition fees for select universities.</p>
-                        </div>
-                    </div>
-
-                    <div className="bg-white rounded-lg shadow-lg">
-                        <Image src={'/grad.jpg'} width={400} height={300} alt="Offer 1" className="w-full h-48 object-cover rounded-md" />
-                        <div className="p-4">
-                            <h2 className="font-bold mt-3">Offer Two</h2>
-                            <p className="text-sm text-gray-600 mt-1">Get a 20% discount on tuition fees for select universities.</p>
-                        </div>
-                    </div>
-
-                    <div className="bg-white rounded-lg shadow-lg">
-                        <Image src={'/grad.jpg'} width={400} height={300} alt="Offer 1" className="w-full h-48 object-cover rounded-md" />
-                        <div className="p-4">
-                            <h2 className="font-bold mt-3">Offer Three</h2>
-                            <p className="text-sm text-gray-600 mt-1">Get a 20% discount on tuition fees for select universities.</p>
-                        </div>
-                    </div>
-
-                    <div className="bg-white rounded-lg shadow-lg">
-                        <Image src={'/grad.jpg'} width={400} height={300} alt="Offer 1" className="w-full h-48 object-cover rounded-md" />
-                        <div className="p-4">
-                            <h2 className="font-bold mt-3">Offer Four</h2>
-                            <p className="text-sm text-gray-600 mt-1">Get a 20% discount on tuition fees for select universities.</p>
-                        </div>
-                    </div>
-
-                </div>
-
-            </section>
+            <RecentOffers />
 
             <section className="bg-black py-12 px-12">
 
