@@ -1,10 +1,12 @@
+import AboutUs from "@/components/about";
 import WhyChooseUs from "@/components/chooseUs";
 import ServiceCountryFilter from "@/components/filter";
 import QuickServices from "@/components/quickServices";
 import RecentOffers from "@/components/recentOffers";
 import SocialSidebar from "@/components/socialIconsSideBar";
 import Testimonials from "@/components/testimonials";
-import { faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
+import { faFacebookF, faInstagram, faLinkedinIn, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faArrowRight, faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
@@ -160,40 +162,66 @@ export default function Home() {
 
             <Testimonials />
 
-            {/* CTA Section */}
-            <section className="bg-[#00B4D8] py-12 px-12 text-center text-white">
-                <h1 className="text-2xl font-bold"> Ready to Explore the World with Us? </h1>
-                <p className="mt-4"> Contact us today to start your journey towards studying abroad, traveling the world, or finding the perfect accommodation. </p>
-                <button className="bg-white text-[#00B4D8] font-semibold rounded-full shadow-lg p-3 px-6 mt-6" type="button">
-                    Contact Us
-                </button>
+            <section
+                className="relative bg-cover bg-center bg-no-repeat text-white bg-fixed py-24 sm:px-6 px-3 md:px-12"
+                style={{ backgroundImage: "url('/turkey.jpg')" }}
+            >
+                {/* Blue Overlay */}
+                <div className="absolute inset-0 bg-[#00B4D8]/65"></div>
+
+                 <div className="relative z-10">
+                        <h2 className="mb-4 text-3xl md:text-4xl tracking-tight font-extrabold">
+                            Let’s make your travel and study dreams a reality.
+                        </h2>
+                        <p className="mb-6 font-medium text-white/90 md:text-lg text-sm leading-relaxed">
+                            Whether you’re planning to study abroad, travel for leisure, or find
+                            accommodation overseas,{" "}
+                            <span className="font-semibold">Teamac</span> is here to guide you
+                            every step of the way — trusted, transparent, and tailored for you.
+                        </p>
+
+                        {/* CTA Button */}
+                        <a
+                            href="#"
+                            className="inline-flex items-center text-[#00B4D8] bg-white hover:bg-gray-100 focus:ring-4 focus:ring-white/40 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all duration-300"
+                        >
+                            Get Started
+                            <FontAwesomeIcon icon={faArrowRight} className="ml-2 w-4 h-4" />
+                        </a>
+
+                        {/* Social Icons */}
+                        <div className="flex items-center gap-4 mt-8">
+                            <a
+                                href="#"
+                                className="w-9 h-9 flex items-center justify-center rounded-full border border-white hover:bg-white hover:text-[#00B4D8] transition-all duration-300"
+                            >
+                                <FontAwesomeIcon icon={faFacebookF} />
+                            </a>
+                            <a
+                                href="#"
+                                className="w-9 h-9 flex items-center justify-center rounded-full border border-white hover:bg-white hover:text-[#00B4D8] transition-all duration-300"
+                            >
+                                <FontAwesomeIcon icon={faInstagram} />
+                            </a>
+                            <a
+                                href="#"
+                                className="w-9 h-9 flex items-center justify-center rounded-full border border-white hover:bg-white hover:text-[#00B4D8] transition-all duration-300"
+                            >
+                                <FontAwesomeIcon icon={faTwitter} />
+                            </a>
+                            <a
+                                href="#"
+                                className="w-9 h-9 flex items-center justify-center rounded-full border border-white hover:bg-white hover:text-[#00B4D8] transition-all duration-300"
+                            >
+                                <FontAwesomeIcon icon={faLinkedinIn} />
+                            </a>
+                        </div>
+                    </div>
+
             </section>
 
-            {/* 
-            About Us
- Company story (how you started, your vision).
- Mission Statement: “We exist to make global opportunities accessible to students and
- professionals worldwide.”
- Team Introduction (optional).
- Partner logos (universities, airlines, housing providers). section */}
+            <AboutUs />
 
-            <section>
-                {/* About us */}
-                <div className="max-w-5xl mx-auto mt-10 px-4">
-                    <h2 className="text-2xl font-bold mb-4 text-[#0d4785]">
-                        About Us
-                    </h2>
-                    <p className="text-gray-700 mb-6">
-                        At TeamAC, we are dedicated to bridging the gap between dreams and reality for students and professionals seeking opportunities abroad. Founded with a vision to simplify the complexities of international education and travel, we have grown into a trusted partner for countless individuals worldwide.
-                    </p>
-                    <p className="text-gray-700 mb-6">
-                        Our mission is clear: We exist to make global opportunities accessible to students and professionals worldwide. Whether it's through personalized study abroad consulting, tailored travel packages, or comprehensive accommodation services, we are committed to providing end-to-end support that ensures a seamless experience from start to finish.
-                    </p>
-                    <p className="text-gray-700">
-                        Our team of experienced consultants and industry experts work tirelessly to understand your unique needs and aspirations. We pride ourselves on our personalized approach, ensuring that every service we offer is tailored to help you achieve your goals with confidence and ease.
-                    </p>
-                </div>
-            </section>
 
             <footer className="bg-gray-800 text-white py-6 px-12 mt-10">
                 <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center">
