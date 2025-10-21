@@ -1,6 +1,7 @@
 import AboutUs from "@/components/about";
 import WhyChooseUs from "@/components/chooseUs";
 import ServiceCountryFilter from "@/components/filter";
+import Footer from "@/components/footer";
 import QuickServices from "@/components/quickServices";
 import RecentOffers from "@/components/recentOffers";
 import SocialSidebar from "@/components/socialIconsSideBar";
@@ -57,7 +58,7 @@ export default function Home() {
                 </header>
 
                 <div className="flex flex-1 px-3 md:px-6 lg:px-12 sm:gap-4 gap-8 relative md:flex-nowrap flex-wrap md:h-8/10">
-                    <Image src={'/dots.png'} width={1000} height={1000} alt="Dots" className="absolute md:bottom-0 bottom-0 top-5 left-0 sm:w-[700px] w-[600px] object-cover object-center" />
+                    <Image src={'/dots.png'} width={1000} height={1000} alt="Dots" className="absolute md:bottom-0 bottom-16 left-0 sm:w-[700px] w-[600px] object-cover object-center" />
                     <div className="relative z-10 flex flex-col pt-6 text-gray-600 md:w-2/5 w-full">
 
                         <div><button type="button" className="bg-white rounded-full shadow-xl text-sm border border-[#00B4D8] text-[#00B4D8] px-5 py-3 my-5">
@@ -169,79 +170,61 @@ export default function Home() {
                 {/* Blue Overlay */}
                 <div className="absolute inset-0 bg-[#00B4D8]/65"></div>
 
-                 <div className="relative z-10">
-                        <h2 className="mb-4 text-3xl md:text-4xl tracking-tight font-extrabold">
-                            Let’s make your travel and study dreams a reality.
-                        </h2>
-                        <p className="mb-6 font-medium text-white/90 md:text-lg text-sm leading-relaxed">
-                            Whether you’re planning to study abroad, travel for leisure, or find
-                            accommodation overseas,{" "}
-                            <span className="font-semibold">Teamac</span> is here to guide you
-                            every step of the way — trusted, transparent, and tailored for you.
-                        </p>
+                <div className="relative z-10">
+                    <h2 className="mb-4 text-3xl md:text-4xl tracking-tight font-extrabold">
+                        Let’s make your travel and study dreams a reality.
+                    </h2>
+                    <p className="mb-6 font-medium text-white/90 md:text-lg text-sm leading-relaxed">
+                        Whether you’re planning to study abroad, travel for leisure, or find
+                        accommodation overseas,{" "}
+                        <span className="font-semibold">Teamac</span> is here to guide you
+                        every step of the way — trusted, transparent, and tailored for you.
+                    </p>
 
-                        {/* CTA Button */}
+                    {/* CTA Button */}
+                    <a
+                        href="#"
+                        className="inline-flex items-center text-[#00B4D8] bg-white hover:bg-gray-100 focus:ring-4 focus:ring-white/40 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all duration-300"
+                    >
+                        Get Started
+                        <FontAwesomeIcon icon={faArrowRight} className="ml-2 w-4 h-4" />
+                    </a>
+
+                    {/* Social Icons */}
+                    <div className="flex items-center gap-4 mt-8">
                         <a
                             href="#"
-                            className="inline-flex items-center text-[#00B4D8] bg-white hover:bg-gray-100 focus:ring-4 focus:ring-white/40 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all duration-300"
+                            className="w-9 h-9 flex items-center justify-center rounded-full border border-white hover:bg-white hover:text-[#00B4D8] transition-all duration-300"
                         >
-                            Get Started
-                            <FontAwesomeIcon icon={faArrowRight} className="ml-2 w-4 h-4" />
+                            <FontAwesomeIcon icon={faFacebookF} />
                         </a>
-
-                        {/* Social Icons */}
-                        <div className="flex items-center gap-4 mt-8">
-                            <a
-                                href="#"
-                                className="w-9 h-9 flex items-center justify-center rounded-full border border-white hover:bg-white hover:text-[#00B4D8] transition-all duration-300"
-                            >
-                                <FontAwesomeIcon icon={faFacebookF} />
-                            </a>
-                            <a
-                                href="#"
-                                className="w-9 h-9 flex items-center justify-center rounded-full border border-white hover:bg-white hover:text-[#00B4D8] transition-all duration-300"
-                            >
-                                <FontAwesomeIcon icon={faInstagram} />
-                            </a>
-                            <a
-                                href="#"
-                                className="w-9 h-9 flex items-center justify-center rounded-full border border-white hover:bg-white hover:text-[#00B4D8] transition-all duration-300"
-                            >
-                                <FontAwesomeIcon icon={faTwitter} />
-                            </a>
-                            <a
-                                href="#"
-                                className="w-9 h-9 flex items-center justify-center rounded-full border border-white hover:bg-white hover:text-[#00B4D8] transition-all duration-300"
-                            >
-                                <FontAwesomeIcon icon={faLinkedinIn} />
-                            </a>
-                        </div>
+                        <a
+                            href="#"
+                            className="w-9 h-9 flex items-center justify-center rounded-full border border-white hover:bg-white hover:text-[#00B4D8] transition-all duration-300"
+                        >
+                            <FontAwesomeIcon icon={faInstagram} />
+                        </a>
+                        <a
+                            href="#"
+                            className="w-9 h-9 flex items-center justify-center rounded-full border border-white hover:bg-white hover:text-[#00B4D8] transition-all duration-300"
+                        >
+                            <FontAwesomeIcon icon={faTwitter} />
+                        </a>
+                        <a
+                            href="#"
+                            className="w-9 h-9 flex items-center justify-center rounded-full border border-white hover:bg-white hover:text-[#00B4D8] transition-all duration-300"
+                        >
+                            <FontAwesomeIcon icon={faLinkedinIn} />
+                        </a>
                     </div>
+                </div>
 
             </section>
 
             <AboutUs />
 
 
-            <footer className="bg-gray-800 text-white py-6 px-12 mt-10">
-                <div className="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center">
-                    <p className="text-sm">&copy; 2024 TeamAC. All rights reserved.</p>
-                    <div className="flex gap-6 mt-4 md:mt-0">
-                        <Link href="/" className="text-gray-400 hover:text-white text-sm">Privacy Policy</Link>
-                        <Link href="/" className="text-gray-400 hover:text-white text-sm">Terms of Service</Link>
-                        <Link href="/" className="text-gray-400 hover:text-white text-sm">Contact Us</Link>
-                    </div>
-                </div>
-            </footer>
-
-
-
-            {/* <div className="max-w-5xl mx-auto mt-10 px-4">
-                <h2 className="text-2xl font-bold mb-4 text-[#0d4785]">
-                    Find Services by Country
-                </h2>
-                <ServiceCountryFilter />
-            </div> */}
+            <Footer />
         </>
     )
 }
