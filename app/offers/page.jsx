@@ -2,11 +2,15 @@
 
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTag, faGlobe, faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
+import { faTag, faGlobe, faCalendarAlt, faTimes, faFilter, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { useState } from "react";
 
 const OffersPage = () => {
+
+    const [showFilter, setShowFilter] = useState(false);
+
     // Dummy offers data
     const offers = [
         {
@@ -63,22 +67,75 @@ const OffersPage = () => {
             <section>
 
                 <div className="h-[200px] bg-[url('/bg4.jpg')] bg-center bg-cover bg-black flex flex-col justify-center items-center text-center px-4 relative">
-                <div className="absolute bg-black/60 h-full w-full z-0"></div>
-                  <div className="relative z-10 ">
-                      <h1 className="text-xl font-bold text-white text-center">
-                        Explore Our Latest Offers
-                    </h1>
-                    <p className="text-sm text-gray-200">
-                        Discover exclusive deals on study abroad programs, travel packages,
-                        and accommodation solutions tailored just for you.
-                    </p>
-                  </div>
+                    <div className="absolute bg-black/60 h-full w-full z-0"></div>
+                    <div className="relative z-10 ">
+                        <h1 className="text-xl font-bold text-white text-center">
+                            Explore Our Latest Offers
+                        </h1>
+                        <p className="text-sm text-gray-200">
+                            Discover exclusive deals on study abroad programs, travel packages,
+                            and accommodation solutions tailored just for you.
+                        </p>
+                    </div>
                 </div>
 
                 {/* Layout Container */}
                 <div className="flex flex-col md:flex-row md:px-12 px-4 gap-8">
+
+                    {/* Toggle Button — visible only on mobile */}
+                    <button
+                        onClick={() => setShowFilter(!showFilter)}
+                        className="md:hidden flex items-center gap-2 bg-[#00B4D8] text-white text-sm font-medium px-4 py-2 rounded-md mt-4 flex justify-between items-center"
+                    >
+                        <span className="flex gap-2 items-center"><FontAwesomeIcon icon={showFilter ? faTimes : faFilter} />
+                            {showFilter ? "Hide Filters" : "Show Filters"}</span>
+                        <FontAwesomeIcon icon={faCaretDown} />
+                    </button>
+
+                    {/* Filter Sidebar */}
+                    {showFilter && (
+                        <aside className="md:w-1/4 md:border-r-2 md:h-svh md:sticky top-0 z-50 py-5 md:pr-3 bg-white md:bg-transparent p-4 md:p-0 shadow-md md:shadow-none rounded-md md:rounded-none">
+                            <h2 className="text-lg font-bold text-[#0d4785] mb-4">Filter Offers</h2>
+
+                            <div className="space-y-4">
+                                <div>
+                                    <label className="block text-sm text-gray-600 mb-1">Service</label>
+                                    <select className="w-full bg-white border border-gray-300 rounded-md text-sm px-3 py-2 focus:ring-2 focus:ring-[#00B4D8] focus:outline-none">
+                                        <option>All Services</option>
+                                        <option>Study Abroad</option>
+                                        <option>Travel</option>
+                                        <option>Accommodation</option>
+                                        <option>Consultation</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm text-gray-600 mb-1">Country</label>
+                                    <select className="w-full bg-white border border-gray-300 rounded-md text-sm px-3 py-2 focus:ring-2 focus:ring-[#00B4D8] focus:outline-none">
+                                        <option>All Countries</option>
+                                        <option>Canada</option>
+                                        <option>UK</option>
+                                        <option>Ghana</option>
+                                        <option>UAE</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label className="block text-sm text-gray-600 mb-1">Sort by</label>
+                                    <select className="w-full bg-white border border-gray-300 rounded-md text-sm px-3 py-2 focus:ring-2 focus:ring-[#00B4D8] focus:outline-none">
+                                        <option>Newest</option>
+                                        <option>Oldest</option>
+                                    </select>
+                                </div>
+
+                                <button className="w-full bg-[#00B4D8] text-white py-2 text-sm font-medium rounded-md hover:bg-[#0092b3] transition">
+                                    Apply Filters
+                                </button>
+                            </div>
+                        </aside>)}
+
                     {/* Sidebar / Filters */}
-                    <aside className="md:w-1/4 border-r-2 p-5 h-svh sticky top-0 z-50">
+                    <aside className="md:w-1/4 md:border-r-2 md:block hidden md:h-svh md:sticky top-0 z-50 py-5 md:pr-3">
                         <h2 className="text-lg font-bold text-[#0d4785] mb-4">
                             Filter Offers
                         </h2>
@@ -127,7 +184,7 @@ const OffersPage = () => {
                     </aside>
 
                     {/* Main Offers Grid */}
-                    <div className="md:w-3/4 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 py-5">
+                    <div className="md:w-3/4 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:py-5">
                         {offers.map((offer) => (
                             <div
                                 key={offer.id}
@@ -184,6 +241,50 @@ const OffersPage = () => {
                 </div>
 
             </section>
+
+            <section className="mt-16 bg-[#F4E1D2]/40 py-12 px-6 md:px-12 rounded-lg text-center">
+                <h2 className="text-2xl md:text-3xl font-bold text-[#0d4785] mb-3">
+                    Didn’t find what you’re looking for?
+                </h2>
+                <p className="text-gray-700 max-w-2xl mx-auto mb-6 text-sm md:text-base leading-relaxed">
+                    No worries — our travel and study advisors can help you find the right
+                    opportunity abroad. Let us guide you through visa, travel, and
+                    accommodation options that match your goals.
+                </p>
+
+                <a
+                    href="/contact"
+                    className="bg-[#00B4D8] text-white font-medium px-6 py-2.5 rounded-md hover:bg-[#0092b3] transition duration-300"
+                >
+                    Contact Our Team
+                </a>
+
+                {/* Divider */}
+                <div className="my-10 border-t border-gray-300 w-2/3 mx-auto"></div>
+
+                {/* Newsletter Signup */}
+                <h3 className="text-lg font-semibold text-[#0d4785] mb-2">
+                    Stay Updated on New Offers
+                </h3>
+                <p className="text-gray-600 mb-4 text-sm">
+                    Subscribe to receive exclusive travel and study discounts.
+                </p>
+
+                <form className="flex flex-col sm:flex-row justify-center items-center gap-3 max-w-md mx-auto">
+                    <input
+                        type="email"
+                        placeholder="Enter your email"
+                        className="w-full sm:w-auto flex-grow border border-gray-300 rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#00B4D8]"
+                    />
+                    <button
+                        type="submit"
+                        className="bg-[#FF6F61] text-white px-6 py-2 rounded-md font-medium hover:bg-[#e25a4e] transition duration-300"
+                    >
+                        Subscribe
+                    </button>
+                </form>
+            </section>
+
 
             {/* Footer here */}
             <Footer />

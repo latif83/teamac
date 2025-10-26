@@ -1,6 +1,7 @@
 "use client"
 import { useSidebar } from "@/providers/sidebarProvider"
-import { faChartLine, faClockRotateLeft, faDashboard, faPlusCircle, faS, faUsers } from "@fortawesome/free-solid-svg-icons"
+import { faServicestack } from "@fortawesome/free-brands-svg-icons"
+import { faChartLine, faClipboardList, faClockRotateLeft, faCommentDots, faDashboard, faGlobe, faPlusCircle, faS, faUsers } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Image from "next/image"
 import Link from "next/link"
@@ -25,23 +26,23 @@ export const AdminSidebar = () => {
                         <span>Dashboard</span>
                     </Link>
                     <Link onClick={()=>{mobileScreen && setOpenSidebar(false)}} className={`w-full ${pathname == "/admin/postSignal" ? "bg-[#f2f2f2] text-gray-800" : "text-gray-50"} rounded-l sm:p-2 p-2 py-4 flex gap-1.5 items-center hover:font-bold`} href={'/admin/postSignal'}>
-                        <FontAwesomeIcon icon={faPlusCircle} width={20} height={20} className="text-lg" />
+                        <FontAwesomeIcon icon={faServicestack} width={20} height={20} className="text-lg" />
                         <span>Services</span>
                     </Link>
                     <Link onClick={()=>{mobileScreen && setOpenSidebar(false)}} className={`w-full ${pathname == "/admin/activeSignals" ? "bg-[#f2f2f2] text-gray-800" : "text-gray-50"} rounded-l sm:p-2 p-2 py-4 flex gap-1.5 items-center hover:font-bold`} href={'/admin/activeSignals'}>
-                        <FontAwesomeIcon icon={faChartLine} width={20} height={20} className="text-lg" />
+                        <FontAwesomeIcon icon={faClipboardList} width={20} height={20} className="text-lg" />
                         <span>Offers</span>
                     </Link>
                     <Link onClick={()=>{mobileScreen && setOpenSidebar(false)}} className={`w-full ${pathname == "/admin/history" ? "bg-[#f2f2f2] text-gray-800" : "text-gray-50"} rounded-l sm:p-2 p-2 py-4 flex gap-1.5 items-center hover:font-bold`} href={'/admin/history'}>
-                        <FontAwesomeIcon icon={faClockRotateLeft} width={20} height={20} className="text-lg" />
+                        <FontAwesomeIcon icon={faUsers} width={20} height={20} className="text-lg" />
                         <span>Applicants</span>
                     </Link>
                     <Link onClick={()=>{mobileScreen && setOpenSidebar(false)}} className={`w-full ${pathname == "/admin/users" ? "bg-[#f2f2f2] text-gray-800" : "text-gray-50"} rounded-l sm:p-2 p-2 py-4 flex gap-1.5 items-center hover:font-bold`} href={'/admin/users'}>
-                        <FontAwesomeIcon icon={faUsers} width={20} height={20} className="text-lg" />
+                        <FontAwesomeIcon icon={faGlobe} width={20} height={20} className="text-lg" />
                         <span>Countries</span>
                     </Link>
                     <Link onClick={()=>{mobileScreen && setOpenSidebar(false)}} className={`w-full ${pathname == "/admin/users" ? "bg-[#f2f2f2] text-gray-800" : "text-gray-50"} rounded-l sm:p-2 p-2 py-4 flex gap-1.5 items-center hover:font-bold`} href={'/admin/users'}>
-                        <FontAwesomeIcon icon={faUsers} width={20} height={20} className="text-lg" />
+                        <FontAwesomeIcon icon={faCommentDots} width={20} height={20} className="text-lg" />
                         <span>Feedbacks</span>
                     </Link>
                 </div>
