@@ -29,7 +29,7 @@ export const AdminSidebar = () => {
                         <FontAwesomeIcon icon={faServicestack} width={20} height={20} className="text-lg" />
                         <span>Services</span>
                     </Link>
-                    <Link onClick={()=>{mobileScreen && setOpenSidebar(false)}} className={`w-full ${pathname == "/admin/activeSignals" ? "bg-[#f2f2f2] text-gray-800" : "text-gray-50"} rounded-l sm:p-2 p-2 py-4 flex gap-1.5 items-center hover:font-bold`} href={'/admin/activeSignals'}>
+                    <Link onClick={()=>{mobileScreen && setOpenSidebar(false)}} className={`w-full ${pathname == "/admin/offers" ? "bg-[#f2f2f2] text-gray-800" : "text-gray-50"} rounded-l sm:p-2 p-2 py-4 flex gap-1.5 items-center hover:font-bold`} href={'/admin/offers'}>
                         <FontAwesomeIcon icon={faClipboardList} width={20} height={20} className="text-lg" />
                         <span>Offers</span>
                     </Link>
