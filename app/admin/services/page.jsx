@@ -35,16 +35,18 @@ const ServicesPage = () => {
         },
     ]);
 
-    return (
-        <section className="p-6 md:p-10">
+    const [addService, setAddService] = useState(false)
 
-            <AddServiceModal />
+    return (
+        <section className="p-3 md:p-6">
+
+            {addService && <AddServiceModal setAddService={setAddService} />}
 
             {/* Header */}
             <div className="flex justify-between items-center mb-6">
                 <h1 className="sm:text-xl font-bold text-[#0d4785]">Services</h1>
-                <button className="bg-[#00B4D8] text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-[#0092b3] transition">
-                    <FontAwesomeIcon icon={faPlusCircle} className="mr-2" /> New Service
+                <button onClick={() => setAddService(true)} type="button" className="border cursor-pointer hover:text-[#fff] px-4 py-3 rounded-xl hover:bg-[#000] transition text-sm flex items-center gap-2">
+                    <FontAwesomeIcon icon={faPlusCircle} /> New Service
                 </button>
             </div>
 
@@ -77,7 +79,7 @@ const ServicesPage = () => {
                             </div>
 
                             {/* Status & Actions */}
-                            <div className="flex justify-between items-center mt-auto">
+                            {/* <div className="flex justify-between items-center mt-auto">
 
 
                                 <div className="flex gap-3">
@@ -88,7 +90,7 @@ const ServicesPage = () => {
                                         <FontAwesomeIcon icon={faTrash} />
                                     </button>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 ))}

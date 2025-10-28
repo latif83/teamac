@@ -33,7 +33,7 @@ export const AdminSidebar = () => {
                         <FontAwesomeIcon icon={faClipboardList} width={20} height={20} className="text-lg" />
                         <span>Offers</span>
                     </Link>
-                    <Link onClick={()=>{mobileScreen && setOpenSidebar(false)}} className={`w-full ${pathname == "/admin/history" ? "bg-[#f2f2f2] text-gray-800" : "text-gray-50"} rounded-l sm:p-2 p-2 py-4 flex gap-1.5 items-center hover:font-bold`} href={'/admin/history'}>
+                    <Link onClick={()=>{mobileScreen && setOpenSidebar(false)}} className={`w-full ${pathname == "/admin/history" ? "bg-[#f2f2f2] text-gray-800" : "text-gray-50"} rounded-l sm:p-2 p-2 py-4 flex gap-1.5 items-center hover:font-bold`} href={'/admin'}>
                         <FontAwesomeIcon icon={faUsers} width={20} height={20} className="text-lg" />
                         <span>Applicants</span>
                     </Link>
@@ -41,7 +41,7 @@ export const AdminSidebar = () => {
                         <FontAwesomeIcon icon={faGlobe} width={20} height={20} className="text-lg" />
                         <span>Countries</span>
                     </Link>
-                    <Link onClick={()=>{mobileScreen && setOpenSidebar(false)}} className={`w-full ${pathname == "/admin/users" ? "bg-[#f2f2f2] text-gray-800" : "text-gray-50"} rounded-l sm:p-2 p-2 py-4 flex gap-1.5 items-center hover:font-bold`} href={'/admin/users'}>
+                    <Link onClick={()=>{mobileScreen && setOpenSidebar(false)}} className={`w-full ${pathname == "/admin/users" ? "bg-[#f2f2f2] text-gray-800" : "text-gray-50"} rounded-l sm:p-2 p-2 py-4 flex gap-1.5 items-center hover:font-bold`} href={'/admin'}>
                         <FontAwesomeIcon icon={faCommentDots} width={20} height={20} className="text-lg" />
                         <span>Feedbacks</span>
                     </Link>

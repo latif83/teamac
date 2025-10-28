@@ -4,15 +4,13 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-export function AddServiceModal ({ isOpen, onClose }) {
+export function AddServiceModal({ setAddService, onClose }) {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
     image: "",
     status: "Active",
   });
-
-//   if (!isOpen) return null;
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -29,24 +27,34 @@ export function AddServiceModal ({ isOpen, onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-4">
-      <div className="bg-white rounded-lg shadow-lg w-full max-w-lg relative p-6">
-        {/* Close Button */}
-        <button
-          onClick={onClose}
-          className="absolute top-3 right-3 text-gray-500 hover:text-gray-700"
-        >
-          <FontAwesomeIcon icon={faTimes} />
-        </button>
+    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-4 pt-12">
+      <div className="bg-white rounded-t-lg shadow-lg w-full h-full max-w-2xl relative p-6">
 
-        <h2 className="text-xl font-bold text-[#0d4785] mb-4">
-          Add New Service
-        </h2>
+        <div className="flex justify-between items-center">
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+
+          <h2 className="font-bold">
+            New Service
+          </h2>
+
+          {/* Close Button */}
+          <button
+            type="button"
+            title="Close Button"
+            onClick={()=> setAddService(false)}
+            className="text-gray-700 py-1.5 px-2 rounded-full cursor-pointer hover:bg-red-400 hover:text-gray-50"
+          >
+            <FontAwesomeIcon icon={faTimes} />
+          </button>
+        </div>
+
+
+        <form onSubmit={handleSubmit} className="space-y-6 mt-6">
+
+
           {/* Name */}
           <div>
-            <label className="block text-sm text-gray-700 mb-1">
+            <label className="block text-sm text-gray-700 mb-1 font-semibold">
               Service Name
             </label>
             <input
@@ -56,12 +64,13 @@ export function AddServiceModal ({ isOpen, onClose }) {
               onChange={handleChange}
               required
               className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#00B4D8] outline-none"
+              placeholder="e.g., Study Abroad, Visa Assistance"
             />
           </div>
 
           {/* Description */}
           <div>
-            <label className="block text-sm text-gray-700 mb-1">
+            <label className="block text-sm text-gray-700 mb-1 font-semibold">
               Description
             </label>
             <textarea
@@ -71,51 +80,35 @@ export function AddServiceModal ({ isOpen, onClose }) {
               required
               rows="3"
               className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#00B4D8] outline-none resize-none"
+              placeholder="Leave a description for this sevice..."
             ></textarea>
           </div>
 
-          {/* Image Upload */}
           <div>
-            <label className="block text-sm text-gray-700 mb-1">Image</label>
-            <input
-              type="file"
-              name="image"
-              accept="image/*"
-              onChange={handleChange}
-              className="w-full text-sm"
-            />
-          </div>
 
-          {/* Status */}
-          <div>
-            <label className="block text-sm text-gray-700 mb-1">Status</label>
-            <select
-              name="status"
-              value={formData.status}
-              onChange={handleChange}
-              className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#00B4D8] outline-none"
-            >
-              <option>Active</option>
-              <option>Inactive</option>
-            </select>
+            <p className="block text-sm text-gray-700 mb-1 font-semibold">Select an image thumbnail for this service</p>
+
+            <label className="w-full h-[150px] border rounded hover:bg-[#f2f2f2] cursor-pointer flex flex-col items-center justify-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+              </svg>
+
+              <span className="text-sm">Select Image</span>
+            </label>
           </div>
 
           {/* Buttons */}
           <div className="flex justify-end gap-3 pt-4">
-            <button
-              type="button"
-              onClick={onClose}
-              className="px-4 py-2 text-sm border border-gray-300 rounded-md hover:bg-gray-100 transition"
-            >
-              Cancel
-            </button>
+
             <button
               type="submit"
-              className="px-4 py-2 text-sm bg-[#00B4D8] text-white rounded-md hover:bg-[#0092b3] transition"
+              className="px-6 py-2 cursor-pointer text-sm bg-[#00B4D8] text-white rounded-md hover:bg-[#0092b3] transition"
             >
-              Save Service
+              Submit
             </button>
           </div>
+
+
         </form>
       </div>
     </div>

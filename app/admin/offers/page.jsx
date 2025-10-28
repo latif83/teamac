@@ -13,6 +13,7 @@ import {
     faPlusCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { NewOfferModal } from "./NewOfferModal";
 
 const AdminOffers = () => {
     const [offers, setOffers] = useState([
@@ -77,25 +78,29 @@ const AdminOffers = () => {
                 : new Date(a.datePosted) - new Date(b.datePosted)
         );
 
-    return (
-        <section className="p-3 pt-5 md:p-10 md:pt-5">
-            {/* Header Section */}
-            <div className="flex justify-between items-center mb-5 gap-4">
-                <h1 className="sm:text-xl text-lg font-bold text-[#0d4785]">Manage Offers</h1>
+    const [addOffer, setAddOffer] = useState(false)
 
-                <button type="button" className="flex items-center gap-2 bg-[#00B4D8] text-white px-4 py-2 rounded-md hover:bg-[#0092b3] transition text-sm cursor-pointer">
-                    <FontAwesomeIcon icon={faPlusCircle} />
-                    <span>Add Offer</span>
+    return (
+        <section className="p-3 pt-5 md:p-6">
+            {/* Header Section */}
+
+            {addOffer && <NewOfferModal setAddOffer={setAddOffer} />}
+
+
+            <div className="flex justify-between items-center mb-6">
+                <h1 className="sm:text-xl font-bold text-[#0d4785]">Manage Offers</h1>
+                <button onClick={() => setAddOffer(true)} type="button" className="border cursor-pointer hover:text-[#fff] px-4 py-3 rounded-xl hover:bg-[#000] transition text-sm flex items-center gap-2">
+                    <FontAwesomeIcon icon={faPlusCircle} /> New Offer
                 </button>
             </div>
 
-<div className="flex items-center gap-2 mb-1">
-                    <FontAwesomeIcon icon={faFilter} className="text-[#00B4D8] text-xs" />
-                    <h3 className="font-semibold text-[#0d4785] text-xs">Filter Offers</h3>
-                </div>
+            <div className="flex items-center gap-2 mb-1">
+                <FontAwesomeIcon icon={faFilter} className="text-[#00B4D8] text-xs" />
+                <h3 className="font-semibold text-[#0d4785] text-xs">Filter Offers</h3>
+            </div>
             {/* Filters Section */}
             <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-3 mb-4 flex flex-col flex-wrap justify-center gap-4">
-                
+
 
                 <div className="flex items-center sm:justify-start justify-between gap-4">
                     {/* Status Filter */}
