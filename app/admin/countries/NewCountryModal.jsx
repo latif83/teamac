@@ -1,7 +1,85 @@
 import { faTimes } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import Image from "next/image";
+import { useMemo, useState } from "react"
+import Select from "react-select";
+import countryList from "react-select-country-list";
+import { toast } from "react-toastify";
 
 export const NewCountryModal = ({ setAddCountry }) => {
+
+    const [formData, setFormData] = useState({
+        country: ''
+    })
+
+    const [loading, setLoading] = useState(false)
+
+    const submitForm = async (e) => {
+        e.preventDefault()
+        setLoading(true)
+        try {
+
+            const res = await fetch(`/api/admin/countries`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData)
+            })
+
+            const data = await res.json()
+
+            if(!res.ok){
+                toast.success(data.message || 'Error adding country')
+            }
+
+            toast.success(data.message || 'Country added successfully')
+
+        }
+        catch (e) {
+            console.log(e)
+            toast.error("An unexpected error happened! Please try again later.")
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    const options = useMemo(() => countryList().getData(), []);
+    const [selectedCountry, setSelectedCountry] = useState(null);
+    const [countries, setCountries] = useState([]);
+
+    const handleSelect = (val) => {
+        setSelectedCountry(val);
+        handleAddCountry(val)
+    };
+
+    const handleAddCountry = (selectedCountry) => {
+        if (!selectedCountry) return;
+
+        // Prevent duplicates
+        const exists = countries.some(
+            (c) => c.value.toLowerCase() === selectedCountry.value.toLowerCase()
+        );
+
+        if (exists) {
+            toast.error("This country has already been added.");
+            return;
+        }
+
+        const flagUrl = `https://flagcdn.com/w40/${selectedCountry.value.toLowerCase()}.png`;
+
+        setCountries((prev) => [
+            ...prev,
+            { ...selectedCountry, flag: flagUrl, status: "Active" },
+        ]);
+
+        setSelectedCountry(null);
+    };
+
+    const removeCountry = (country) => {
+        setCountries(countries.filter(c => c.value !== country.value));
+    }
+
     return (
 
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-4 pt-12">
@@ -26,21 +104,32 @@ export const NewCountryModal = ({ setAddCountry }) => {
                 </div>
 
 
-                <form className="space-y-6 mt-6">
+                <form onSubmit={submitForm} className="space-y-6 mt-6">
 
-
-                    {/* Name */}
-                    <div>
+                    {/* Country Selector */}
+                    <div className="">
                         <label className="block text-sm text-gray-700 mb-1 font-semibold">
                             Country Name
                         </label>
-                        <input
-                            type="text"
-                            name="name"
-                            required
-                            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#00B4D8] outline-none"
-                            placeholder="e.g., Germany, Canada, Australia"
+                        <Select
+                            options={options}
+                            value={selectedCountry}
+                            onChange={handleSelect}
+                            placeholder="Select a country"
+                            className="text-sm"
                         />
+                    </div>
+
+                    <div className="flex flex-wrap gap-2">
+                        {countries.length > 0 ? countries.map((country, index) => (
+                            <div key={index} className="flex gap-2 items-center text-xs bg-blue-100 px-4 py-3 font-semibold rounded-xl">
+                                <img src={country.flag} alt="Country Flag Image Icon" className="w-[15px] h-[15px]" />
+                                <span>{country.label}</span>
+                                <button onClick={() => removeCountry(country)} type="button" title="Remove Country" className="text-red-600 hover:text-red-300 cursor-pointer">
+                                    <FontAwesomeIcon icon={faTimes} className="text-xs" />
+                                </button>
+                            </div>
+                        )) : <p className="text-sm text-gray-500"> No Country Selected. </p>}
                     </div>
 
                     {/* Buttons */}

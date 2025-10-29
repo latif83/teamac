@@ -48,7 +48,6 @@ export default function CountriesPage() {
                             </th>
                             <td className="px-6 py-4 text-right">
                                 <a href="#" className="font-medium text-blue-600 hover:underline">Edit</a>
-                                 <a href="#" className="font-medium text-red-600 hover:underline ml-2">Delete</a>
                             </td>
                         </tr>
                         <tr className="bg-white border-b border-gray-200 hover:bg-gray-50">
@@ -61,11 +60,10 @@ export default function CountriesPage() {
                             </th>
                             <td className="px-6 py-4 text-right">
                                 <a href="#" className="font-medium text-blue-600 hover:underline">Edit</a>
-                                 <a href="#" className="font-medium text-red-600 hover:underline ml-2">Delete</a>
                             </td>
                         </tr>
                         <tr className="bg-white hover:bg-gray-50">
-                             <td className="px-6 py-4">
+                            <td className="px-6 py-4">
                                 Flag
                             </td>
                             <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
@@ -73,7 +71,6 @@ export default function CountriesPage() {
                             </th>
                             <td className="px-6 py-4 text-right">
                                 <a href="#" className="font-medium text-blue-600 hover:underline">Edit</a>
-                                <a href="#" className="font-medium text-red-600 hover:underline ml-2">Delete</a>
                             </td>
                         </tr>
                     </tbody>
