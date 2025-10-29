@@ -2,6 +2,7 @@
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState } from "react"
+import { NewCountryModal } from "./NewCountryModal"
 
 export default function CountriesPage() {
 
@@ -9,6 +10,8 @@ export default function CountriesPage() {
 
     return (
         <section className="p-3 md:p-6">
+
+            {addCountry && <NewCountryModal setAddCountry={setAddCountry} />}
 
             <div className="flex justify-between items-center mb-6">
                 <h1 className="sm:text-xl font-bold text-[#0d4785]">Manage Countries</h1>

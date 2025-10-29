@@ -41,7 +41,7 @@ export function AddServiceModal({ setAddService, onClose }) {
           <button
             type="button"
             title="Close Button"
-            onClick={()=> setAddService(false)}
+            onClick={() => setAddService(false)}
             className="text-gray-700 py-1.5 px-2 rounded-full cursor-pointer hover:bg-red-400 hover:text-gray-50"
           >
             <FontAwesomeIcon icon={faTimes} />
@@ -102,9 +102,13 @@ export function AddServiceModal({ setAddService, onClose }) {
 
             <button
               type="submit"
-              className="px-6 py-2 cursor-pointer text-sm bg-[#00B4D8] text-white rounded-md hover:bg-[#0092b3] transition"
+              className="px-6 py-4 w-full cursor-pointer text-sm bg-[#00B4D8] text-white rounded-md hover:bg-[#0092b3] transition flex items-center justify-center gap-2"
             >
-              Submit
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 7.5h-.75A2.25 2.25 0 0 0 4.5 9.75v7.5a2.25 2.25 0 0 0 2.25 2.25h7.5a2.25 2.25 0 0 0 2.25-2.25v-7.5a2.25 2.25 0 0 0-2.25-2.25h-.75m0-3-3-3m0 0-3 3m3-3v11.25m6-2.25h.75a2.25 2.25 0 0 1 2.25 2.25v7.5a2.25 2.25 0 0 1-2.25 2.25h-7.5a2.25 2.25 0 0 1-2.25-2.25v-.75" />
+              </svg>
+
+              <span> Submit </span>
             </button>
           </div>
 

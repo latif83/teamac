@@ -114,14 +114,27 @@ export const NewOfferModal = ({ setAddOffer }) => {
 
                     <div>
                         <label className="block text-sm text-gray-700 mb-1 font-semibold">
-                            Price
+                            Price / Label
                         </label>
                         <input
-                            type="number"
+                            type="text"
                             name="price"
                             required
                             className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#00B4D8] outline-none"
-                            placeholder="Fees required"
+                            placeholder="e.g., From $1500, Starting at ₵2000, Custom Quote"
+                        />
+                    </div>
+
+                    <div>
+                        <label className="block text-sm text-gray-700 mb-1 font-semibold">
+                            Price / Description
+                        </label>
+                        <input
+                            type="text"
+                            name="price"
+                            required
+                            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#00B4D8] outline-none"
+                            placeholder="Explain what the pricing covers or excludes..."
                         />
                     </div>
 
