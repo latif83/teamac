@@ -2,14 +2,9 @@ POST http://localhost:3000/api/admin/countries
 Content-Type: application/json
 
 [{
-    "name": "Ghana",
-    "code": "GH",
-    "flag": "https://flagcdn.com/w40/gh.png"
-},
-{
-    "name": "Nigeria",
-    "code": "NG",
-    "flag": "https://flagcdn.com/w40/ng.png"
+    "name": "Cote d Ivoire",
+    "code": "CI",
+    "flag": "https://flagcdn.com/w40/ci.png"
 }]
 
 ###

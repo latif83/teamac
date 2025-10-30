@@ -6,43 +6,9 @@ import Select from "react-select";
 import countryList from "react-select-country-list";
 import { toast } from "react-toastify";
 
-export const NewCountryModal = ({ setAddCountry }) => {
+export const NewCountryModal = ({ setAddCountry, setFetchCountries }) => {
 
-    const [formData, setFormData] = useState({
-        country: ''
-    })
 
-    const [loading, setLoading] = useState(false)
-
-    const submitForm = async (e) => {
-        e.preventDefault()
-        setLoading(true)
-        try {
-
-            const res = await fetch(`/api/admin/countries`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData)
-            })
-
-            const data = await res.json()
-
-            if(!res.ok){
-                toast.success(data.message || 'Error adding country')
-            }
-
-            toast.success(data.message || 'Country added successfully')
-
-        }
-        catch (e) {
-            console.log(e)
-            toast.error("An unexpected error happened! Please try again later.")
-        } finally {
-            setLoading(false)
-        }
-    }
 
     const options = useMemo(() => countryList().getData(), []);
     const [selectedCountry, setSelectedCountry] = useState(null);
@@ -78,6 +44,40 @@ export const NewCountryModal = ({ setAddCountry }) => {
 
     const removeCountry = (country) => {
         setCountries(countries.filter(c => c.value !== country.value));
+    }
+
+    const [loading, setLoading] = useState(false)
+
+    const submitForm = async (e) => {
+        e.preventDefault()
+        setLoading(true)
+        try {
+
+            const res = await fetch(`/api/admin/countries`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(countries)
+            })
+
+            const data = await res.json()
+
+            if (!res.ok) {
+                toast.success(data.msg || 'Error adding country')
+            }
+
+            toast.success(data.msg || 'Country added successfully')
+            setFetchCountries(true)
+            setAddCountry(false)
+
+        }
+        catch (e) {
+            console.log(e)
+            toast.error("An unexpected error happened! Please try again later.")
+        } finally {
+            setLoading(false)
+        }
     }
 
     return (
@@ -136,14 +136,44 @@ export const NewCountryModal = ({ setAddCountry }) => {
                     <div className="flex justify-end gap-3 pt-4">
 
                         <button
+                            disabled={loading}
                             type="submit"
-                            className="px-6 py-4 w-full cursor-pointer text-sm bg-[#00B4D8] text-white rounded-md hover:bg-[#0092b3] transition flex items-center justify-center gap-2"
+                            className="px-6 disabled:opacity-30 py-4 w-full cursor-pointer text-sm bg-[#00B4D8] text-white rounded-md hover:bg-[#0092b3] transition flex items-center justify-center gap-2"
                         >
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 7.5h-.75A2.25 2.25 0 0 0 4.5 9.75v7.5a2.25 2.25 0 0 0 2.25 2.25h7.5a2.25 2.25 0 0 0 2.25-2.25v-7.5a2.25 2.25 0 0 0-2.25-2.25h-.75m0-3-3-3m0 0-3 3m3-3v11.25m6-2.25h.75a2.25 2.25 0 0 1 2.25 2.25v7.5a2.25 2.25 0 0 1-2.25 2.25h-7.5a2.25 2.25 0 0 1-2.25-2.25v-.75" />
-                            </svg>
+                            {loading ? (
+                                <>
+                                    <svg
+                                        className="w-5 h-5 animate-spin text-white"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <circle
+                                            className="opacity-25"
+                                            cx="12"
+                                            cy="12"
+                                            r="10"
+                                            stroke="currentColor"
+                                            strokeWidth="4"
+                                        ></circle>
+                                        <path
+                                            className="opacity-75"
+                                            fill="currentColor"
+                                            d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 00-8 8z"
+                                        ></path>
+                                    </svg>
+                                    Processing…
+                                </>
+                            ) : (
+                                <>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 7.5h-.75A2.25 2.25 0 0 0 4.5 9.75v7.5a2.25 2.25 0 0 0 2.25 2.25h7.5a2.25 2.25 0 0 0 2.25-2.25v-7.5a2.25 2.25 0 0 0-2.25-2.25h-.75m0-3-3-3m0 0-3 3m3-3v11.25m6-2.25h.75a2.25 2.25 0 0 1 2.25 2.25v7.5a2.25 2.25 0 0 1-2.25 2.25h-7.5a2.25 2.25 0 0 1-2.25-2.25v-.75" />
+                                    </svg>
 
-                            <span> Submit </span>
+                                    <span>
+                                        Submit
+                                    </span></>
+                            )}
                         </button>
                     </div>
 
