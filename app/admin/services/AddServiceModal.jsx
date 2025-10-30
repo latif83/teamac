@@ -2,14 +2,19 @@
 
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faExpand, faRepeat, faTimes, faTrash } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
+import { toast } from "react-toastify";
+import { uploadAnalysisImage } from "@/actions/actions";
 
-export function AddServiceModal({ setAddService, onClose }) {
+export function AddServiceModal({ setAddService, setFetchService }) {
+
+  const [loading, setLoading] = useState(false)
+
   const [formData, setFormData] = useState({
     name: "",
     description: "",
-    image: "",
-    status: "Active",
+    image: ""
   });
 
   const handleChange = (e) => {
@@ -20,15 +25,66 @@ export function AddServiceModal({ setAddService, onClose }) {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Service Added:", formData);
-    onClose(); // close modal after submit (for now)
+    try {
+      setLoading(true)
+
+      if (!formData.image) {
+        return toast.error("Please select an image thumbnail for this service!")
+      }
+
+      const imageUploaded = await uploadAnalysisImage(formData.image)
+
+      const fData = { ...formData, image : imageUploaded }
+
+      const res = await fetch('/api/admin/services', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(fData)
+      })
+
+      const data = await res.json()
+
+      if (!res.ok) {
+        return toast.error(data.msg || 'Failed to add service')
+      }
+
+      toast.success(data.msg || 'Service added successfully')
+      setFetchService(true)
+      setAddService(false)
+
+    }
+    catch (e) {
+      console.log(e)
+      toast.error('An error occurred. Please try again.')
+    } finally {
+      setLoading(false)
+    }
+  };
+
+  const handleImageSelect = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+
+        // setConfirmAnalysisBeforeImage(true)
+
+        setFormData((prevData) => ({ ...prevData, image: reader.result }));
+
+        // console.log(reader.result)
+        // setCropping(true);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   return (
     <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-4 pt-12">
-      <div className="bg-white rounded-t-lg shadow-lg w-full h-full max-w-2xl relative p-6">
+      <div className="bg-white overflow-y-auto rounded-t-lg shadow-lg w-full h-full max-w-2xl relative p-6">
 
         <div className="flex justify-between items-center">
 
@@ -88,27 +144,78 @@ export function AddServiceModal({ setAddService, onClose }) {
 
             <p className="block text-sm text-gray-700 mb-1 font-semibold">Select an image thumbnail for this service</p>
 
-            <label className="w-full h-[150px] border rounded hover:bg-[#f2f2f2] cursor-pointer flex flex-col items-center justify-center gap-2">
+
+
+            {formData.image ? (
+              <div className="mt-2 cursor-pointer block w-full h-[150px] rounded overflow-hidden hover:border border-red-400 transition-all duration-500 relative">
+                <Image width={100} height={100} src={formData.image} alt="Selected" className="w-full h-[150px] object-cover rounded" />
+                <div className="absolute bottom-0 left-0 w-full flex justify-end gap-2 p-2 bg-black/30">
+                  <label htmlFor="image" className="px-2 py-1 rounded bg-blue-500 hover:bg-blue-700 transition-all duration-500 text-sm cursor-pointer">
+                    <FontAwesomeIcon icon={faRepeat} className="text-white" />
+                  </label>
+                  <button type="button" className="px-2 py-1 rounded bg-green-500 hover:bg-green-700 transition-all duration-500 text-sm cursor-pointer">
+                    <FontAwesomeIcon icon={faExpand} className="text-white" />
+                  </button>
+                  <button onClick={() => setFormData((prevData) => ({ ...prevData, image: "" }))} type="button" className="px-2 py-1 rounded bg-red-500 hover:bg-red-700 transition-all duration-500 text-sm cursor-pointer">
+                    <FontAwesomeIcon icon={faTrash} className="text-white" />
+                  </button>
+                </div>
+              </div>
+            ) : <label htmlFor="image" className="w-full h-[150px] border rounded hover:bg-[#f2f2f2] cursor-pointer flex flex-col items-center justify-center gap-2">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
               </svg>
 
               <span className="text-sm">Select Image</span>
-            </label>
+            </label>}
+
+            <input type="file" accept="image/*" hidden id="image" onChange={handleImageSelect} />
           </div>
 
           {/* Buttons */}
           <div className="flex justify-end gap-3 pt-4">
 
             <button
+            disabled={loading}
               type="submit"
-              className="px-6 py-4 w-full cursor-pointer text-sm bg-[#00B4D8] text-white rounded-md hover:bg-[#0092b3] transition flex items-center justify-center gap-2"
+              className="px-6 py-4 w-full disabled:opacity-30 cursor-pointer text-sm bg-[#00B4D8] text-white rounded-md hover:bg-[#0092b3] transition flex items-center justify-center gap-2"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 7.5h-.75A2.25 2.25 0 0 0 4.5 9.75v7.5a2.25 2.25 0 0 0 2.25 2.25h7.5a2.25 2.25 0 0 0 2.25-2.25v-7.5a2.25 2.25 0 0 0-2.25-2.25h-.75m0-3-3-3m0 0-3 3m3-3v11.25m6-2.25h.75a2.25 2.25 0 0 1 2.25 2.25v7.5a2.25 2.25 0 0 1-2.25 2.25h-7.5a2.25 2.25 0 0 1-2.25-2.25v-.75" />
-              </svg>
+              
 
-              <span> Submit </span>
+              {loading ? (
+                                <>
+                                    <svg
+                                        className="w-5 h-5 animate-spin text-white"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <circle
+                                            className="opacity-25"
+                                            cx="12"
+                                            cy="12"
+                                            r="10"
+                                            stroke="currentColor"
+                                            strokeWidth="4"
+                                        ></circle>
+                                        <path
+                                            className="opacity-75"
+                                            fill="currentColor"
+                                            d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 00-8 8z"
+                                        ></path>
+                                    </svg>
+                                    Processing…
+                                </>
+                            ) : (
+                                <>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 7.5h-.75A2.25 2.25 0 0 0 4.5 9.75v7.5a2.25 2.25 0 0 0 2.25 2.25h7.5a2.25 2.25 0 0 0 2.25-2.25v-7.5a2.25 2.25 0 0 0-2.25-2.25h-.75m0-3-3-3m0 0-3 3m3-3v11.25m6-2.25h.75a2.25 2.25 0 0 1 2.25 2.25v7.5a2.25 2.25 0 0 1-2.25 2.25h-7.5a2.25 2.25 0 0 1-2.25-2.25v-.75" />
+                                    </svg>
+
+                                    <span>
+                                        Submit
+                                    </span></>
+                            )}
             </button>
           </div>
 

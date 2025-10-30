@@ -1,46 +1,54 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faEdit, faTrash, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { AddServiceModal } from "./AddServiceModal";
+import { toast } from "react-toastify";
 
 const ServicesPage = () => {
-    // Dummy data for now
-    const [services] = useState([
-        {
-            id: 1,
-            name: "Study Abroad Consulting",
-            description:
-                "Personalized guidance on school selection, applications, and visa assistance.",
-            image: "/accomodation.jpg",
-            status: "Active",
-        },
-        {
-            id: 2,
-            name: "Travel Packages",
-            description:
-                "Customized travel itineraries and flight bookings for clients worldwide.",
-            image: "/accomodation.jpg",
-            status: "Active",
-        },
-        {
-            id: 3,
-            name: "Accommodation Assistance",
-            description:
-                "Helping students and travelers secure comfortable and affordable housing.",
-            image: "/accomodation.jpg",
-            status: "Inactive",
-        },
-    ]);
+
+
+    const [loading, setLoading] = useState(false)
+    const [services, setServices] = useState([])
+
+    const [fetchService, setFetchService] = useState(true)
+
+    const getServiceData = async () => {
+        try {
+            setLoading(true)
+
+            const res = await fetch('/api/admin/services')
+            const data = await res.json()
+
+            if (!res.ok) {
+                return toast.error(data.msg || 'Failed to fetch services data')
+            }
+
+            setServices(data.services)
+
+        }
+        catch (e) {
+            console.log(e)
+            toast.error('An unexpected error occurred while fetching services data.')
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    useEffect(() => {
+        fetchService && getServiceData()
+        setFetchService(false)
+    }, [fetchService])
+
 
     const [addService, setAddService] = useState(false)
 
     return (
         <section className="p-3 md:p-6">
 
-            {addService && <AddServiceModal setAddService={setAddService} />}
+            {addService && <AddServiceModal setAddService={setAddService} setFetchService={setFetchService} />}
 
             {/* Header */}
             <div className="flex justify-between items-center mb-6">
@@ -59,8 +67,8 @@ const ServicesPage = () => {
                     >
                         {/* Image */}
                         <div className="w-full h-40 relative rounded-t-lg overflow-hidden">
-                            <Image
-                                src={service.image}
+                            <img
+                                src={service.image?.url}
                                 alt={service.name}
                                 fill
                                 className="object-cover"
