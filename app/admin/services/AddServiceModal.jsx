@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExpand, faRepeat, faTimes, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import { toast } from "react-toastify";
-import { uploadAnalysisImage } from "@/actions/actions";
+import { uploadServicesThumbnail } from "@/actions/actions";
 
 export function AddServiceModal({ setAddService, setFetchService }) {
 
@@ -34,7 +34,7 @@ export function AddServiceModal({ setAddService, setFetchService }) {
         return toast.error("Please select an image thumbnail for this service!")
       }
 
-      const imageUploaded = await uploadAnalysisImage(formData.image)
+      const imageUploaded = await uploadServicesThumbnail(formData.image)
 
       const fData = { ...formData, image : imageUploaded }
 

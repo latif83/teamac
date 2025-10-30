@@ -42,9 +42,14 @@ model Offer {
   countryId        String
   priceLabel       String?
   priceDescription String?
-  thumbnail        String?
-  status           String   @default("Active")
+  thumbnail       Json
+  city  String
+  type String
+  validity DateTime
+
+  
   datePosted       DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
   service Service @relation(fields: [serviceId], references: [id])
   country Country @relation(fields: [countryId], references: [id])

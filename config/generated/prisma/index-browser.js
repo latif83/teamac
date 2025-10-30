@@ -147,8 +147,11 @@ exports.Prisma.OfferScalarFieldEnum = {
   priceLabel: 'priceLabel',
   priceDescription: 'priceDescription',
   thumbnail: 'thumbnail',
-  status: 'status',
-  datePosted: 'datePosted'
+  city: 'city',
+  type: 'type',
+  validity: 'validity',
+  datePosted: 'datePosted',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {

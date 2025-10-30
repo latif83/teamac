@@ -12,7 +12,7 @@ import {
     faCalendarAlt,
     faPlusCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NewOfferModal } from "./NewOfferModal";
 
 const AdminOffers = () => {
@@ -53,19 +53,6 @@ const AdminOffers = () => {
         status: "All",
         sort: "Newest",
     });
-
-    const toggleStatus = (id) => {
-        setOffers((prev) =>
-            prev.map((offer) =>
-                offer.id === id
-                    ? {
-                        ...offer,
-                        status: offer.status === "Active" ? "Inactive" : "Active",
-                    }
-                    : offer
-            )
-        );
-    };
 
     // Filtering Logic
     const filteredOffers = offers
