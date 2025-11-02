@@ -22,7 +22,7 @@ const RenderLoading = () => {
         <>
             {
                 [1, 2, 3, 4, 5, 6].map((loader) => (
-                     <div
+                    <div
                         key={loader}
                         className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition animate-pulse"
                     >
@@ -199,7 +199,12 @@ const AdminOffers = () => {
                             <h2 className="font-bold text-lg text-[#0d4785] mb-1">
                                 {offer.title}
                             </h2>
-                            <p className="text-sm text-gray-600">{offer?.country?.name}</p>
+
+                            <div className="flex items-center gap-2">
+                                <img src={offer?.country?.flag} alt="Country Flag" className="w-8 h-4" />
+                                <p className="text-sm text-gray-600">{offer?.country?.name}</p>
+                            </div>
+
                             <p className="text-sm text-gray-500 mb-3">{offer.service?.name}</p>
 
                             {/* Applicants & Date */}
@@ -215,16 +220,25 @@ const AdminOffers = () => {
                                 </div>
                             </div>
 
-                            {/* Status */}
-                            <span
-                                className={`inline-block px-3 py-1 text-xs rounded-full font-medium ${offer.status !== "Active"
-                                    ? "bg-green-100 text-green-700"
-                                    : "bg-red-100 text-red-600"
-                                    }`}
-                            >
-                                {/* {offer.status} */}
-                                Active
-                            </span>
+                            <div className="flex justify-between items-center">
+                                <span className="flex items-center gap-2 text-xs text-[#0d4785] font-medium hover:underline cursor-pointer">
+                                    <span>Manage Offer</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+                                    </svg>
+
+                                </span>
+                                {/* Status */}
+                                <span
+                                    className={`inline-block px-3 py-1 text-xs rounded-full font-medium ${offer.status !== "Active"
+                                        ? "bg-green-100 text-green-700"
+                                        : "bg-red-100 text-red-600"
+                                        }`}
+                                >
+                                    {/* {offer.status} */}
+                                    Active
+                                </span>
+                            </div>
 
                         </div>
                     </div>
