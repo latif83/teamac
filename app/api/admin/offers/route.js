@@ -1,6 +1,28 @@
 import { NextResponse } from "next/server";
 import prisma from "@/config/prisma";
 
+export async function GET() {
+  try {
+    const offers = await prisma.offer.findMany({
+      include: {
+        service: true,
+        country: true,
+      },
+      orderBy: {
+        datePosted: "desc", // optional: newest first
+      },
+    });
+
+    return NextResponse.json({ offers }, { status: 200 });
+  } catch (e) {
+    console.error(e);
+    return NextResponse.json(
+      { msg: "Internal server error!" },
+      { status: 500 }
+    );
+  }
+}
+
 export async function POST(req) {
   try {
     const {
@@ -13,7 +35,7 @@ export async function POST(req) {
       thumbnail,
       city,
       validity,
-      requirements
+      requirements,
     } = await req.json();
 
     // ✅ Validate required fields

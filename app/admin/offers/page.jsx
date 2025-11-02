@@ -14,40 +14,97 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { NewOfferModal } from "./NewOfferModal";
+import { toast } from "react-toastify";
+
+const RenderLoading = () => {
+
+    return (
+        <>
+            {
+                [1, 2, 3, 4, 5, 6].map((loader) => (
+                     <div
+                        key={loader}
+                        className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition animate-pulse"
+                    >
+                        <div className="w-full h-40 bg-gray-200">
+                        </div>
+
+                        <div className="px-3 py-5">
+                            <h2 className="font-bold text-lg text-[#0d4785] bg-gray-200 h-4 mb-2 w-32 rounded-lg">
+                            </h2>
+                            <p className="text-sm text-gray-600 h-4 mb-2 bg-gray-200 w-32 rounded-lg"></p>
+                            <p className="text-sm text-gray-500 mb-3 h-4 mb-2 bg-gray-200 w-32 rounded-lg"></p>
+
+                            {/* Applicants & Date */}
+                            <div className="flex justify-between text-xs text-gray-500 mb-3">
+                                <div className="flex items-center gap-1">
+                                    <FontAwesomeIcon icon={faUsers} />
+                                    <span className="bg-gray-200 w-24 h-4 rounded-lg"></span>
+                                </div>
+                                <div className="flex items-center gap-1">
+                                    <FontAwesomeIcon icon={faCalendarAlt} />
+                                    <span className="bg-gray-200 w-24 h-4 rounded-lg"></span>
+                                </div>
+                            </div>
+
+                            {/* Actions */}
+                            <div className="flex items-center gap-4 mt-4">
+                                <button
+                                    type="button"
+                                    className="rounded-lg bg-blue-200 p-2 hover:text-blue-800 cursor-pointer"
+                                    title="Edit"
+                                >
+                                </button>
+                                <button
+                                    type="button"
+                                    className="rounded-lg bg-red-200 hover:text-red-800 p-2 cursor-pointer"
+                                    title="Delete"
+                                >
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                ))
+            }</>
+    )
+}
 
 const AdminOffers = () => {
-    const [offers, setOffers] = useState([
-        {
-            id: 1,
-            title: "Study in Canada",
-            country: "Canada",
-            service: "Study Abroad",
-            image: "/canada.jpg",
-            status: "Active",
-            applicants: 12,
-            datePosted: "2025-10-05",
-        },
-        {
-            id: 2,
-            title: "Dubai Travel Package",
-            country: "UAE",
-            service: "Travel",
-            image: "/dubai.jpg",
-            status: "Inactive",
-            applicants: 8,
-            datePosted: "2025-09-28",
-        },
-        {
-            id: 3,
-            title: "Accommodation in London",
-            country: "UK",
-            service: "Accommodation",
-            image: "/london.jpg",
-            status: "Active",
-            applicants: 5,
-            datePosted: "2025-10-09",
-        },
-    ]);
+
+    const [offers, setOffers] = useState([])
+
+    const [loading, setLoading] = useState(true)
+    const [fetchData, setFetchData] = useState(true)
+
+    const getOffersData = async () => {
+
+        try {
+
+            setLoading(true)
+
+            const res = await fetch('/api/admin/offers')
+
+            const data = await res.json()
+
+            if (!res.ok) {
+                return toast.error(data.msg || 'Failed to fetch offers')
+            }
+
+            setOffers(data.offers || [])
+
+        }
+        catch (e) {
+            console.log(e)
+        } finally {
+            setLoading(false)
+        }
+
+    }
+
+    useEffect(() => {
+        fetchData && getOffersData()
+        setFetchData(false)
+    }, [fetchData])
 
     const [filters, setFilters] = useState({
         status: "All",
@@ -71,7 +128,7 @@ const AdminOffers = () => {
         <section className="p-3 pt-5 md:p-6">
             {/* Header Section */}
 
-            {addOffer && <NewOfferModal setAddOffer={setAddOffer} />}
+            {addOffer && <NewOfferModal setAddOffer={setAddOffer} setFetchData={setFetchData} />}
 
 
             <div className="flex justify-between items-center mb-6">
@@ -81,16 +138,16 @@ const AdminOffers = () => {
                 </button>
             </div>
 
-            <div className="flex items-center gap-2 mb-1">
+            {/* <div className="flex items-center gap-2 mb-1">
                 <FontAwesomeIcon icon={faFilter} className="text-[#00B4D8] text-xs" />
                 <h3 className="font-semibold text-[#0d4785] text-xs">Filter Offers</h3>
-            </div>
+            </div> */}
             {/* Filters Section */}
-            <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-3 mb-4 flex flex-col flex-wrap justify-center gap-4">
+            {/* <div className="bg-white border border-gray-200 rounded-lg shadow-sm p-3 mb-4 flex flex-col flex-wrap justify-center gap-4">
 
 
                 <div className="flex items-center sm:justify-start justify-between gap-4">
-                    {/* Status Filter */}
+                    
                     <div>
                         <label className="text-xs text-gray-500 block mb-1">Status</label>
                         <select
@@ -105,8 +162,7 @@ const AdminOffers = () => {
                             <option value="Inactive">Inactive</option>
                         </select>
                     </div>
-
-                    {/* Date Sort */}
+                    
                     <div>
                         <label className="text-xs text-gray-500 block mb-1">Date Posted</label>
                         <select
@@ -120,20 +176,20 @@ const AdminOffers = () => {
                     </div>
                 </div>
 
-            </div>
+            </div> */}
 
-            <p className="text-black text-sm mb-4"> <b className="text-[#0d4785] text-xl"> 20 </b> offers found. </p>
+            {loading ? <p className="h-4 w-32 rounded-lg bg-gray-200 mb-4"></p> : <p className="text-black text-sm mb-4"> <b className="text-[#0d4785] text-xl"> {offers.length} </b> offers found. </p>}
 
             {/* Offers Grid */}
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {filteredOffers.map((offer) => (
+                {loading ? <RenderLoading /> : offers.length > 0 && offers.map((offer) => (
                     <div
                         key={offer.id}
-                        className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+                        className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition cursor-pointer hover:border-red-500 hover:border hover:scale-[1.02]"
                     >
                         <div className="w-full h-40 bg-gray-200">
                             <img
-                                src={offer.image}
+                                src={offer.thumbnail?.url}
                                 alt={offer.title}
                                 className="w-full h-full object-cover"
                             />
@@ -143,14 +199,15 @@ const AdminOffers = () => {
                             <h2 className="font-bold text-lg text-[#0d4785] mb-1">
                                 {offer.title}
                             </h2>
-                            <p className="text-sm text-gray-600">{offer.country}</p>
-                            <p className="text-sm text-gray-500 mb-3">{offer.service}</p>
+                            <p className="text-sm text-gray-600">{offer?.country?.name}</p>
+                            <p className="text-sm text-gray-500 mb-3">{offer.service?.name}</p>
 
                             {/* Applicants & Date */}
                             <div className="flex justify-between text-xs text-gray-500 mb-3">
                                 <div className="flex items-center gap-1">
                                     <FontAwesomeIcon icon={faUsers} />
-                                    <span>{offer.applicants} applicants</span>
+                                    {/* <span>{offer.applicants} applicants</span> */}
+                                    12
                                 </div>
                                 <div className="flex items-center gap-1">
                                     <FontAwesomeIcon icon={faCalendarAlt} />
@@ -160,38 +217,22 @@ const AdminOffers = () => {
 
                             {/* Status */}
                             <span
-                                className={`inline-block px-3 py-1 text-xs rounded-full font-medium ${offer.status === "Active"
+                                className={`inline-block px-3 py-1 text-xs rounded-full font-medium ${offer.status !== "Active"
                                     ? "bg-green-100 text-green-700"
                                     : "bg-red-100 text-red-600"
                                     }`}
                             >
-                                {offer.status}
+                                {/* {offer.status} */}
+                                Active
                             </span>
 
-                            {/* Actions */}
-                            <div className="flex items-center gap-4 mt-4">
-                                <button
-                                    type="button"
-                                    className="text-blue-600 hover:text-blue-800 cursor-pointer"
-                                    title="Edit"
-                                >
-                                    <FontAwesomeIcon icon={faEdit} />
-                                </button>
-                                <button
-                                    type="button"
-                                    className="text-red-600 hover:text-red-800 cursor-pointer"
-                                    title="Delete"
-                                >
-                                    <FontAwesomeIcon icon={faTrash} />
-                                </button>
-                            </div>
                         </div>
                     </div>
                 ))}
             </div>
 
             {/* No Offers Message */}
-            {filteredOffers.length === 0 && (
+            {offers.length === 0 && (
                 <div className="text-center mt-10 text-gray-500">
                     No {filters.status.toLowerCase()} offers found.
                 </div>

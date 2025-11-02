@@ -5,7 +5,7 @@ import Image from "next/image"
 import { useEffect, useState, useRef } from "react"
 import { toast } from "react-toastify"
 
-export const NewOfferModal = ({ setAddOffer }) => {
+export const NewOfferModal = ({ setAddOffer, setFetchData }) => {
 
     const [formData, setFormData] = useState({
         title: "",
@@ -117,6 +117,7 @@ export const NewOfferModal = ({ setAddOffer }) => {
             }
 
             toast.success(data.msg || 'Offer added successfully')
+            setFetchData(true)
             setAddOffer(false)
 
         } catch (e) {
