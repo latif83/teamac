@@ -148,7 +148,7 @@ exports.Prisma.OfferScalarFieldEnum = {
   priceDescription: 'priceDescription',
   thumbnail: 'thumbnail',
   city: 'city',
-  type: 'type',
+  requirements: 'requirements',
   validity: 'validity',
   datePosted: 'datePosted',
   updatedAt: 'updatedAt'

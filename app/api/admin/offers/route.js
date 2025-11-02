@@ -12,8 +12,8 @@ export async function POST(req) {
       priceDescription,
       thumbnail,
       city,
-      type,
       validity,
+      requirements
     } = await req.json();
 
     // ✅ Validate required fields
@@ -23,11 +23,10 @@ export async function POST(req) {
       !serviceId ||
       !countryId ||
       !city ||
-      !type ||
       !validity
     ) {
       return NextResponse.json(
-        { message: "Missing required fields." },
+        { msg: "Missing required fields." },
         { status: 400 }
       );
     }
@@ -56,7 +55,7 @@ export async function POST(req) {
         priceDescription,
         thumbnail,
         city,
-        type,
+        requirements,
         validity: new Date(validity),
       },
       include: {

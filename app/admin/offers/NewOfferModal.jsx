@@ -2,7 +2,7 @@ import { uploadOfferThumbnail } from "@/actions/actions"
 import { faExpand, faRepeat, faTimes, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Image from "next/image"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import { toast } from "react-toastify"
 
 export const NewOfferModal = ({ setAddOffer }) => {
@@ -13,11 +13,11 @@ export const NewOfferModal = ({ setAddOffer }) => {
         serviceId: "",
         countryId: "",
         city: "",
-        type: "",
         priceLabel: "",
         priceDescription: "",
         validity: "",
-        thumbnail: ""
+        thumbnail: "",
+        requirements: []
     })
 
     const [servicesLoading, setServicesLoading] = useState(false)
@@ -87,6 +87,8 @@ export const NewOfferModal = ({ setAddOffer }) => {
 
     const [loading, setLoading] = useState(false)
 
+    const reqRef = useRef(null);
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
@@ -111,7 +113,7 @@ export const NewOfferModal = ({ setAddOffer }) => {
             const data = await res.json()
 
             if (!res.ok) {
-                return toast.error(data.msg || 'Failed to add service')
+                return toast.error(data.msg || 'Failed to add listing!')
             }
 
             toast.success(data.msg || 'Offer added successfully')
@@ -226,20 +228,31 @@ export const NewOfferModal = ({ setAddOffer }) => {
                         />
                     </div>
 
-                    {/* Offer Type */}
+                    {/* Requirements */}
+
                     <div>
-                        <label className="block text-sm text-gray-700 mb-1 font-semibold">
-                            Offer Type
-                        </label>
-                        <input
-                            type="text"
-                            name="offerTye"
-                            value={formData.type}
-                            onChange={(e) => setFormData((prevData) => ({ ...prevData, type: e.target.value }))}
-                            required
-                            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#00B4D8] outline-none"
-                            placeholder="e.g. Scholarship, Discount, Travel Package, Consultation Offer."
-                        />
+                        <label htmlFor="text" className="block mb-2 text-sm font-medium text-gray-900">Requirements:</label>
+                        <div className="flex flex-col gap-1 text-sm text-gray-400 mb-1">
+                            {formData.requirements.length > 0 && formData.requirements.map((req, index) => (
+                                <span key={index}>{`${index + 1}. ${req}`}</span>
+                            ))}
+                        </div>
+                        <input ref={reqRef} type="text" id="text" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Requirements for this offer..." />
+                        <div className="flex justify-between items-center mt-1">
+
+                            <button onClick={() => {
+
+                                const newRequirement = reqRef.current.value.trim()
+
+                                if (newRequirement) {
+                                    setFormData((prevData) => ({ ...prevData, requirements: [...prevData.requirements, newRequirement] }))
+                                }
+
+                                reqRef.current.value = ""
+                            }} type="button" className="text-blue-500 underline text-sm">
+                                Add
+                            </button>
+                        </div>
                     </div>
 
                     <div>

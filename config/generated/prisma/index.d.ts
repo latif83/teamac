@@ -3285,7 +3285,6 @@ export namespace Prisma {
     priceLabel: string | null
     priceDescription: string | null
     city: string | null
-    type: string | null
     validity: Date | null
     datePosted: Date | null
     updatedAt: Date | null
@@ -3300,7 +3299,6 @@ export namespace Prisma {
     priceLabel: string | null
     priceDescription: string | null
     city: string | null
-    type: string | null
     validity: Date | null
     datePosted: Date | null
     updatedAt: Date | null
@@ -3316,7 +3314,7 @@ export namespace Prisma {
     priceDescription: number
     thumbnail: number
     city: number
-    type: number
+    requirements: number
     validity: number
     datePosted: number
     updatedAt: number
@@ -3333,7 +3331,6 @@ export namespace Prisma {
     priceLabel?: true
     priceDescription?: true
     city?: true
-    type?: true
     validity?: true
     datePosted?: true
     updatedAt?: true
@@ -3348,7 +3345,6 @@ export namespace Prisma {
     priceLabel?: true
     priceDescription?: true
     city?: true
-    type?: true
     validity?: true
     datePosted?: true
     updatedAt?: true
@@ -3364,7 +3360,7 @@ export namespace Prisma {
     priceDescription?: true
     thumbnail?: true
     city?: true
-    type?: true
+    requirements?: true
     validity?: true
     datePosted?: true
     updatedAt?: true
@@ -3452,9 +3448,9 @@ export namespace Prisma {
     priceLabel: string | null
     priceDescription: string | null
     thumbnail: JsonValue
-    city: string
-    type: string
-    validity: Date
+    city: string | null
+    requirements: JsonValue
+    validity: Date | null
     datePosted: Date
     updatedAt: Date
     _count: OfferCountAggregateOutputType | null
@@ -3486,7 +3482,7 @@ export namespace Prisma {
     priceDescription?: boolean
     thumbnail?: boolean
     city?: boolean
-    type?: boolean
+    requirements?: boolean
     validity?: boolean
     datePosted?: boolean
     updatedAt?: boolean
@@ -3504,7 +3500,7 @@ export namespace Prisma {
     priceDescription?: boolean
     thumbnail?: boolean
     city?: boolean
-    type?: boolean
+    requirements?: boolean
     validity?: boolean
     datePosted?: boolean
     updatedAt?: boolean
@@ -3522,7 +3518,7 @@ export namespace Prisma {
     priceDescription?: boolean
     thumbnail?: boolean
     city?: boolean
-    type?: boolean
+    requirements?: boolean
     validity?: boolean
     datePosted?: boolean
     updatedAt?: boolean
@@ -3540,13 +3536,13 @@ export namespace Prisma {
     priceDescription?: boolean
     thumbnail?: boolean
     city?: boolean
-    type?: boolean
+    requirements?: boolean
     validity?: boolean
     datePosted?: boolean
     updatedAt?: boolean
   }
 
-  export type OfferOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "serviceId" | "countryId" | "priceLabel" | "priceDescription" | "thumbnail" | "city" | "type" | "validity" | "datePosted" | "updatedAt", ExtArgs["result"]["offer"]>
+  export type OfferOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "serviceId" | "countryId" | "priceLabel" | "priceDescription" | "thumbnail" | "city" | "requirements" | "validity" | "datePosted" | "updatedAt", ExtArgs["result"]["offer"]>
   export type OfferInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     service?: boolean | ServiceDefaultArgs<ExtArgs>
     country?: boolean | CountryDefaultArgs<ExtArgs>
@@ -3575,9 +3571,9 @@ export namespace Prisma {
       priceLabel: string | null
       priceDescription: string | null
       thumbnail: Prisma.JsonValue
-      city: string
-      type: string
-      validity: Date
+      city: string | null
+      requirements: Prisma.JsonValue
+      validity: Date | null
       datePosted: Date
       updatedAt: Date
     }, ExtArgs["result"]["offer"]>
@@ -4014,7 +4010,7 @@ export namespace Prisma {
     readonly priceDescription: FieldRef<"Offer", 'String'>
     readonly thumbnail: FieldRef<"Offer", 'Json'>
     readonly city: FieldRef<"Offer", 'String'>
-    readonly type: FieldRef<"Offer", 'String'>
+    readonly requirements: FieldRef<"Offer", 'Json'>
     readonly validity: FieldRef<"Offer", 'DateTime'>
     readonly datePosted: FieldRef<"Offer", 'DateTime'>
     readonly updatedAt: FieldRef<"Offer", 'DateTime'>
@@ -4480,7 +4476,7 @@ export namespace Prisma {
     priceDescription: 'priceDescription',
     thumbnail: 'thumbnail',
     city: 'city',
-    type: 'type',
+    requirements: 'requirements',
     validity: 'validity',
     datePosted: 'datePosted',
     updatedAt: 'updatedAt'
@@ -4725,9 +4721,9 @@ export namespace Prisma {
     priceLabel?: StringNullableFilter<"Offer"> | string | null
     priceDescription?: StringNullableFilter<"Offer"> | string | null
     thumbnail?: JsonFilter<"Offer">
-    city?: StringFilter<"Offer"> | string
-    type?: StringFilter<"Offer"> | string
-    validity?: DateTimeFilter<"Offer"> | Date | string
+    city?: StringNullableFilter<"Offer"> | string | null
+    requirements?: JsonFilter<"Offer">
+    validity?: DateTimeNullableFilter<"Offer"> | Date | string | null
     datePosted?: DateTimeFilter<"Offer"> | Date | string
     updatedAt?: DateTimeFilter<"Offer"> | Date | string
     service?: XOR<ServiceScalarRelationFilter, ServiceWhereInput>
@@ -4743,9 +4739,9 @@ export namespace Prisma {
     priceLabel?: SortOrderInput | SortOrder
     priceDescription?: SortOrderInput | SortOrder
     thumbnail?: SortOrder
-    city?: SortOrder
-    type?: SortOrder
-    validity?: SortOrder
+    city?: SortOrderInput | SortOrder
+    requirements?: SortOrder
+    validity?: SortOrderInput | SortOrder
     datePosted?: SortOrder
     updatedAt?: SortOrder
     service?: ServiceOrderByWithRelationInput
@@ -4764,9 +4760,9 @@ export namespace Prisma {
     priceLabel?: StringNullableFilter<"Offer"> | string | null
     priceDescription?: StringNullableFilter<"Offer"> | string | null
     thumbnail?: JsonFilter<"Offer">
-    city?: StringFilter<"Offer"> | string
-    type?: StringFilter<"Offer"> | string
-    validity?: DateTimeFilter<"Offer"> | Date | string
+    city?: StringNullableFilter<"Offer"> | string | null
+    requirements?: JsonFilter<"Offer">
+    validity?: DateTimeNullableFilter<"Offer"> | Date | string | null
     datePosted?: DateTimeFilter<"Offer"> | Date | string
     updatedAt?: DateTimeFilter<"Offer"> | Date | string
     service?: XOR<ServiceScalarRelationFilter, ServiceWhereInput>
@@ -4782,9 +4778,9 @@ export namespace Prisma {
     priceLabel?: SortOrderInput | SortOrder
     priceDescription?: SortOrderInput | SortOrder
     thumbnail?: SortOrder
-    city?: SortOrder
-    type?: SortOrder
-    validity?: SortOrder
+    city?: SortOrderInput | SortOrder
+    requirements?: SortOrder
+    validity?: SortOrderInput | SortOrder
     datePosted?: SortOrder
     updatedAt?: SortOrder
     _count?: OfferCountOrderByAggregateInput
@@ -4804,9 +4800,9 @@ export namespace Prisma {
     priceLabel?: StringNullableWithAggregatesFilter<"Offer"> | string | null
     priceDescription?: StringNullableWithAggregatesFilter<"Offer"> | string | null
     thumbnail?: JsonWithAggregatesFilter<"Offer">
-    city?: StringWithAggregatesFilter<"Offer"> | string
-    type?: StringWithAggregatesFilter<"Offer"> | string
-    validity?: DateTimeWithAggregatesFilter<"Offer"> | Date | string
+    city?: StringNullableWithAggregatesFilter<"Offer"> | string | null
+    requirements?: JsonWithAggregatesFilter<"Offer">
+    validity?: DateTimeNullableWithAggregatesFilter<"Offer"> | Date | string | null
     datePosted?: DateTimeWithAggregatesFilter<"Offer"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Offer"> | Date | string
   }
@@ -4952,9 +4948,9 @@ export namespace Prisma {
     priceLabel?: string | null
     priceDescription?: string | null
     thumbnail: JsonNullValueInput | InputJsonValue
-    city: string
-    type: string
-    validity: Date | string
+    city?: string | null
+    requirements: JsonNullValueInput | InputJsonValue
+    validity?: Date | string | null
     datePosted?: Date | string
     updatedAt?: Date | string
     service: ServiceCreateNestedOneWithoutOffersInput
@@ -4970,9 +4966,9 @@ export namespace Prisma {
     priceLabel?: string | null
     priceDescription?: string | null
     thumbnail: JsonNullValueInput | InputJsonValue
-    city: string
-    type: string
-    validity: Date | string
+    city?: string | null
+    requirements: JsonNullValueInput | InputJsonValue
+    validity?: Date | string | null
     datePosted?: Date | string
     updatedAt?: Date | string
   }
@@ -4984,9 +4980,9 @@ export namespace Prisma {
     priceLabel?: NullableStringFieldUpdateOperationsInput | string | null
     priceDescription?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: JsonNullValueInput | InputJsonValue
-    city?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    validity?: DateTimeFieldUpdateOperationsInput | Date | string
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    requirements?: JsonNullValueInput | InputJsonValue
+    validity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     datePosted?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     service?: ServiceUpdateOneRequiredWithoutOffersNestedInput
@@ -5002,9 +4998,9 @@ export namespace Prisma {
     priceLabel?: NullableStringFieldUpdateOperationsInput | string | null
     priceDescription?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: JsonNullValueInput | InputJsonValue
-    city?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    validity?: DateTimeFieldUpdateOperationsInput | Date | string
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    requirements?: JsonNullValueInput | InputJsonValue
+    validity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     datePosted?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5018,9 +5014,9 @@ export namespace Prisma {
     priceLabel?: string | null
     priceDescription?: string | null
     thumbnail: JsonNullValueInput | InputJsonValue
-    city: string
-    type: string
-    validity: Date | string
+    city?: string | null
+    requirements: JsonNullValueInput | InputJsonValue
+    validity?: Date | string | null
     datePosted?: Date | string
     updatedAt?: Date | string
   }
@@ -5032,9 +5028,9 @@ export namespace Prisma {
     priceLabel?: NullableStringFieldUpdateOperationsInput | string | null
     priceDescription?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: JsonNullValueInput | InputJsonValue
-    city?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    validity?: DateTimeFieldUpdateOperationsInput | Date | string
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    requirements?: JsonNullValueInput | InputJsonValue
+    validity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     datePosted?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5048,9 +5044,9 @@ export namespace Prisma {
     priceLabel?: NullableStringFieldUpdateOperationsInput | string | null
     priceDescription?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: JsonNullValueInput | InputJsonValue
-    city?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    validity?: DateTimeFieldUpdateOperationsInput | Date | string
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    requirements?: JsonNullValueInput | InputJsonValue
+    validity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     datePosted?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5239,6 +5235,17 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type ServiceScalarRelationFilter = {
     is?: ServiceWhereInput
     isNot?: ServiceWhereInput
@@ -5264,7 +5271,7 @@ export namespace Prisma {
     priceDescription?: SortOrder
     thumbnail?: SortOrder
     city?: SortOrder
-    type?: SortOrder
+    requirements?: SortOrder
     validity?: SortOrder
     datePosted?: SortOrder
     updatedAt?: SortOrder
@@ -5279,7 +5286,6 @@ export namespace Prisma {
     priceLabel?: SortOrder
     priceDescription?: SortOrder
     city?: SortOrder
-    type?: SortOrder
     validity?: SortOrder
     datePosted?: SortOrder
     updatedAt?: SortOrder
@@ -5294,7 +5300,6 @@ export namespace Prisma {
     priceLabel?: SortOrder
     priceDescription?: SortOrder
     city?: SortOrder
-    type?: SortOrder
     validity?: SortOrder
     datePosted?: SortOrder
     updatedAt?: SortOrder
@@ -5316,6 +5321,20 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type OfferCreateNestedManyWithoutCountryInput = {
@@ -5424,6 +5443,10 @@ export namespace Prisma {
 
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
   }
 
   export type ServiceUpdateOneRequiredWithoutOffersNestedInput = {
@@ -5546,6 +5569,17 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -5574,6 +5608,20 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type OfferCreateWithoutCountryInput = {
     id?: string
     title: string
@@ -5581,9 +5629,9 @@ export namespace Prisma {
     priceLabel?: string | null
     priceDescription?: string | null
     thumbnail: JsonNullValueInput | InputJsonValue
-    city: string
-    type: string
-    validity: Date | string
+    city?: string | null
+    requirements: JsonNullValueInput | InputJsonValue
+    validity?: Date | string | null
     datePosted?: Date | string
     updatedAt?: Date | string
     service: ServiceCreateNestedOneWithoutOffersInput
@@ -5597,9 +5645,9 @@ export namespace Prisma {
     priceLabel?: string | null
     priceDescription?: string | null
     thumbnail: JsonNullValueInput | InputJsonValue
-    city: string
-    type: string
-    validity: Date | string
+    city?: string | null
+    requirements: JsonNullValueInput | InputJsonValue
+    validity?: Date | string | null
     datePosted?: Date | string
     updatedAt?: Date | string
   }
@@ -5642,9 +5690,9 @@ export namespace Prisma {
     priceLabel?: StringNullableFilter<"Offer"> | string | null
     priceDescription?: StringNullableFilter<"Offer"> | string | null
     thumbnail?: JsonFilter<"Offer">
-    city?: StringFilter<"Offer"> | string
-    type?: StringFilter<"Offer"> | string
-    validity?: DateTimeFilter<"Offer"> | Date | string
+    city?: StringNullableFilter<"Offer"> | string | null
+    requirements?: JsonFilter<"Offer">
+    validity?: DateTimeNullableFilter<"Offer"> | Date | string | null
     datePosted?: DateTimeFilter<"Offer"> | Date | string
     updatedAt?: DateTimeFilter<"Offer"> | Date | string
   }
@@ -5656,9 +5704,9 @@ export namespace Prisma {
     priceLabel?: string | null
     priceDescription?: string | null
     thumbnail: JsonNullValueInput | InputJsonValue
-    city: string
-    type: string
-    validity: Date | string
+    city?: string | null
+    requirements: JsonNullValueInput | InputJsonValue
+    validity?: Date | string | null
     datePosted?: Date | string
     updatedAt?: Date | string
     country: CountryCreateNestedOneWithoutOffersInput
@@ -5672,9 +5720,9 @@ export namespace Prisma {
     priceLabel?: string | null
     priceDescription?: string | null
     thumbnail: JsonNullValueInput | InputJsonValue
-    city: string
-    type: string
-    validity: Date | string
+    city?: string | null
+    requirements: JsonNullValueInput | InputJsonValue
+    validity?: Date | string | null
     datePosted?: Date | string
     updatedAt?: Date | string
   }
@@ -5817,9 +5865,9 @@ export namespace Prisma {
     priceLabel?: string | null
     priceDescription?: string | null
     thumbnail: JsonNullValueInput | InputJsonValue
-    city: string
-    type: string
-    validity: Date | string
+    city?: string | null
+    requirements: JsonNullValueInput | InputJsonValue
+    validity?: Date | string | null
     datePosted?: Date | string
     updatedAt?: Date | string
   }
@@ -5831,9 +5879,9 @@ export namespace Prisma {
     priceLabel?: NullableStringFieldUpdateOperationsInput | string | null
     priceDescription?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: JsonNullValueInput | InputJsonValue
-    city?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    validity?: DateTimeFieldUpdateOperationsInput | Date | string
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    requirements?: JsonNullValueInput | InputJsonValue
+    validity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     datePosted?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     service?: ServiceUpdateOneRequiredWithoutOffersNestedInput
@@ -5847,9 +5895,9 @@ export namespace Prisma {
     priceLabel?: NullableStringFieldUpdateOperationsInput | string | null
     priceDescription?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: JsonNullValueInput | InputJsonValue
-    city?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    validity?: DateTimeFieldUpdateOperationsInput | Date | string
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    requirements?: JsonNullValueInput | InputJsonValue
+    validity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     datePosted?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5862,9 +5910,9 @@ export namespace Prisma {
     priceLabel?: NullableStringFieldUpdateOperationsInput | string | null
     priceDescription?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: JsonNullValueInput | InputJsonValue
-    city?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    validity?: DateTimeFieldUpdateOperationsInput | Date | string
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    requirements?: JsonNullValueInput | InputJsonValue
+    validity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     datePosted?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5877,9 +5925,9 @@ export namespace Prisma {
     priceLabel?: string | null
     priceDescription?: string | null
     thumbnail: JsonNullValueInput | InputJsonValue
-    city: string
-    type: string
-    validity: Date | string
+    city?: string | null
+    requirements: JsonNullValueInput | InputJsonValue
+    validity?: Date | string | null
     datePosted?: Date | string
     updatedAt?: Date | string
   }
@@ -5891,9 +5939,9 @@ export namespace Prisma {
     priceLabel?: NullableStringFieldUpdateOperationsInput | string | null
     priceDescription?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: JsonNullValueInput | InputJsonValue
-    city?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    validity?: DateTimeFieldUpdateOperationsInput | Date | string
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    requirements?: JsonNullValueInput | InputJsonValue
+    validity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     datePosted?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     country?: CountryUpdateOneRequiredWithoutOffersNestedInput
@@ -5907,9 +5955,9 @@ export namespace Prisma {
     priceLabel?: NullableStringFieldUpdateOperationsInput | string | null
     priceDescription?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: JsonNullValueInput | InputJsonValue
-    city?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    validity?: DateTimeFieldUpdateOperationsInput | Date | string
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    requirements?: JsonNullValueInput | InputJsonValue
+    validity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     datePosted?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5922,9 +5970,9 @@ export namespace Prisma {
     priceLabel?: NullableStringFieldUpdateOperationsInput | string | null
     priceDescription?: NullableStringFieldUpdateOperationsInput | string | null
     thumbnail?: JsonNullValueInput | InputJsonValue
-    city?: StringFieldUpdateOperationsInput | string
-    type?: StringFieldUpdateOperationsInput | string
-    validity?: DateTimeFieldUpdateOperationsInput | Date | string
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    requirements?: JsonNullValueInput | InputJsonValue
+    validity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     datePosted?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

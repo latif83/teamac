@@ -43,9 +43,9 @@ model Offer {
   priceLabel       String?
   priceDescription String?
   thumbnail       Json
-  city  String
-  type String
-  validity DateTime
+  city  String?
+  requirements  Json
+  validity DateTime?
 
   
   datePosted       DateTime @default(now())
