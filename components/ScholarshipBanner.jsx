@@ -2,13 +2,13 @@
 
 export default function ScholarshipBanner() {
   return (
-    <section className="bg-[url('/scholarship-bg.jpg')] bg-fixed bg-cover bg-center text-white py-24 px-6 md:px-12 relative">
+    <section className="bg-[url('/scholarship-bg.jpg')] bg-fixed bg-cover bg-center text-white py-24 px-3 md:px-12 relative">
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/60"></div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-3xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-extrabold mb-4">
+      <div className="relative z-10 text-center">
+        <h2 className="text-2xl md:text-4xl font-extrabold mb-4">
           Explore Global Scholarship Opportunities
         </h2>
         <p className="text-lg text-white/90 mb-6">

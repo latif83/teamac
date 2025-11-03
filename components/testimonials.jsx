@@ -106,7 +106,7 @@ const Testimonials = () => {
                     with us!
                 </p>
 
-                <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <div className="flex justify-center items-center gap-4">
                     <a
                         href="#"
                         className="py-2.5 px-6 text-sm font-medium text-white bg-[#00B4D8] rounded-lg shadow hover:bg-[#0092b3] transition-all duration-300"
