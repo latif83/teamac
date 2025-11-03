@@ -5,7 +5,7 @@ import Image from "next/image"
 import { useEffect, useState, useRef } from "react"
 import { toast } from "react-toastify"
 
-export const EditOfferModal = ({ setEditOffer, setFetchData, offerData }) => {
+export const EditOfferModal = ({ setEditOffer, setFetchData, offerData,setViewOffer }) => {
 
     const [formData, setFormData] = useState({
         title: "",

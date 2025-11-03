@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faEdit, faTrash, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import { AddServiceModal } from "./AddServiceModal";
 import { toast } from "react-toastify";
+import { ViewServiceModal } from "./ViewServiceModal";
 
 const RenderLoading = () => {
 
@@ -80,11 +81,15 @@ const ServicesPage = () => {
 
 
     const [addService, setAddService] = useState(false)
+    const [viewService, setViewService] = useState(false)
+    const [selectedService, setSelectedService] = useState(null)
 
     return (
         <section className="p-3 md:p-6">
 
             {addService && <AddServiceModal setAddService={setAddService} setFetchService={setFetchService} />}
+
+            {viewService && <ViewServiceModal setViewService={setViewService} selectedService={selectedService} setFetchService={setFetchService} />}
 
             {/* Header */}
             <div className="flex justify-between items-center mb-6">
@@ -95,9 +100,10 @@ const ServicesPage = () => {
             </div>
 
             {/* Services Grid */}
-            <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-6">
                 {loading ? <RenderLoading /> : services.length > 0 ? services.map((service) => (
                     <div
+                    onClick={()=>{setSelectedService(service); setViewService(true);}}
                         key={service.id}
                         className="bg-white rounded-lg shadow-md hover:shadow-lg transition-all cursor-pointer hover:scale-[1.02] duration-500 hover:ease-in-out hover:border hover:border-[#0d4785]"
                     >

@@ -60,3 +60,43 @@ export async function POST(req) {
     );
   }
 }
+
+
+export async function PUT(req) {
+  try {
+    const { id,name, description, image } = await req.json();
+
+    // ✅ Check if the service exists
+    const existingService = await prisma.service.findUnique({ where: { id } });
+    if (!existingService) {
+      return NextResponse.json(
+        { msg: "Service not found." },
+        { status: 404 }
+      );
+    }
+
+    // ✅ Update only fields provided
+    const updatedService = await prisma.service.update({
+      where: { id },
+      data: {
+        ...(name && { name }),
+        ...(description && { description }),
+        ...(image && { image }),
+      },
+    });
+
+    return NextResponse.json(
+      {
+        msg: "Service updated successfully!",
+        data: updatedService,
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error updating service:", error);
+    return NextResponse.json(
+      { msg: "Internal server error." },
+      { status: 500 }
+    );
+  }
+}
