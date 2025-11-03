@@ -15,6 +15,7 @@ import {
 import { useEffect, useState } from "react";
 import { NewOfferModal } from "./NewOfferModal";
 import { toast } from "react-toastify";
+import { ViewOffer } from "./ViewOffer";
 
 const RenderLoading = () => {
 
@@ -123,12 +124,15 @@ const AdminOffers = () => {
         );
 
     const [addOffer, setAddOffer] = useState(false)
+    const [viewOffer, setViewOffer] = useState(false)
+    const [selectedOffer,setSelectedOffer] = useState(null)
 
     return (
         <section className="p-3 pt-5 md:p-6">
             {/* Header Section */}
 
             {addOffer && <NewOfferModal setAddOffer={setAddOffer} setFetchData={setFetchData} />}
+            {viewOffer && <ViewOffer setViewOffer={setViewOffer} setFetchData={setFetchData} selectedOffer={selectedOffer} />}
 
 
             <div className="flex justify-between items-center mb-6">
@@ -185,6 +189,7 @@ const AdminOffers = () => {
                 {loading ? <RenderLoading /> : offers.length > 0 && offers.map((offer) => (
                     <div
                         key={offer.id}
+                        onClick={()=>{setSelectedOffer(offer); setViewOffer(true);}}
                         className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-500 cursor-pointer hover:border-red-500 hover:border hover:scale-[1.02]"
                     >
                         <div className="w-full h-40 bg-gray-200">

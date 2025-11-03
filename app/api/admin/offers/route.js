@@ -98,3 +98,81 @@ export async function POST(req) {
     );
   }
 }
+
+
+export async function PUT(req) {
+  try {
+    
+    const {
+      id,
+      title,
+      description,
+      serviceId,
+      countryId,
+      priceLabel,
+      priceDescription,
+      thumbnail,
+      city,
+      validity,
+      requirements,
+    } = await req.json();
+
+    // ✅ Validate
+    if (!id)
+      return NextResponse.json({ msg: "Offer ID is required." }, { status: 400 });
+
+    // ✅ Check that the offer exists
+    const existingOffer = await prisma.offer.findUnique({
+      where: { id },
+    });
+
+    if (!existingOffer) {
+      return NextResponse.json({ msg: "Offer not found." }, { status: 404 });
+    }
+
+    // ✅ Optional validation for service/country if provided
+    if (serviceId) {
+      const service = await prisma.service.findUnique({ where: { id: serviceId } });
+      if (!service)
+        return NextResponse.json({ msg: "Invalid service ID." }, { status: 400 });
+    }
+
+    if (countryId) {
+      const country = await prisma.country.findUnique({ where: { id: countryId } });
+      if (!country)
+        return NextResponse.json({ msg: "Invalid country ID." }, { status: 400 });
+    }
+
+    // ✅ Update the offer
+    const updatedOffer = await prisma.offer.update({
+      where: { id },
+      data: {
+        ...(title && { title }),
+        ...(description && { description }),
+        ...(serviceId && { serviceId }),
+        ...(countryId && { countryId }),
+        ...(priceLabel && { priceLabel }),
+        ...(priceDescription && { priceDescription }),
+        ...(thumbnail && { thumbnail }),
+        ...(city && { city }),
+        ...(validity && { validity: new Date(validity) }),
+        ...(requirements && { requirements }),
+      },
+      include: {
+        service: true,
+        country: true,
+      },
+    });
+
+    return NextResponse.json(
+      { msg: "Offer updated successfully!", data: updatedOffer },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error updating offer:", error);
+    return NextResponse.json(
+      { msg: "Internal server error." },
+      { status: 500 }
+    );
+  }
+}

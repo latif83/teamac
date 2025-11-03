@@ -96,7 +96,7 @@ const ServicesPage = () => {
 
             {/* Services Grid */}
             <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
-                {loading ? <RenderLoading /> : services.length > 10 ? services.map((service) => (
+                {loading ? <RenderLoading /> : services.length > 0 ? services.map((service) => (
                     <div
                         key={service.id}
                         className="bg-white rounded-lg shadow-md hover:shadow-lg transition-all cursor-pointer hover:scale-[1.02] duration-500 hover:ease-in-out hover:border hover:border-[#0d4785]"
@@ -106,7 +106,6 @@ const ServicesPage = () => {
                             <img
                                 src={service.image?.url}
                                 alt={service.name}
-                                fill
                                 className="object-cover"
                             />
                         </div>
