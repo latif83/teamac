@@ -40,8 +40,8 @@ export const DeleteCountry = ({ setDeleteCountry, countryId, setFetchCountries }
     }
 
     return (
-        <div className="fixed inset-0 bg-black/50 z-50 px-4 pt-12">
-            <div className="bg-white rounded-lg mx-auto shadow-lg w-full max-w-xl relative p-6">
+        <div className="fixed inset-0 bg-black/50 z-50 px-4 md:pt-12 pt-6">
+            <div className="bg-white rounded-lg mx-auto shadow-lg w-full max-w-xl relative md:p-6 p-3">
 
                 <div className="flex justify-between items-center">
                     <h2 className="font-bold">

@@ -49,7 +49,7 @@ export default function CountriesPage() {
             {deleteCountry && <DeleteCountry setDeleteCountry={setDeleteCountry} countryId={countryId} setFetchCountries={setFetchCountries} />}
 
             <div className="flex justify-between items-center mb-6">
-                <h1 className="sm:text-xl font-bold text-[#0d4785]">Manage Countries</h1>
+                <h1 className="sm:text-xl font-bold text-[#0d4785]">Countries</h1>
                 <button onClick={() => setAddCountry(true)} type="button" className="border cursor-pointer hover:text-[#fff] px-4 py-3 rounded-xl hover:bg-[#000] transition text-sm flex items-center gap-2">
                     <FontAwesomeIcon icon={faPlusCircle} /> New Country
                 </button>

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState } from "react"
 import { toast } from "react-toastify"
 
-export const DeleteService = ({ setDeleteService, serviceId, setFetchService, setViewService }) => {
+export const DeleteService = ({ setDeleteService, serviceId, setFetchService }) => {
 
     const [loading, setLoading] = useState(false)
 
@@ -11,7 +11,7 @@ export const DeleteService = ({ setDeleteService, serviceId, setFetchService, se
         try {
             setLoading(true)
 
-            const res = await fetch(`/api/admin/services`, {
+            const res = await fetch(`/api/admin/offers`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -22,13 +22,12 @@ export const DeleteService = ({ setDeleteService, serviceId, setFetchService, se
             const data = await res.json()
 
             if (!res.ok) {
-                toast.error(data.msg || 'Failed to delete service!')
+                toast.error(data.msg || 'Failed to delete country!')
                 return
             }
 
-            toast.success(data.msg || 'Service deleted successfully!')
+            toast.success(data.msg || 's deleted successfully!')
             setFetchService(true)
-            setViewService(false)
             setDeleteService(false)
 
         }
@@ -41,12 +40,12 @@ export const DeleteService = ({ setDeleteService, serviceId, setFetchService, se
     }
 
     return (
-        <div className="fixed inset-0 bg-black/50 z-50 px-4 pt-12">
-            <div className="bg-white rounded-lg mx-auto shadow-lg w-full max-w-xl relative p-6">
+        <div className="fixed inset-0 bg-black/50 z-50 px-4 md:pt-12 pt-6">
+            <div className="bg-white rounded-lg mx-auto shadow-lg w-full max-w-xl relative md:p-6 p-3">
 
                 <div className="flex justify-between items-center">
                     <h2 className="font-bold">
-                        Delete Service
+                        Delete Offer
                     </h2>
                     {/* Close Button */}
                     <button
@@ -61,7 +60,7 @@ export const DeleteService = ({ setDeleteService, serviceId, setFetchService, se
 
                 <div className="mt-6">
                     <p className="text-gray-700 text-sm">
-                        Are you sure you want to delete this service? This action cannot be undone.
+                        Are you sure you want to delete this offer? This action cannot be undone.
                     </p>
                 </div>
                 <div className="flex justify-end gap-3 pt-4">

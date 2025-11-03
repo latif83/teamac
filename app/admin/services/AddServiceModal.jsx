@@ -83,8 +83,8 @@ export function AddServiceModal({ setAddService, setFetchService }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-4 pt-12">
-      <div className="bg-white overflow-y-auto rounded-t-lg shadow-lg w-full h-full max-w-2xl relative p-6">
+    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-4 md:pt-12 pt-6">
+      <div className="bg-white overflow-y-auto rounded-t-lg shadow-lg w-full h-full max-w-2xl relative md:p-6 p-3">
 
         <div className="flex justify-between items-center">
 

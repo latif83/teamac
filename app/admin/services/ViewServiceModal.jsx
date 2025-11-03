@@ -10,13 +10,13 @@ export const ViewServiceModal = ({ setViewService, selectedService, setFetchServ
     const [delService, setDelService] = useState(false)
 
     return (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-4 pt-12">
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-4 md:pt-12 pt-6">
 
             {editService && <EditServiceModal setEditService={setEditService} serviceData={selectedService} setFetchService={setFetchService} setViewService={setViewService} />}
 
             {delService && <DeleteService setDeleteService={setDelService} serviceId={selectedService.id} setFetchService={setFetchService} setViewService={setViewService} />}
 
-            <div className="bg-white rounded-t-lg overflow-y-auto shadow-lg w-full h-full max-w-3xl relative p-6">
+            <div className="bg-white rounded-t-lg overflow-y-auto shadow-lg w-full h-full max-w-3xl relative md:p-6 p-3">
 
                 <div className="flex justify-between items-center">
 

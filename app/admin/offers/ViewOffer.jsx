@@ -11,13 +11,13 @@ export const ViewOffer = ({ setViewOffer, setFetchData, selectedOffer }) => {
     const [delOffer,setDelOffer] = useState(false)
 
     return (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-4 pt-12">
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center md:px-4 px-2 md:pt-12 pt-6">
 
             {editOffer && <EditOfferModal setEditOffer={setEditOffer} setFetchData={setFetchData} offerData={selectedOffer} setViewOffer={setViewOffer} />}
 
             {delOffer && <DeleteOffer setDeleteOffer={setDelOffer} offerId={selectedOffer.id} setFetchData={setFetchData} setViewOffer={setViewOffer} />}
 
-            <div className="bg-white rounded-t-lg overflow-y-auto shadow-lg w-full h-full max-w-3xl relative p-6">
+            <div className="bg-white rounded-t-lg overflow-y-auto shadow-lg w-full h-full max-w-3xl relative md:p-6 p-3">
 
                 <div className="flex justify-between items-center">
 
