@@ -2,15 +2,20 @@ import { faEdit, faTimes, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState } from "react"
 import { EditOfferModal } from "./EditOfferModal"
+import { DeleteOffer } from "./DeleteOfferModal"
 
 export const ViewOffer = ({ setViewOffer, setFetchData, selectedOffer }) => {
 
     const [editOffer, setEditOffer] = useState(false)
 
+    const [delOffer,setDelOffer] = useState(false)
+
     return (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-4 pt-12">
 
             {editOffer && <EditOfferModal setEditOffer={setEditOffer} setFetchData={setFetchData} offerData={selectedOffer} setViewOffer={setViewOffer} />}
+
+            {delOffer && <DeleteOffer setDeleteOffer={setDelOffer} offerId={selectedOffer.id} setFetchData={setFetchData} setViewOffer={setViewOffer} />}
 
             <div className="bg-white rounded-t-lg overflow-y-auto shadow-lg w-full h-full max-w-3xl relative p-6">
 
@@ -113,7 +118,7 @@ export const ViewOffer = ({ setViewOffer, setFetchData, selectedOffer }) => {
                                 <FontAwesomeIcon icon={faEdit} />
                                 <span>Edit Offer</span>
                             </button>
-                            <button type="button" className="w-full text-sm bg-red-600 text-white py-2 rounded-md hover:bg-red-700 transition flex items-center justify-center gap-2 cursor-pointer">
+                            <button onClick={()=>setDelOffer(true)} type="button" className="w-full text-sm bg-red-600 text-white py-2 rounded-md hover:bg-red-700 transition flex items-center justify-center gap-2 cursor-pointer">
                                 <FontAwesomeIcon icon={faTrash} />
                                 <span>Delete Offer</span>
                             </button>

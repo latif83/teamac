@@ -100,3 +100,48 @@ export async function PUT(req) {
     );
   }
 }
+
+export async function DELETE(req) {
+  try {
+    const { id } = await req.json();
+
+    console.log(id)
+
+    // ✅ Check if the service exists
+    const service = await prisma.service.findUnique({
+      where: { id },
+      include: { offers: true },
+    });
+
+    if (!service) {
+      return NextResponse.json(
+        { msg: "Service not found." },
+        { status: 404 }
+      );
+    }
+
+    // 🚫 Prevent delete if offers exist under this service
+    if (service.offers.length > 0) {
+      return NextResponse.json(
+        {
+          msg: "Cannot delete this service — it has active offers linked to it.",
+        },
+        { status: 400 }
+      );
+    }
+
+    // ✅ Safe to delete
+    await prisma.service.delete({ where: { id } });
+
+    return NextResponse.json(
+      { msg: "Service deleted successfully!" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error deleting service:", error);
+    return NextResponse.json(
+      { msg: "Internal server error." },
+      { status: 500 }
+    );
+  }
+}

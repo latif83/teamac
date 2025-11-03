@@ -2,15 +2,19 @@ import { faEdit, faTimes, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { EditServiceModal } from "./EditServiceModal"
 import { useState } from "react"
+import { DeleteService } from "./DeleteServiceModal"
 
 export const ViewServiceModal = ({ setViewService, selectedService, setFetchService }) => {
 
     const [editService, setEditService] = useState(false)
+    const [delService, setDelService] = useState(false)
 
     return (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center px-4 pt-12">
 
             {editService && <EditServiceModal setEditService={setEditService} serviceData={selectedService} setFetchService={setFetchService} setViewService={setViewService} />}
+
+            {delService && <DeleteService setDeleteService={setDelService} serviceId={selectedService.id} setFetchService={setFetchService} setViewService={setViewService} />}
 
             <div className="bg-white rounded-t-lg overflow-y-auto shadow-lg w-full h-full max-w-3xl relative p-6">
 
@@ -55,7 +59,7 @@ export const ViewServiceModal = ({ setViewService, selectedService, setFetchServ
                             <FontAwesomeIcon icon={faEdit} />
                             <span>Edit Service</span>
                         </button>
-                        <button type="button" className="w-full text-sm bg-red-600 text-white py-2 rounded-md hover:bg-red-700 transition flex items-center justify-center gap-2 cursor-pointer">
+                        <button onClick={() => setDelService(true)} type="button" className="w-full text-sm bg-red-600 text-white py-2 rounded-md hover:bg-red-700 transition flex items-center justify-center gap-2 cursor-pointer">
                             <FontAwesomeIcon icon={faTrash} />
                             <span>Delete Service</span>
                         </button>

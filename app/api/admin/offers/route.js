@@ -176,3 +176,32 @@ export async function PUT(req) {
     );
   }
 }
+
+export async function DELETE(req) {
+  try {
+    const { id } = await req.json();
+
+    // ✅ Check if offer exists
+    const offer = await prisma.offer.findUnique({ where: { id } });
+    if (!offer) {
+      return NextResponse.json(
+        { msg: "Offer not found." },
+        { status: 404 }
+      );
+    }
+
+    // ✅ Delete the offer
+    await prisma.offer.delete({ where: { id } });
+
+    return NextResponse.json(
+      { msg: "Offer deleted successfully!" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error deleting offer:", error);
+    return NextResponse.json(
+      { msg: "Internal server error." },
+      { status: 500 }
+    );
+  }
+}
