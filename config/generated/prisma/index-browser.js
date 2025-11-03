@@ -154,6 +154,14 @@ exports.Prisma.OfferScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.AdminScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  password: 'password',
+  name: 'name',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -183,7 +191,8 @@ exports.Prisma.NullsOrder = {
 exports.Prisma.ModelName = {
   Country: 'Country',
   Service: 'Service',
-  Offer: 'Offer'
+  Offer: 'Offer',
+  Admin: 'Admin'
 };
 
 /**

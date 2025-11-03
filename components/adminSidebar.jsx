@@ -3,6 +3,7 @@ import { useSidebar } from "@/providers/sidebarProvider"
 import { faServicestack } from "@fortawesome/free-brands-svg-icons"
 import { faChartLine, faClipboardList, faClockRotateLeft, faCommentDots, faDashboard, faGlobe, faPlusCircle, faS, faUsers } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { signOut } from "next-auth/react"
 import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -48,7 +49,7 @@ export const AdminSidebar = () => {
                 </div>
 
                 <div className="px-5 absolute bottom-2 w-full left-0">
-                    <button className="bg-red-200 rounded p-2 py-4 w-full text-sm flex items-center justify-center gap-1.5">
+                    <button type="button" onClick={() => signOut({ callbackUrl: "/admin/login" })} className="bg-red-200 rounded p-2 py-4 w-full text-sm flex items-center justify-center gap-1.5">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
                         </svg>
