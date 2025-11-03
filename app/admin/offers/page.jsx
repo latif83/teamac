@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import { NewOfferModal } from "./NewOfferModal";
 import { toast } from "react-toastify";
 import { ViewOffer } from "./ViewOffer";
+import { useSearchParams } from "next/navigation";
 
 const RenderLoading = () => {
 
@@ -77,6 +78,8 @@ const AdminOffers = () => {
     const [loading, setLoading] = useState(true)
     const [fetchData, setFetchData] = useState(true)
 
+    const searchParams = useSearchParams();
+
     const getOffersData = async () => {
 
         try {
@@ -103,6 +106,9 @@ const AdminOffers = () => {
     }
 
     useEffect(() => {
+        const add = searchParams.get("add");
+        setAddOffer(add === "true");
+
         fetchData && getOffersData()
         setFetchData(false)
     }, [fetchData])
@@ -125,7 +131,7 @@ const AdminOffers = () => {
 
     const [addOffer, setAddOffer] = useState(false)
     const [viewOffer, setViewOffer] = useState(false)
-    const [selectedOffer,setSelectedOffer] = useState(null)
+    const [selectedOffer, setSelectedOffer] = useState(null)
 
     return (
         <section className="p-3 pt-5 md:p-6">
@@ -189,7 +195,7 @@ const AdminOffers = () => {
                 {loading ? <RenderLoading /> : offers.length > 0 && offers.map((offer) => (
                     <div
                         key={offer.id}
-                        onClick={()=>{setSelectedOffer(offer); setViewOffer(true);}}
+                        onClick={() => { setSelectedOffer(offer); setViewOffer(true); }}
                         className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-500 cursor-pointer hover:border-red-500 hover:border hover:scale-[1.02]"
                     >
                         <div className="w-full h-40 bg-gray-200">
