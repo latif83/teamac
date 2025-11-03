@@ -185,7 +185,7 @@ const AdminOffers = () => {
                 {loading ? <RenderLoading /> : offers.length > 0 && offers.map((offer) => (
                     <div
                         key={offer.id}
-                        className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition cursor-pointer hover:border-red-500 hover:border hover:scale-[1.02]"
+                        className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-500 cursor-pointer hover:border-red-500 hover:border hover:scale-[1.02]"
                     >
                         <div className="w-full h-40 bg-gray-200">
                             <img
@@ -247,8 +247,8 @@ const AdminOffers = () => {
 
             {/* No Offers Message */}
             {offers.length === 0 && (
-                <div className="text-center mt-10 text-gray-500">
-                    No {filters.status.toLowerCase()} offers found.
+                <div className="text-center mt-10 text-sm font-semibold text-gray-500">
+                    No offers found.
                 </div>
             )}
         </section>
