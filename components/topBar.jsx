@@ -1,4 +1,4 @@
-import { faBarsStaggered } from "@fortawesome/free-solid-svg-icons"
+import { faBarsStaggered, faSearch } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Image from "next/image"
 import Link from "next/link"
@@ -88,9 +88,9 @@ export const TopBar = ()=>{
 
                 </div>
 
-                <div className="absolute md:block hidden -bottom-32 w-full left-0 px-12">
+                <div className="md:absolute md:-bottom-32 w-full left-0 md:px-12 px-3 mt-8 md:mt-0">
 
-                    <div className="bg-[#f2f2f2]/70 border border-[#FF6F61] w-2/3 rounded-md py-4 px-10">
+                    <div className="bg-[#f2f2f2]/70 border border-[#FF6F61] md:w-2/3 w-full rounded-md py-4 md:px-10 px-3">
                         <h3 className="font-bold"> Find Available Offers. </h3>
 
                         <form className="mt-3">
@@ -127,8 +127,10 @@ export const TopBar = ()=>{
                             </div>
 
                             <div className="flex justify-end mt-3">
-                                <button type="button" className="bg-[#FF6F61] to-[#00B4D8] p-3 px-6 text-sm rounded-md">
-                                    Search
+                                <button type="button" className="bg-[#FF6F61] to-[#00B4D8] p-3 px-6 text-sm rounded-md flex items-center gap-2">
+                                    <FontAwesomeIcon icon={faSearch} />
+                                    
+                                    <span>Search</span>
                                 </button>
                             </div>
                         </form>
