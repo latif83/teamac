@@ -5,55 +5,40 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTag, faGlobe, faCalendarAlt, faTimes, faFilter, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const OffersPage = () => {
 
     const [showFilter, setShowFilter] = useState(false);
 
-    // Dummy offers data
-    const offers = [
-        {
-            id: 1,
-            title: "Study in Canada",
-            description:
-                "Get up to 20% off tuition fees when applying to selected partner universities through Teamac.",
-            image: "/grad.jpg",
-            country: "Canada",
-            category: "Study Abroad",
-            validity: "Valid till December 2025",
-        },
-        {
-            id: 2,
-            title: "Affordable Travel Packages to Dubai",
-            description:
-                "Enjoy flexible travel options and accommodation packages designed for your perfect getaway.",
-            image: "/dubai.jpg",
-            country: "UAE",
-            category: "Travel & Tourism",
-            validity: "Valid till March 2026",
-        },
-        {
-            id: 3,
-            title: "Student Accommodation Deals in the UK",
-            description:
-                "Secure your student housing early and save up to 15% on rent in top student cities across the UK.",
-            image: "/accomodation.jpg",
-            country: "United Kingdom",
-            category: "Accommodation",
-            validity: "Valid till August 2025",
-        },
-        {
-            id: 4,
-            title: "Visa Consultation Discount",
-            description:
-                "Book your visa consultation now and enjoy a 10% discount on our expert processing services.",
-            image: "/visa.jpg",
-            country: "Ghana",
-            category: "Consultation",
-            validity: "Valid till June 2026",
-        },
-    ];
+    const [loadingOffers,setLoadingOffers] = useState(false)
+    const [offers,setOffers] = useState([])
+
+    const getOffers = async()=>{
+        try{
+            setLoadingOffers(true)
+
+            const res = await fetch(`/api/admin/offers`)
+            const data = await res.json()
+            if(!res.ok){
+                return toast.error(data.msg || "Unable to fetch offers!")
+            }
+
+            setOffers(data.offers)
+
+        }
+        catch(e){
+            console.log(e)
+            toast.error("Unable to fetch offers, please try again!")
+        } finally{
+            setLoadingOffers(false)
+        }
+    }
+
+    useEffect(()=>{
+        getOffers()
+    },[])
 
     return (
         <>
@@ -183,15 +168,17 @@ const OffersPage = () => {
                         </div>
                     </aside>
 
+{/* flex-1 md:py-5 px-4 */}
+
                     {/* Main Offers Grid */}
-                    <div className="md:w-3/4 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:py-5">
+                    <div className="md:w-3/4 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:py-5 self-start">
                         {offers.map((offer) => (
                             <div
                                 key={offer.id}
-                                className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden"
+                                className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden h-auto grow-0"
                             >
-                                <Image
-                                    src={offer.image}
+                                <img
+                                    src={offer.thumbnail?.url}
                                     alt={offer.title}
                                     width={400}
                                     height={250}
@@ -207,20 +194,20 @@ const OffersPage = () => {
                                         </p>
                                     </div>
 
-                                    <div className="mt-4 text-sm text-gray-500 space-y-1">
+                                    <div className="mt-2 text-sm text-gray-500 space-y-1">
                                         <div>
                                             <FontAwesomeIcon
                                                 icon={faGlobe}
                                                 className="text-[#00B4D8] mr-2"
                                             />
-                                            {offer.country}
+                                            {offer.country?.name}
                                         </div>
                                         <div>
                                             <FontAwesomeIcon
                                                 icon={faTag}
                                                 className="text-[#FF6F61] mr-2"
                                             />
-                                            {offer.category}
+                                            {offer.service?.name}
                                         </div>
                                         <div>
                                             <FontAwesomeIcon

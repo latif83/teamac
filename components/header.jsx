@@ -77,7 +77,7 @@ const Header = () => {
         </div>
 
         {/* Currency Dropdown */}
-        <div className="relative group">
+        {/* <div className="relative group">
           <button className="flex items-center gap-1 text-gray-700 hover:text-[#00B4D8] transition">
             <FontAwesomeIcon icon={faDollarSign} className="text-lg" />
             <span>{currency}</span>
@@ -96,7 +96,7 @@ const Header = () => {
               </button>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Mobile Menu Toggle */}
         <button
