@@ -15,7 +15,7 @@ import Link from "next/link";
 
 const SocialSidebar = () => {
     return (
-        <div className="fixed top-1/2 right-0 bg-[#00B4D8]/80 pl-3 pr-1 py-4 rounded-l-xl transform -translate-y-1/2 z-50 md:flex flex flex-col gap-6 text-lg">
+        <div className="fixed md:top-1/2 top-1/3 right-0 bg-[#00B4D8]/80 pl-3 pr-1 py-4 rounded-l-xl transform -translate-y-1/2 z-50 md:flex flex flex-col gap-6 text-lg">
             {/* Call */}
             <Link
                 href="tel:+905338479200"

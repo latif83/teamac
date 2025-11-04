@@ -42,7 +42,7 @@ export const TopBar = ()=>{
                 </header>
 
                 <div className="flex flex-1 px-3 md:px-6 lg:px-12 sm:gap-4 gap-8 relative md:flex-nowrap flex-wrap md:h-8/10">
-                    <Image src={'/dots.png'} width={1000} height={1000} alt="Dots" className="absolute md:bottom-0 bottom-16 left-0 sm:w-[700px] w-[600px] object-cover object-center" />
+                    <Image src={'/dots.png'} width={1000} height={1000} alt="Dots" className="absolute md:bottom-0 top-10 left-0 sm:w-[700px] w-full object-cover object-center" />
                     <div className="relative z-10 flex flex-col pt-6 text-gray-600 md:w-2/5 w-full">
 
                         <div><button type="button" className="bg-white rounded-full shadow-xl text-sm border border-[#00B4D8] text-[#00B4D8] px-5 py-3 my-5">
