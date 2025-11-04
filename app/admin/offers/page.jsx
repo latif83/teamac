@@ -12,7 +12,7 @@ import {
     faCalendarAlt,
     faPlusCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { NewOfferModal } from "./NewOfferModal";
 import { toast } from "react-toastify";
 import { ViewOffer } from "./ViewOffer";
@@ -70,6 +70,15 @@ const RenderLoading = () => {
             }</>
     )
 }
+
+export default function OffersPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <AdminOffers />
+    </Suspense>
+  );
+}
+
 
 const AdminOffers = () => {
 
@@ -265,5 +274,3 @@ const AdminOffers = () => {
         </section>
     );
 };
-
-export default AdminOffers;
