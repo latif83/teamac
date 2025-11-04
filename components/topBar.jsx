@@ -1,12 +1,19 @@
+"use client"
 import { faBarsStaggered, faSearch } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Image from "next/image"
 import Link from "next/link"
+import { MobileNav } from "./mobileNav"
+import { useState } from "react"
 
 export const TopBar = ()=>{
+
+    const [viewMNav,setViewMNav] = useState(false)
+
     return (
          <div className="sm:h-screen flex flex-col relative">
 
+            {viewMNav && <MobileNav setViewMNav={setViewMNav} />}
 
                 <header className="px-3 md:px-6 md:py-0 py-4 lg:px-12 relative z-10 flex justify-between items-center md:h-2/10">
 
@@ -35,7 +42,7 @@ export const TopBar = ()=>{
 
                     </Link>
 
-                    <button type="button" className="md:hidden block bg-white p-4 rounded-full shadow-md">
+                    <button onClick={()=>{setViewMNav(true)}} type="button" className="md:hidden block bg-white p-4 rounded-full shadow-md">
                         <FontAwesomeIcon icon={faBarsStaggered} width={25} height={25} className="text-black text-xl m-0 p-0" />
                     </button>
 
