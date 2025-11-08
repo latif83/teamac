@@ -265,7 +265,7 @@ const OffersPage = () => {
                                         </div>
                                     </div>
 
-                                    <Link href={`/offers/${offer.id}`} className="mt-4 bg-[#00B4D8] hover:bg-[#0092b3] text-white text-sm font-medium py-2 rounded-md transition-all duration-300 w-full cursor-pointer">
+                                    <Link href={`/offers/${offer.id}`} className="mt-4 bg-[#00B4D8] hover:bg-[#0092b3] text-white text-sm font-medium p-2 rounded-md transition-all duration-300 w-full cursor-pointer block text-center">
                                         View Details
                                     </Link>
                                 </div>
