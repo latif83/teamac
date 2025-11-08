@@ -7,6 +7,7 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import Link from "next/link";
 
 const LoadingRender = () => {
     return (
@@ -264,9 +265,9 @@ const OffersPage = () => {
                                         </div>
                                     </div>
 
-                                    <button className="mt-4 bg-[#00B4D8] hover:bg-[#0092b3] text-white text-sm font-medium py-2 rounded-md transition-all duration-300 w-full cursor-pointer">
+                                    <Link href={`/offers/${offer.id}`} className="mt-4 bg-[#00B4D8] hover:bg-[#0092b3] text-white text-sm font-medium py-2 rounded-md transition-all duration-300 w-full cursor-pointer">
                                         View Details
-                                    </button>
+                                    </Link>
                                 </div>
                             </div>
                         )) : <div className="sm:cols-span-2 lg:col-span-3 text-center"><p className="text-sm font-semibold">No Offers Found.</p><p>Please check again later!.</p></div>}
