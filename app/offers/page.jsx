@@ -8,37 +8,83 @@ import Footer from "@/components/footer";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
+const LoadingRender = () => {
+    return (
+        [1, 2, 3, 4, 5, 6].map((num) => (
+            <div
+                key={num}
+                className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden h-auto grow-0 animate-pulse"
+            >
+                <div className="h-52 bg-gray-200 w-full"></div>
+                <div className="p-2 mt-3">
+                    <div>
+                        <h2 className="font-semibold text-[#0d4785] mb-2 line-clamp-1 bg-gray-200 h-4 rounded-lg w-32"></h2>
+                        <p className="text-sm text-gray-600 line-clamp-2 bg-gray-200 h-6 rounded-lg"></p>
+                    </div>
+
+                    <div className="mt-4 text-sm text-gray-500 space-y-1">
+                        <div className="flex items-center gap-2">
+                            <FontAwesomeIcon
+                                icon={faGlobe}
+                                className="text-[#00B4D8]"
+                            />
+                            <span className="bg-gray-200 w-32 rounded-lg h-4"></span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <FontAwesomeIcon
+                                icon={faTag}
+                                className="text-[#FF6F61]"
+                            />
+                            <span className="bg-gray-200 w-32 rounded-lg h-4"></span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <FontAwesomeIcon
+                                icon={faCalendarAlt}
+                                className="text-[#00B4D8]"
+                            />
+                            <span className="bg-gray-200 w-32 rounded-lg h-4"></span>
+                        </div>
+                    </div>
+
+                    <button className="mt-4 bg-[#00B4D8] hover:bg-[#0092b3] text-white text-sm font-medium py-2 rounded-md transition-all duration-300 w-full h-8">
+                    </button>
+                </div>
+            </div>
+        ))
+    )
+}
+
 const OffersPage = () => {
 
     const [showFilter, setShowFilter] = useState(false);
 
-    const [loadingOffers,setLoadingOffers] = useState(false)
-    const [offers,setOffers] = useState([])
+    const [loadingOffers, setLoadingOffers] = useState(false)
+    const [offers, setOffers] = useState([])
 
-    const getOffers = async()=>{
-        try{
+    const getOffers = async () => {
+        try {
             setLoadingOffers(true)
 
             const res = await fetch(`/api/admin/offers`)
             const data = await res.json()
-            if(!res.ok){
+            if (!res.ok) {
                 return toast.error(data.msg || "Unable to fetch offers!")
             }
 
             setOffers(data.offers)
 
         }
-        catch(e){
+        catch (e) {
             console.log(e)
             toast.error("Unable to fetch offers, please try again!")
-        } finally{
+        } finally {
             setLoadingOffers(false)
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         getOffers()
-    },[])
+    }, [])
 
     return (
         <>
@@ -168,11 +214,11 @@ const OffersPage = () => {
                         </div>
                     </aside>
 
-{/* flex-1 md:py-5 px-4 */}
+                    {/* flex-1 md:py-5 px-4 */}
 
                     {/* Main Offers Grid */}
                     <div className="md:w-3/4 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:py-5 self-start">
-                        {offers.map((offer) => (
+                        {loadingOffers ? <LoadingRender /> : offers.length > 0 ? offers.map((offer) => (
                             <div
                                 key={offer.id}
                                 className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden h-auto grow-0"
@@ -184,12 +230,12 @@ const OffersPage = () => {
                                     height={250}
                                     className="w-full h-52 object-cover"
                                 />
-                                <div className="p-2 flex flex-col justify-between h-[250px]">
+                                <div className="p-2">
                                     <div>
                                         <h2 className="font-semibold text-[#0d4785] mb-2 line-clamp-1">
                                             {offer.title}
                                         </h2>
-                                        <p className="text-sm text-gray-600 line-clamp-2">
+                                        <p className="text-xs text-gray-600 line-clamp-2">
                                             {offer.description}
                                         </p>
                                     </div>
@@ -214,16 +260,16 @@ const OffersPage = () => {
                                                 icon={faCalendarAlt}
                                                 className="text-[#00B4D8] mr-2"
                                             />
-                                            {offer.validity}
+                                            {new Date(offer.validity).toDateString()}
                                         </div>
                                     </div>
 
-                                    <button className="mt-4 bg-[#00B4D8] hover:bg-[#0092b3] text-white text-sm font-medium py-2 rounded-md transition-all duration-300">
+                                    <button className="mt-4 bg-[#00B4D8] hover:bg-[#0092b3] text-white text-sm font-medium py-2 rounded-md transition-all duration-300 w-full">
                                         View Details
                                     </button>
                                 </div>
                             </div>
-                        ))}
+                        )) : <div className="sm:cols-span-2 lg:col-span-3 text-center"><p className="text-sm font-semibold">No Offers Found.</p><p>Please check again later!.</p></div>}
                     </div>
                 </div>
 
