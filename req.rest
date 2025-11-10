@@ -46,3 +46,6 @@ http://localhost:3000/api/admin/offers
 
 ###
 http://localhost:3000/api/admin/stats
+
+###
+http://localhost:3000/api/offers/cmhl65s1g0003exn89zm3r6ro
