@@ -1,0 +1,189 @@
+"use client";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEnvelope,
+  faPhone,
+  faMapMarkerAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  faFacebookF,
+  faInstagram,
+  faTwitter,
+  faLinkedinIn,
+} from "@fortawesome/free-brands-svg-icons";
+import { useState } from "react";
+import Footer from "@/components/footer";
+import Header from "@/components/header";
+
+export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+    alert("Thank you for reaching out! We’ll get back to you soon.");
+    setFormData({ name: "", email: "", message: "" });
+  };
+
+  return (
+    <>
+    <Header />
+
+    <section className="bg-gray-200 py-16 px-6 md:px-12">
+      {/* Header */}
+      <div className="text-center max-w-3xl mx-auto mb-12">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-[#0d4785]">
+          Get in Touch
+        </h1>
+        <p className="mt-3 text-gray-600 text-sm md:text-base">
+          Have questions or need assistance? Our friendly team is always ready
+          to help. Reach out to us — we’d love to hear from you.
+        </p>
+        <div className="w-16 mx-auto relative mt-4">
+          <hr className="w-16 h-1 rounded-md bg-gradient-to-r from-[#FF6F61] to-[#00B4D8] border-none" />
+          <span className="bg-gradient-to-r from-[#FF6F61] to-[#00B4D8] w-3 h-3 rounded-full absolute left-6 -top-1"></span>
+        </div>
+      </div>
+
+      {/* Content Grid */}
+      <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+        {/* Contact Form */}
+        <form
+          onSubmit={handleSubmit}
+          className="bg-white rounded-xl shadow-md p-8 border border-gray-100"
+        >
+          <h2 className="text-xl font-semibold text-[#0d4785] mb-6">
+            Send Us a Message
+          </h2>
+
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm text-gray-600 mb-1">
+                Full Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                required
+                value={formData.name}
+                onChange={handleChange}
+                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#00B4D8] outline-none"
+                placeholder="Enter your full name"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm text-gray-600 mb-1">Email</label>
+              <input
+                type="email"
+                name="email"
+                required
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#00B4D8] outline-none"
+                placeholder="Enter your email address"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm text-gray-600 mb-1">
+                Message
+              </label>
+              <textarea
+                name="message"
+                required
+                rows="4"
+                value={formData.message}
+                onChange={handleChange}
+                className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#00B4D8] outline-none resize-none"
+                placeholder="Type your message here..."
+              ></textarea>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className="mt-6 w-full py-2.5 text-sm font-medium text-white bg-[#00B4D8] rounded-lg hover:bg-[#0092b3] transition-all duration-300"
+          >
+            Send Message
+          </button>
+        </form>
+
+        {/* Contact Info */}
+        <div className="flex flex-col justify-center space-y-6 text-gray-700">
+          <div className="flex items-start gap-4">
+            <FontAwesomeIcon
+              icon={faEnvelope}
+              className="text-[#00B4D8] text-xl mt-1"
+            />
+            <div>
+              <h3 className="font-semibold text-[#0d4785]">Email Us</h3>
+              <p>info@teamacglobal.com</p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-4">
+            <FontAwesomeIcon
+              icon={faPhone}
+              className="text-[#FF6F61] text-xl mt-1"
+            />
+            <div>
+              <h3 className="font-semibold text-[#0d4785]">Call Us</h3>
+              <p>+233 24 000 0000</p>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-4">
+            <FontAwesomeIcon
+              icon={faMapMarkerAlt}
+              className="text-[#00B4D8] text-xl mt-1"
+            />
+            <div>
+              <h3 className="font-semibold text-[#0d4785]">Visit Us</h3>
+              <p>East Legon, Accra, Ghana</p>
+            </div>
+          </div>
+
+          {/* Social Icons */}
+          <div className="flex items-center gap-4 pt-4">
+            <a
+              href="#"
+              className="w-9 h-9 flex items-center justify-center rounded-full border border-[#00B4D8] hover:bg-[#00B4D8] hover:text-white text-[#00B4D8] transition-all duration-300"
+            >
+              <FontAwesomeIcon icon={faFacebookF} />
+            </a>
+            <a
+              href="#"
+              className="w-9 h-9 flex items-center justify-center rounded-full border border-[#FF6F61] hover:bg-[#FF6F61] hover:text-white text-[#FF6F61] transition-all duration-300"
+            >
+              <FontAwesomeIcon icon={faInstagram} />
+            </a>
+            <a
+              href="#"
+              className="w-9 h-9 flex items-center justify-center rounded-full border border-[#00B4D8] hover:bg-[#00B4D8] hover:text-white text-[#00B4D8] transition-all duration-300"
+            >
+              <FontAwesomeIcon icon={faTwitter} />
+            </a>
+            <a
+              href="#"
+              className="w-9 h-9 flex items-center justify-center rounded-full border border-[#0d4785] hover:bg-[#0d4785] hover:text-white text-[#0d4785] transition-all duration-300"
+            >
+              <FontAwesomeIcon icon={faLinkedinIn} />
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+    </>
+  );
+}
