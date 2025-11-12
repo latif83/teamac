@@ -49,7 +49,7 @@ export const SuccessConsultation = ({ setCloseSuccess }) => {
                         <h4 className="font-semibold text-gray-800 mb-2 text-sm">What Happens Next?</h4>
                         <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
                             <li>Our dedicated travel specialist will personally review your request.</li>
-                            <li>You will hear from us within <b>**24 hours**</b> via your preferred contact method (WhatsApp/Email) to confirm the specific time and mode of your consultation.</li>
+                            <li>You will hear from us within <b>**24 hours**</b> via your WhatsApp/Email to confirm the specific time and mode of your consultation.</li>
                         </ul>
                     </div>
 
