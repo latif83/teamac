@@ -1,14 +1,63 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCompress, faExpand } from "@fortawesome/free-solid-svg-icons";
+import { isNumericLiteral } from "typescript";
+
+const RenderLoading = ()=>{
+    return (
+        <>
+        {[1,2,3,4].map((num)=>( <div
+                        key={num}
+                        className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 animate-pulse"
+                    >
+                        {/* Offer Image */}
+                        <div className="relative h-48 bg-gray-200">
+
+                            {/* Expand Button */}
+                            <button
+                                className="absolute bottom-2 right-2 bg-[#00B4D8]/90 text-white text-xs px-3 py-1 rounded-md hover:bg-[#0092b3]"
+                            >
+                                {/* {expandedImage === offer.id ? "Collapse" : "Expand"} */}
+                                <FontAwesomeIcon
+                                    icon={faExpand}
+                                    width={16}
+                                    height={16}
+                                />
+
+                            </button>
+                        </div>
+
+                        {/* Offer Content */}
+                        <div className="p-4">
+                            <h2 className="font-bold mt-3 text-[#0d4785] line-clamp-1 h-4 w-32 bg-gray-200 rounded-lg"></h2>
+                            <p className="text-sm text-gray-600 mt-3 line-clamp-2 h-8 w-full bg-gray-200 rounded-lg">
+                            </p>
+
+                            {/* View Details Button */}
+                            <div className="flex justify-center mt-4">
+                                <span
+                                    className="text-[#FF6F61] text-sm px-4 py-2 rounded-md hover:text-[#000] transition-all duration-500 flex items-center gap-2"
+                                >
+                                    <span>View Details</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+                                    </svg>
+
+                                </span>
+                            </div>
+                        </div>
+                    </div>))}
+        </>
+    )
+}
 
 const RecentOffers = () => {
     // 🔹 Offer data array
-    const offers = [
+    const [offers,setOffers] = useState([
         {
             id: 1,
             title: "Study in Canada",
@@ -37,9 +86,32 @@ const RecentOffers = () => {
                 "Find affordable student apartments near your university with verified landlords and secure booking options.",
             image: "/accomodation.jpg",
         },
-    ];
+    ])
 
     const [expandedImage, setExpandedImage] = useState(null);
+
+    const [loading,setLoading] = useState(false)
+
+    const getFeaturedOffers = async()=>{
+        setLoading(true)
+        try{
+            const res = await fetch(`/api/offers/featured`)
+            const data = await res.json()
+            if(!res.ok){
+                return toast.error(data.msg)
+            }
+            setOffers(data.featuredOffers)
+        }
+        catch(e){
+            console.log(e)
+        } finally{
+            setLoading(false)
+        }
+    }
+
+    useEffect(()=>{
+        getFeaturedOffers()
+    },[])
 
     const toggleImage = (id) => {
         setExpandedImage(expandedImage === id ? null : id);
@@ -48,7 +120,7 @@ const RecentOffers = () => {
     return (
         <section className="md:pt-40 pt-12 pb-16 bg-[url(/bg1.png)] bg-cover bg-no-repeat md:px-12 px-3">
             {/* Section Header */}
-            <h1 className="text-xl font-bold text-[#0d4785]">RECENT OFFERS</h1>
+            <h1 className="text-xl font-bold text-[#0d4785]">FEATURED OFFERS</h1>
             <div className="w-16 ml-8 relative">
                 <hr className="w-16 h-1 rounded-md mt-2 bg-gradient-to-r from-[#FF6F61] to-[#00B4D8] border-none" />
                 <span className="bg-gradient-to-r from-[#FF6F61] to-[#00B4D8] w-3 h-3 rounded-full absolute left-6 -top-1"></span>
@@ -56,15 +128,15 @@ const RecentOffers = () => {
 
             {/* Offer Grid */}
             <div className="mt-5 grid lg:grid-cols-4 md:grid-cols-2 gap-4">
-                {offers.map((offer) => (
+                {loading ? <RenderLoading /> : offers.length > 0 ? offers.map((offer) => (
                     <div
                         key={offer.id}
                         className="bg-white rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
                     >
                         {/* Offer Image */}
                         <div className="relative">
-                            <Image
-                                src={offer.image}
+                            <img
+                                src={offer.thumbnail?.url}
                                 width={400}
                                 height={300}
                                 alt={offer.title}
@@ -109,7 +181,7 @@ const RecentOffers = () => {
                             </div>
                         </div>
                     </div>
-                ))}
+                )) : <div className="lg:col-span-4 md:col-span-2 text-center text-sm mt-5 flex flex-col items-center justify-center"> <p className="font-semibold">No Featured Offers</p> <p>Please try again later!</p> </div>}
             </div>
 
             {/* View More Button */}
