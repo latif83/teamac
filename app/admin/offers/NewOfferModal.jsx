@@ -95,7 +95,7 @@ export const NewOfferModal = ({ setAddOffer, setFetchData }) => {
             setLoading(true)
 
             if (!formData.thumbnail) {
-                return toast.error("Please select an image thumbnail for this service!")
+                return toast.error("Please select an image thumbnail for this offer!")
             }
 
             const imageUploaded = await uploadOfferThumbnail(formData.thumbnail)
@@ -267,7 +267,7 @@ export const NewOfferModal = ({ setAddOffer, setFetchData }) => {
                             value={formData.priceLabel}
                             onChange={(e) => setFormData((prevData) => ({ ...prevData, priceLabel: e.target.value }))}
                             className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#00B4D8] outline-none"
-                            placeholder="e.g., From $1500, Starting at ₵2000, Custom Quote"
+                            placeholder="e.g., From $1500, Starting at $2000, Custom Quote"
                         />
                     </div>
 

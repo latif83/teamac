@@ -72,11 +72,11 @@ const RenderLoading = () => {
 }
 
 export default function OffersPage() {
-  return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <AdminOffers />
-    </Suspense>
-  );
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <AdminOffers />
+        </Suspense>
+    );
 }
 
 
@@ -141,6 +141,8 @@ const AdminOffers = () => {
     const [addOffer, setAddOffer] = useState(false)
     const [viewOffer, setViewOffer] = useState(false)
     const [selectedOffer, setSelectedOffer] = useState(null)
+
+    const [featureOfferLoading, setFeatureOfferLoading] = useState(false)
 
     return (
         <section className="p-3 pt-5 md:p-6">
@@ -207,12 +209,49 @@ const AdminOffers = () => {
                         onClick={() => { setSelectedOffer(offer); setViewOffer(true); }}
                         className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-all duration-500 cursor-pointer hover:border-red-500 hover:border hover:scale-[1.02]"
                     >
-                        <div className="w-full h-40 bg-gray-200">
+                        <div className="w-full h-40 bg-gray-200 relative">
                             <img
                                 src={offer.thumbnail?.url}
                                 alt={offer.title}
                                 className="w-full h-full object-cover"
                             />
+
+                            <label
+                                onClick={(e) => e.stopPropagation()}
+                                className="absolute top-2 right-2 bg-white/80 px-2 py-1 rounded-md flex items-center gap-1 cursor-pointer hover:bg-white"
+                            >
+                                <input
+                                    type="checkbox"
+                                    checked={offer.isFeatured}
+                                    hidden={featureOfferLoading}
+                                    onChange={async (e) => {
+                                        const checked = e.target.checked;
+                                        setFeatureOfferLoading(true)
+                                        try {
+                                            const res = await fetch(`/api/offers/${offer.id}/feature`, {
+                                                method: "PATCH",
+                                                headers: { "Content-Type": "application/json" },
+                                                body: JSON.stringify({ isFeatured: checked }),
+                                            });
+
+                                            const data = await res.json()
+
+                                            if (!res.ok) {
+                                                return toast.error(data.msg || "Failed to update");
+                                            }
+                                            toast.success(`Offer ${checked ? "featured" : "unfeatured"}!`);
+                                            // offer.isFeatured = checked
+                                            setFetchData(true)
+                                        } catch (err) {
+                                            toast.error(err.message);
+                                        } finally {
+                                            setFeatureOfferLoading(false)
+                                        }
+                                    }}
+                                    className="accent-[#00B4D8] cursor-pointer"
+                                />
+                                {featureOfferLoading ? <span className="p-2 rounded-lg bg-gray-400 animate-pulse text-xs font-semibold"> Processing... </span> : <span className="text-xs font-semibold text-gray-700">{offer.isFeatured ? 'Featured' : 'Feature'}</span>}
+                            </label>
                         </div>
 
                         <div className="p-5">
@@ -259,6 +298,10 @@ const AdminOffers = () => {
                                     Active
                                 </span>
                             </div>
+
+
+
+
 
                         </div>
                     </div>

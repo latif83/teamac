@@ -134,6 +134,7 @@ exports.Prisma.ServiceScalarFieldEnum = {
   name: 'name',
   description: 'description',
   image: 'image',
+  isFeatured: 'isFeatured',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -150,6 +151,7 @@ exports.Prisma.OfferScalarFieldEnum = {
   city: 'city',
   requirements: 'requirements',
   validity: 'validity',
+  isFeatured: 'isFeatured',
   datePosted: 'datePosted',
   updatedAt: 'updatedAt'
 };

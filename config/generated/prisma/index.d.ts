@@ -2383,6 +2383,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     description: string | null
+    isFeatured: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2391,6 +2392,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     description: string | null
+    isFeatured: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2400,6 +2402,7 @@ export namespace Prisma {
     name: number
     description: number
     image: number
+    isFeatured: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -2410,6 +2413,7 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
+    isFeatured?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2418,6 +2422,7 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
+    isFeatured?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2427,6 +2432,7 @@ export namespace Prisma {
     name?: true
     description?: true
     image?: true
+    isFeatured?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -2509,6 +2515,7 @@ export namespace Prisma {
     name: string
     description: string
     image: JsonValue
+    isFeatured: boolean
     createdAt: Date
     updatedAt: Date
     _count: ServiceCountAggregateOutputType | null
@@ -2535,6 +2542,7 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     image?: boolean
+    isFeatured?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     offers?: boolean | Service$offersArgs<ExtArgs>
@@ -2546,6 +2554,7 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     image?: boolean
+    isFeatured?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["service"]>
@@ -2555,6 +2564,7 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     image?: boolean
+    isFeatured?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["service"]>
@@ -2564,11 +2574,12 @@ export namespace Prisma {
     name?: boolean
     description?: boolean
     image?: boolean
+    isFeatured?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ServiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "image" | "createdAt" | "updatedAt", ExtArgs["result"]["service"]>
+  export type ServiceOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "image" | "isFeatured" | "createdAt" | "updatedAt", ExtArgs["result"]["service"]>
   export type ServiceInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     offers?: boolean | Service$offersArgs<ExtArgs>
     _count?: boolean | ServiceCountOutputTypeDefaultArgs<ExtArgs>
@@ -2586,6 +2597,7 @@ export namespace Prisma {
       name: string
       description: string
       image: Prisma.JsonValue
+      isFeatured: boolean
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["service"]>
@@ -3016,6 +3028,7 @@ export namespace Prisma {
     readonly name: FieldRef<"Service", 'String'>
     readonly description: FieldRef<"Service", 'String'>
     readonly image: FieldRef<"Service", 'Json'>
+    readonly isFeatured: FieldRef<"Service", 'Boolean'>
     readonly createdAt: FieldRef<"Service", 'DateTime'>
     readonly updatedAt: FieldRef<"Service", 'DateTime'>
   }
@@ -3468,6 +3481,7 @@ export namespace Prisma {
     priceDescription: string | null
     city: string | null
     validity: Date | null
+    isFeatured: boolean | null
     datePosted: Date | null
     updatedAt: Date | null
   }
@@ -3482,6 +3496,7 @@ export namespace Prisma {
     priceDescription: string | null
     city: string | null
     validity: Date | null
+    isFeatured: boolean | null
     datePosted: Date | null
     updatedAt: Date | null
   }
@@ -3498,6 +3513,7 @@ export namespace Prisma {
     city: number
     requirements: number
     validity: number
+    isFeatured: number
     datePosted: number
     updatedAt: number
     _all: number
@@ -3514,6 +3530,7 @@ export namespace Prisma {
     priceDescription?: true
     city?: true
     validity?: true
+    isFeatured?: true
     datePosted?: true
     updatedAt?: true
   }
@@ -3528,6 +3545,7 @@ export namespace Prisma {
     priceDescription?: true
     city?: true
     validity?: true
+    isFeatured?: true
     datePosted?: true
     updatedAt?: true
   }
@@ -3544,6 +3562,7 @@ export namespace Prisma {
     city?: true
     requirements?: true
     validity?: true
+    isFeatured?: true
     datePosted?: true
     updatedAt?: true
     _all?: true
@@ -3633,6 +3652,7 @@ export namespace Prisma {
     city: string | null
     requirements: JsonValue
     validity: Date | null
+    isFeatured: boolean
     datePosted: Date
     updatedAt: Date
     _count: OfferCountAggregateOutputType | null
@@ -3666,6 +3686,7 @@ export namespace Prisma {
     city?: boolean
     requirements?: boolean
     validity?: boolean
+    isFeatured?: boolean
     datePosted?: boolean
     updatedAt?: boolean
     service?: boolean | ServiceDefaultArgs<ExtArgs>
@@ -3684,6 +3705,7 @@ export namespace Prisma {
     city?: boolean
     requirements?: boolean
     validity?: boolean
+    isFeatured?: boolean
     datePosted?: boolean
     updatedAt?: boolean
     service?: boolean | ServiceDefaultArgs<ExtArgs>
@@ -3702,6 +3724,7 @@ export namespace Prisma {
     city?: boolean
     requirements?: boolean
     validity?: boolean
+    isFeatured?: boolean
     datePosted?: boolean
     updatedAt?: boolean
     service?: boolean | ServiceDefaultArgs<ExtArgs>
@@ -3720,11 +3743,12 @@ export namespace Prisma {
     city?: boolean
     requirements?: boolean
     validity?: boolean
+    isFeatured?: boolean
     datePosted?: boolean
     updatedAt?: boolean
   }
 
-  export type OfferOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "serviceId" | "countryId" | "priceLabel" | "priceDescription" | "thumbnail" | "city" | "requirements" | "validity" | "datePosted" | "updatedAt", ExtArgs["result"]["offer"]>
+  export type OfferOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "serviceId" | "countryId" | "priceLabel" | "priceDescription" | "thumbnail" | "city" | "requirements" | "validity" | "isFeatured" | "datePosted" | "updatedAt", ExtArgs["result"]["offer"]>
   export type OfferInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     service?: boolean | ServiceDefaultArgs<ExtArgs>
     country?: boolean | CountryDefaultArgs<ExtArgs>
@@ -3756,6 +3780,7 @@ export namespace Prisma {
       city: string | null
       requirements: Prisma.JsonValue
       validity: Date | null
+      isFeatured: boolean
       datePosted: Date
       updatedAt: Date
     }, ExtArgs["result"]["offer"]>
@@ -4194,6 +4219,7 @@ export namespace Prisma {
     readonly city: FieldRef<"Offer", 'String'>
     readonly requirements: FieldRef<"Offer", 'Json'>
     readonly validity: FieldRef<"Offer", 'DateTime'>
+    readonly isFeatured: FieldRef<"Offer", 'Boolean'>
     readonly datePosted: FieldRef<"Offer", 'DateTime'>
     readonly updatedAt: FieldRef<"Offer", 'DateTime'>
   }
@@ -6722,6 +6748,7 @@ export namespace Prisma {
     name: 'name',
     description: 'description',
     image: 'image',
+    isFeatured: 'isFeatured',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -6741,6 +6768,7 @@ export namespace Prisma {
     city: 'city',
     requirements: 'requirements',
     validity: 'validity',
+    isFeatured: 'isFeatured',
     datePosted: 'datePosted',
     updatedAt: 'updatedAt'
   };
@@ -6865,6 +6893,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -6949,6 +6984,7 @@ export namespace Prisma {
     name?: StringFilter<"Service"> | string
     description?: StringFilter<"Service"> | string
     image?: JsonFilter<"Service">
+    isFeatured?: BoolFilter<"Service"> | boolean
     createdAt?: DateTimeFilter<"Service"> | Date | string
     updatedAt?: DateTimeFilter<"Service"> | Date | string
     offers?: OfferListRelationFilter
@@ -6959,6 +6995,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     image?: SortOrder
+    isFeatured?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     offers?: OfferOrderByRelationAggregateInput
@@ -6972,6 +7009,7 @@ export namespace Prisma {
     name?: StringFilter<"Service"> | string
     description?: StringFilter<"Service"> | string
     image?: JsonFilter<"Service">
+    isFeatured?: BoolFilter<"Service"> | boolean
     createdAt?: DateTimeFilter<"Service"> | Date | string
     updatedAt?: DateTimeFilter<"Service"> | Date | string
     offers?: OfferListRelationFilter
@@ -6982,6 +7020,7 @@ export namespace Prisma {
     name?: SortOrder
     description?: SortOrder
     image?: SortOrder
+    isFeatured?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ServiceCountOrderByAggregateInput
@@ -6997,6 +7036,7 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Service"> | string
     description?: StringWithAggregatesFilter<"Service"> | string
     image?: JsonWithAggregatesFilter<"Service">
+    isFeatured?: BoolWithAggregatesFilter<"Service"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Service"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Service"> | Date | string
   }
@@ -7016,6 +7056,7 @@ export namespace Prisma {
     city?: StringNullableFilter<"Offer"> | string | null
     requirements?: JsonFilter<"Offer">
     validity?: DateTimeNullableFilter<"Offer"> | Date | string | null
+    isFeatured?: BoolFilter<"Offer"> | boolean
     datePosted?: DateTimeFilter<"Offer"> | Date | string
     updatedAt?: DateTimeFilter<"Offer"> | Date | string
     service?: XOR<ServiceScalarRelationFilter, ServiceWhereInput>
@@ -7034,6 +7075,7 @@ export namespace Prisma {
     city?: SortOrderInput | SortOrder
     requirements?: SortOrder
     validity?: SortOrderInput | SortOrder
+    isFeatured?: SortOrder
     datePosted?: SortOrder
     updatedAt?: SortOrder
     service?: ServiceOrderByWithRelationInput
@@ -7055,6 +7097,7 @@ export namespace Prisma {
     city?: StringNullableFilter<"Offer"> | string | null
     requirements?: JsonFilter<"Offer">
     validity?: DateTimeNullableFilter<"Offer"> | Date | string | null
+    isFeatured?: BoolFilter<"Offer"> | boolean
     datePosted?: DateTimeFilter<"Offer"> | Date | string
     updatedAt?: DateTimeFilter<"Offer"> | Date | string
     service?: XOR<ServiceScalarRelationFilter, ServiceWhereInput>
@@ -7073,6 +7116,7 @@ export namespace Prisma {
     city?: SortOrderInput | SortOrder
     requirements?: SortOrder
     validity?: SortOrderInput | SortOrder
+    isFeatured?: SortOrder
     datePosted?: SortOrder
     updatedAt?: SortOrder
     _count?: OfferCountOrderByAggregateInput
@@ -7095,6 +7139,7 @@ export namespace Prisma {
     city?: StringNullableWithAggregatesFilter<"Offer"> | string | null
     requirements?: JsonWithAggregatesFilter<"Offer">
     validity?: DateTimeNullableWithAggregatesFilter<"Offer"> | Date | string | null
+    isFeatured?: BoolWithAggregatesFilter<"Offer"> | boolean
     datePosted?: DateTimeWithAggregatesFilter<"Offer"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Offer"> | Date | string
   }
@@ -7310,6 +7355,7 @@ export namespace Prisma {
     name: string
     description: string
     image: JsonNullValueInput | InputJsonValue
+    isFeatured?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     offers?: OfferCreateNestedManyWithoutServiceInput
@@ -7320,6 +7366,7 @@ export namespace Prisma {
     name: string
     description: string
     image: JsonNullValueInput | InputJsonValue
+    isFeatured?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     offers?: OfferUncheckedCreateNestedManyWithoutServiceInput
@@ -7330,6 +7377,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: JsonNullValueInput | InputJsonValue
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     offers?: OfferUpdateManyWithoutServiceNestedInput
@@ -7340,6 +7388,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: JsonNullValueInput | InputJsonValue
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     offers?: OfferUncheckedUpdateManyWithoutServiceNestedInput
@@ -7350,6 +7399,7 @@ export namespace Prisma {
     name: string
     description: string
     image: JsonNullValueInput | InputJsonValue
+    isFeatured?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -7359,6 +7409,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: JsonNullValueInput | InputJsonValue
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7368,6 +7419,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: JsonNullValueInput | InputJsonValue
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7382,6 +7434,7 @@ export namespace Prisma {
     city?: string | null
     requirements: JsonNullValueInput | InputJsonValue
     validity?: Date | string | null
+    isFeatured?: boolean
     datePosted?: Date | string
     updatedAt?: Date | string
     service: ServiceCreateNestedOneWithoutOffersInput
@@ -7400,6 +7453,7 @@ export namespace Prisma {
     city?: string | null
     requirements: JsonNullValueInput | InputJsonValue
     validity?: Date | string | null
+    isFeatured?: boolean
     datePosted?: Date | string
     updatedAt?: Date | string
   }
@@ -7414,6 +7468,7 @@ export namespace Prisma {
     city?: NullableStringFieldUpdateOperationsInput | string | null
     requirements?: JsonNullValueInput | InputJsonValue
     validity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
     datePosted?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     service?: ServiceUpdateOneRequiredWithoutOffersNestedInput
@@ -7432,6 +7487,7 @@ export namespace Prisma {
     city?: NullableStringFieldUpdateOperationsInput | string | null
     requirements?: JsonNullValueInput | InputJsonValue
     validity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
     datePosted?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7448,6 +7504,7 @@ export namespace Prisma {
     city?: string | null
     requirements: JsonNullValueInput | InputJsonValue
     validity?: Date | string | null
+    isFeatured?: boolean
     datePosted?: Date | string
     updatedAt?: Date | string
   }
@@ -7462,6 +7519,7 @@ export namespace Prisma {
     city?: NullableStringFieldUpdateOperationsInput | string | null
     requirements?: JsonNullValueInput | InputJsonValue
     validity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
     datePosted?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7478,6 +7536,7 @@ export namespace Prisma {
     city?: NullableStringFieldUpdateOperationsInput | string | null
     requirements?: JsonNullValueInput | InputJsonValue
     validity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
     datePosted?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -7761,11 +7820,17 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type ServiceCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
     image?: SortOrder
+    isFeatured?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -7774,6 +7839,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    isFeatured?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -7782,6 +7848,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    isFeatured?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -7810,6 +7877,14 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedJsonFilter<$PrismaModel>
     _max?: NestedJsonFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
@@ -7865,6 +7940,7 @@ export namespace Prisma {
     city?: SortOrder
     requirements?: SortOrder
     validity?: SortOrder
+    isFeatured?: SortOrder
     datePosted?: SortOrder
     updatedAt?: SortOrder
   }
@@ -7879,6 +7955,7 @@ export namespace Prisma {
     priceDescription?: SortOrder
     city?: SortOrder
     validity?: SortOrder
+    isFeatured?: SortOrder
     datePosted?: SortOrder
     updatedAt?: SortOrder
   }
@@ -7893,6 +7970,7 @@ export namespace Prisma {
     priceDescription?: SortOrder
     city?: SortOrder
     validity?: SortOrder
+    isFeatured?: SortOrder
     datePosted?: SortOrder
     updatedAt?: SortOrder
   }
@@ -8062,6 +8140,10 @@ export namespace Prisma {
     connect?: OfferWhereUniqueInput | OfferWhereUniqueInput[]
   }
 
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
   export type OfferUpdateManyWithoutServiceNestedInput = {
     create?: XOR<OfferCreateWithoutServiceInput, OfferUncheckedCreateWithoutServiceInput> | OfferCreateWithoutServiceInput[] | OfferUncheckedCreateWithoutServiceInput[]
     connectOrCreate?: OfferCreateOrConnectWithoutServiceInput | OfferCreateOrConnectWithoutServiceInput[]
@@ -8192,6 +8274,11 @@ export namespace Prisma {
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
   export type NestedJsonFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
@@ -8214,6 +8301,14 @@ export namespace Prisma {
     gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
@@ -8293,6 +8388,7 @@ export namespace Prisma {
     city?: string | null
     requirements: JsonNullValueInput | InputJsonValue
     validity?: Date | string | null
+    isFeatured?: boolean
     datePosted?: Date | string
     updatedAt?: Date | string
     service: ServiceCreateNestedOneWithoutOffersInput
@@ -8309,6 +8405,7 @@ export namespace Prisma {
     city?: string | null
     requirements: JsonNullValueInput | InputJsonValue
     validity?: Date | string | null
+    isFeatured?: boolean
     datePosted?: Date | string
     updatedAt?: Date | string
   }
@@ -8354,6 +8451,7 @@ export namespace Prisma {
     city?: StringNullableFilter<"Offer"> | string | null
     requirements?: JsonFilter<"Offer">
     validity?: DateTimeNullableFilter<"Offer"> | Date | string | null
+    isFeatured?: BoolFilter<"Offer"> | boolean
     datePosted?: DateTimeFilter<"Offer"> | Date | string
     updatedAt?: DateTimeFilter<"Offer"> | Date | string
   }
@@ -8368,6 +8466,7 @@ export namespace Prisma {
     city?: string | null
     requirements: JsonNullValueInput | InputJsonValue
     validity?: Date | string | null
+    isFeatured?: boolean
     datePosted?: Date | string
     updatedAt?: Date | string
     country: CountryCreateNestedOneWithoutOffersInput
@@ -8384,6 +8483,7 @@ export namespace Prisma {
     city?: string | null
     requirements: JsonNullValueInput | InputJsonValue
     validity?: Date | string | null
+    isFeatured?: boolean
     datePosted?: Date | string
     updatedAt?: Date | string
   }
@@ -8419,6 +8519,7 @@ export namespace Prisma {
     name: string
     description: string
     image: JsonNullValueInput | InputJsonValue
+    isFeatured?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8428,6 +8529,7 @@ export namespace Prisma {
     name: string
     description: string
     image: JsonNullValueInput | InputJsonValue
+    isFeatured?: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -8476,6 +8578,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: JsonNullValueInput | InputJsonValue
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8485,6 +8588,7 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     image?: JsonNullValueInput | InputJsonValue
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8529,6 +8633,7 @@ export namespace Prisma {
     city?: string | null
     requirements: JsonNullValueInput | InputJsonValue
     validity?: Date | string | null
+    isFeatured?: boolean
     datePosted?: Date | string
     updatedAt?: Date | string
   }
@@ -8543,6 +8648,7 @@ export namespace Prisma {
     city?: NullableStringFieldUpdateOperationsInput | string | null
     requirements?: JsonNullValueInput | InputJsonValue
     validity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
     datePosted?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     service?: ServiceUpdateOneRequiredWithoutOffersNestedInput
@@ -8559,6 +8665,7 @@ export namespace Prisma {
     city?: NullableStringFieldUpdateOperationsInput | string | null
     requirements?: JsonNullValueInput | InputJsonValue
     validity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
     datePosted?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8574,6 +8681,7 @@ export namespace Prisma {
     city?: NullableStringFieldUpdateOperationsInput | string | null
     requirements?: JsonNullValueInput | InputJsonValue
     validity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
     datePosted?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8589,6 +8697,7 @@ export namespace Prisma {
     city?: string | null
     requirements: JsonNullValueInput | InputJsonValue
     validity?: Date | string | null
+    isFeatured?: boolean
     datePosted?: Date | string
     updatedAt?: Date | string
   }
@@ -8603,6 +8712,7 @@ export namespace Prisma {
     city?: NullableStringFieldUpdateOperationsInput | string | null
     requirements?: JsonNullValueInput | InputJsonValue
     validity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
     datePosted?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     country?: CountryUpdateOneRequiredWithoutOffersNestedInput
@@ -8619,6 +8729,7 @@ export namespace Prisma {
     city?: NullableStringFieldUpdateOperationsInput | string | null
     requirements?: JsonNullValueInput | InputJsonValue
     validity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
     datePosted?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -8634,6 +8745,7 @@ export namespace Prisma {
     city?: NullableStringFieldUpdateOperationsInput | string | null
     requirements?: JsonNullValueInput | InputJsonValue
     validity?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    isFeatured?: BoolFieldUpdateOperationsInput | boolean
     datePosted?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
