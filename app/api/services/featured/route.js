@@ -6,7 +6,7 @@ export async function GET() {
     const featuredServices = await prisma.service.findMany({
       where: { isFeatured: true },
       take: 4, // limit to 4
-      orderBy: { datePosted: "desc" },
+      orderBy: { createdAt: "desc" },
     });
 
     return NextResponse.json({ featuredServices }, { status: 200 });
