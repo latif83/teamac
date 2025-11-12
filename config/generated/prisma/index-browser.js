@@ -162,6 +162,21 @@ exports.Prisma.AdminScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.ConsultationScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  phone: 'phone',
+  countryCode: 'countryCode',
+  countryName: 'countryName',
+  mode: 'mode',
+  date: 'date',
+  message: 'message',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -192,7 +207,8 @@ exports.Prisma.ModelName = {
   Country: 'Country',
   Service: 'Service',
   Offer: 'Offer',
-  Admin: 'Admin'
+  Admin: 'Admin',
+  Consultation: 'Consultation'
 };
 
 /**

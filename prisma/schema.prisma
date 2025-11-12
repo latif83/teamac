@@ -62,3 +62,19 @@ model Admin {
   name      String?
   createdAt DateTime @default(now())
 }
+
+model Consultation {
+  id           String   @id @default(cuid())
+  name         String
+  email        String
+  phone        String       // Local part (without country code)
+  countryCode  String       // e.g. "+233"
+  countryName  String?      // Optional, e.g. "Ghana"
+  mode         String       // "Online" | "In-Person"
+  date         DateTime
+  message      String?
+  status       String   @default("Pending")
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
