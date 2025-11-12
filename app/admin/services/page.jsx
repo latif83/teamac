@@ -20,17 +20,17 @@ const RenderLoading = () => {
                     >
                         {/* Image */}
                         <div className="w-full bg-gray-200 h-40 relative rounded-t-lg overflow-hidden">
-                            
+
                         </div>
 
                         {/* Content */}
                         <div className="py-5 px-3 flex flex-col justify-between h-[calc(100%-10rem)]">
                             <div>
                                 <h2 className="text-sm font-semibold text-[#0d4785] rounded-lg mb-2 h-4 w-32 bg-gray-200 line-clamp-1">
-                                    
+
                                 </h2>
                                 <p className="text-gray-600 bg-gray-200 rounded-lg w-full h-6 text-sm mb-4 line-clamp-1">
-                                    
+
                                 </p>
 
                                 <span className="mt-3 bg-gray-200 w-32 block h-4 rounded-lg">
@@ -84,6 +84,8 @@ const ServicesPage = () => {
     const [viewService, setViewService] = useState(false)
     const [selectedService, setSelectedService] = useState(null)
 
+    const [featureLoading, setFeatureLoading] = useState(false)
+
     return (
         <section className="p-3 md:p-6">
 
@@ -103,9 +105,9 @@ const ServicesPage = () => {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-6">
                 {loading ? <RenderLoading /> : services.length > 0 ? services.map((service) => (
                     <div
-                    onClick={()=>{setSelectedService(service); setViewService(true);}}
+                        onClick={() => { setSelectedService(service); setViewService(true); }}
                         key={service.id}
-                        className="bg-white rounded-lg shadow-md hover:shadow-lg transition-all cursor-pointer hover:scale-[1.02] duration-500 hover:ease-in-out hover:border hover:border-[#0d4785]"
+                        className="bg-white rounded-lg shadow-md hover:shadow-lg transition-all cursor-pointer hover:scale-[1.02] duration-500 hover:ease-in-out hover:border hover:border-[#0d4785] relative"
                     >
                         {/* Image */}
                         <div className="w-full h-40 relative rounded-t-lg overflow-hidden">
@@ -114,6 +116,45 @@ const ServicesPage = () => {
                                 alt={service.name}
                                 className="object-cover"
                             />
+                            <label
+                                onClick={(e) => e.stopPropagation()}
+                                className="absolute top-2 right-2 bg-white/80 px-2 py-1 rounded-md flex items-center gap-1 cursor-pointer hover:bg-white"
+                            >
+                                <input
+                                    type="checkbox"
+                                    checked={service.isFeatured}
+                                    hidden={featureLoading}
+                                    onChange={async (e) => {
+                                        const checked = e.target.checked;
+                                        setFeatureLoading(true)
+                                        try {
+                                            const res = await fetch(`/api/services/${service.id}/feature`, {
+                                                method: "PATCH",
+                                                headers: { "Content-Type": "application/json" },
+                                                body: JSON.stringify({ isFeatured: checked }),
+                                            });
+
+                                            const data = await res.json()
+
+                                            if (!res.ok) {
+                                                return toast.error(data.msg || "Failed to update")
+                                            }
+
+                                            toast.success(`Service ${checked ? "featured" : "unfeatured"}!`);
+
+                                            setFetchService(true)
+
+                                        } catch (err) {
+                                            toast.error(err.message);
+                                        } finally {
+                                            setFeatureLoading(false)
+                                        }
+                                    }}
+                                    className="accent-[#00B4D8] cursor-pointer"
+                                />
+                                {featureLoading ? <span className="p-2 bg-gray-400 animate-pulse text-xs">Processing...</span> : <span className="text-xs font-semibold text-gray-700">{service.isFeatured ? 'Featured' : 'Feature'}</span>}
+                            </label>
+
                         </div>
 
                         {/* Content */}
@@ -150,7 +191,7 @@ const ServicesPage = () => {
                             </div> */}
                         </div>
                     </div>
-                )) : <div className="md:col-span-3 sm:col-span-2 text-center text-gray-500"> <p className="text-sm font-semibold"> No Services Found. </p> </div> }
+                )) : <div className="md:col-span-3 sm:col-span-2 text-center text-gray-500"> <p className="text-sm font-semibold"> No Services Found. </p> </div>}
             </div>
         </section>
     );
