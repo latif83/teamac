@@ -57,36 +57,7 @@ const RenderLoading = ()=>{
 
 const RecentOffers = () => {
     // 🔹 Offer data array
-    const [offers,setOffers] = useState([
-        {
-            id: 1,
-            title: "Study in Canada",
-            description:
-                "Get a 20% discount on tuition fees for select universities. Enjoy top-ranked institutions, easy visa processes, and career opportunities after graduation.",
-            image: "/canada.jpg",
-        },
-        {
-            id: 2,
-            title: "Explore Turkey",
-            description:
-                "Enjoy discounted flight + hotel packages to Istanbul and Cappadocia. Perfect for family vacations and solo travelers alike.",
-            image: "/turkey.jpg",
-        },
-        {
-            id: 3,
-            title: "UK Student Visa Support",
-            description:
-                "We’ll help you apply to top UK universities with personalized counseling, document prep, and step-by-step visa guidance.",
-            image: "/visa.jpg",
-        },
-        {
-            id: 4,
-            title: "Accommodation in Canada",
-            description:
-                "Find affordable student apartments near your university with verified landlords and secure booking options.",
-            image: "/accomodation.jpg",
-        },
-    ])
+    const [offers,setOffers] = useState([])
 
     const [expandedImage, setExpandedImage] = useState(null);
 
