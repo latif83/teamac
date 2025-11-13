@@ -4,10 +4,10 @@ import Image from "next/image";
 
 const AboutUs = () => {
   const partners = [
-    { id: 4, name: "Education Partner", logo: "/ges.png" },
-    { id: 1, name: "University Partner", logo: "/newcastle.jpg" },
-    { id: 2, name: "Airline Partner", logo: "/ethiopia.png" },
-    { id: 3, name: "Housing Partner", logo: "/airbnb.png" },
+    { id: 4, name: "Education Partner", logo: "/qatar_partner.png" },
+    { id: 1, name: "University Partner", logo: "/gau.jpg" },
+    { id: 2, name: "Airline Partner", logo: "/taknik_partner.png" },
+    { id: 3, name: "Housing Partner", logo: "/lefke_partner.png" },
     ,
   ];
 

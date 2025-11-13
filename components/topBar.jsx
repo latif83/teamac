@@ -24,7 +24,7 @@ export const TopBar = () => {
 
             <header className="px-3 md:px-6 md:py-0 py-4 lg:px-12 relative z-10 flex justify-between items-center md:h-2/10">
 
-                <Image className="md:w-[80px] w-[70px] h-auto" src={'/logo.png'} width={200} height={200} alt="Logo" />
+                <Image className="md:w-[90px] w-[80px] h-auto" src={'/logo.png'} width={200} height={200} alt="Logo" />
 
                 <nav className="hidden md:flex text-gray-600 items-center gap-6 font-semibold text-sm">
 
