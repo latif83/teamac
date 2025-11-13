@@ -21,7 +21,7 @@ const Header = () => {
   const currencies = ["USD", "EUR", "GHS", "NGN"];
 
   return (
-    <header className="w-full left-0 bg-white shadow-md z-50 flex justify-between items-center md:px-12 px-6 py-3">
+    <header className="w-full left-0 bg-[#f2f2f2] z-50 flex justify-between items-center md:px-12 px-6 py-3">
       {/* Logo */}
       <Link href="/" className="flex items-center gap-2">
         <Image
@@ -29,7 +29,7 @@ const Header = () => {
           alt="Teamac Logo"
           width={1000}
           height={1000}
-          className="rounded-md w-[70px]"
+          className="rounded-md md:w-[90px] w-[80px]"
         />
       </Link>
 

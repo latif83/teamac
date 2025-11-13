@@ -6,14 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { ApplyNowModal } from "./Apply";
+import { SuccessApplication } from "./ConfirmedApplication";
 
-const loadingRender = () => {
-    return (
-        [1, 2, 3, 4, 5, 6].map((
-            <div></div>
-        ))
-    )
-}
 
 export default function OfferDetails() {
 
@@ -46,13 +41,21 @@ export default function OfferDetails() {
         getOfferDetails()
     }, [])
 
+    const [applyNow, setApplyNow] = useState(false)
+
+    const [closeSuccess, setCloseSuccess] = useState(false)
+
     return (
         <>
             <Header />
 
+            {applyNow && <ApplyNowModal offer={offer} setApplyNow={setApplyNow} setCloseSuccess={setCloseSuccess} />}
+
+            {closeSuccess && <SuccessApplication setCloseSuccess={setCloseSuccess} />}
+
             <section className="md:my-8 my-3 mb-10 md:px-12 px-3">
                 <div className="flex items-center justify-between">
-                    <div>  <button type="button" onClick={()=>router.back()} className="flex gap-2 items-center bg-red-200 hover:opacity-50 p-2 rounded-lg text-xs mb-1 block cursor-pointer">
+                    <div>  <button type="button" onClick={() => router.back()} className="flex gap-2 items-center bg-red-200 hover:opacity-50 p-2 rounded-lg text-xs mb-1 block cursor-pointer">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3" />
                         </svg>
@@ -66,12 +69,12 @@ export default function OfferDetails() {
                         </p></div>
 
                     <div className={`md:flex hidden gap-4 ${loading && 'animate-pulse'}`}>
-                        <button disabled={loading} type="button" className="bg-blue-600 hover:opacity-80 cursor-pointer transition-all duration-500 text-white text-sm p-3 rounded-md disabled:opacity-50">
+                        <button onClick={() => setApplyNow(true)} disabled={loading} type="button" className="bg-blue-600 hover:opacity-80 cursor-pointer transition-all duration-500 text-white text-sm p-3 rounded-md disabled:opacity-50">
                             Apply For This Offer
                         </button>
-                        <button disabled={loading} type="button" className="bg-orange-600 hover:opacity-80 cursor-pointer transition-all duration-500 text-white text-sm p-3 rounded-md disabled:opacity-50">
+                        {/* <button disabled={loading} type="button" className="bg-orange-600 hover:opacity-80 cursor-pointer transition-all duration-500 text-white text-sm p-3 rounded-md disabled:opacity-50">
                             Request a Callback
-                        </button>
+                        </button> */}
                         <button disabled={loading} type="button" className="bg-green-600 hover:opacity-80 cursor-pointer transition-all duration-500 text-white text-sm p-3 rounded-md disabled:opacity-50 flex flex-col">
                             <span>Make Enquires</span>
                             <span className="text-xs">Ask on Whatsapp</span>
@@ -186,7 +189,7 @@ export default function OfferDetails() {
                 <div className="mt-5 grid md:grid-cols-2 gap-4">
                     <div>
                         <p className="text-xs text-red-600 font-bold">Description:</p>
-                        
+
                         {loading ? <p className="h-16 rounded-lg w-full bg-gray-200 animate-pulse"></p> : <p className="text-sm">{offer?.description}</p>}
                     </div>
 
@@ -195,7 +198,7 @@ export default function OfferDetails() {
                         {offer?.requirements.map((req, index) => (
                             <p key={index} className="text-sm"> {index + 1}. {req} </p>
                         ))}
-                        {loading && [1,2,3,4].map((num)=>(<p key={num} className="h-4 w-full bg-gray-200 animate-pulse rounded-lg mt-2"></p>))}
+                        {loading && [1, 2, 3, 4].map((num) => (<p key={num} className="h-4 w-full bg-gray-200 animate-pulse rounded-lg mt-2"></p>))}
                     </div>
                 </div>
 
@@ -208,9 +211,9 @@ export default function OfferDetails() {
                     </button>
 
                     {/* Request Callback */}
-                    <button type="button" disabled={loading} className="w-full disabled:opacity-50 md:w-auto border border-[#00B4D8] text-[#00B4D8] font-semibold px-6 py-3 rounded-md hover:bg-[#00B4D820] transition text-sm">
+                    {/* <button type="button" disabled={loading} className="w-full disabled:opacity-50 md:w-auto border border-[#00B4D8] text-[#00B4D8] font-semibold px-6 py-3 rounded-md hover:bg-[#00B4D820] transition text-sm">
                         Request a Callback
-                    </button>
+                    </button> */}
 
                     {/* WhatsApp Inquiry */}
                     <a

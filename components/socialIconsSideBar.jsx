@@ -27,7 +27,7 @@ const SocialSidebar = () => {
 
             {/* Facebook */}
             <Link
-                href="https://www.facebook.com/teamacglobal"
+                href="https://www.facebook.com/share/17dTdp3osn/?mibextid=wwXIfr"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:translate-x-[-6px] transition-all duration-300 flex items-center justify-center"
@@ -39,24 +39,13 @@ const SocialSidebar = () => {
             {/* Instagram */}
 
             <Link
-                href="https://www.instagram.com/teamacglobal"
+                href="https://www.instagram.com/teamac_global_ltd?igsh=MTJmeHpubGpjZThzdw%3D%3D&utm_source=qr"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:translate-x-[-6px] transition-all duration-300 flex items-center justify-center"
                 title="Instagram"
             >
                 <FontAwesomeIcon icon={faInstagram} width={25} height={25} />
-            </Link>
-
-            {/* LinkedIn */}
-            <Link
-                href="https://www.linkedin.com/company/teamacglobal"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:translate-x-[-6px] transition-all duration-300 flex items-center justify-center"
-                title="LinkedIn"
-            >
-                <FontAwesomeIcon icon={faLinkedinIn} width={25} height={25} />
             </Link>
 
             {/* WhatsApp */}

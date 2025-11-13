@@ -30,31 +30,31 @@ model Service {
   description String
   image       Json
   offers      Offer[]
-  isFeatured       Boolean   @default(false)
+  isFeatured  Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
 
 model Offer {
-  id               String   @id @default(cuid())
+  id               String    @id @default(cuid())
   title            String
   description      String
   serviceId        String
   countryId        String
   priceLabel       String?
   priceDescription String?
-  thumbnail       Json
-  city  String?
-  requirements  Json
-  validity DateTime?
+  thumbnail        Json
+  city             String?
+  requirements     Json
+  validity         DateTime?
   isFeatured       Boolean   @default(false)
 
-  
-  datePosted       DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  datePosted DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
-  service Service @relation(fields: [serviceId], references: [id])
-  country Country @relation(fields: [countryId], references: [id])
+  service      Service        @relation(fields: [serviceId], references: [id])
+  country      Country        @relation(fields: [countryId], references: [id])
+  Applications Applications[]
 }
 
 model Admin {
@@ -66,17 +66,30 @@ model Admin {
 }
 
 model Consultation {
-  id           String   @id @default(cuid())
-  name         String
-  email        String
-  phone        String       // Local part (without country code)
-  countryCode  String       // e.g. "+233"
-  countryName  String?      // Optional, e.g. "Ghana"
-  mode         String       // "Online" | "In-Person"
-  date         DateTime
-  message      String?
-  status       String   @default("Pending")
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  phone       String // Local part (without country code)
+  countryCode String // e.g. "+233"
+  countryName String? // Optional, e.g. "Ghana"
+  mode        String // "Online" | "In-Person"
+  date        DateTime
+  message     String?
+  status      String   @default("Pending")
 
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Applications {
+  id        String   @id @default(cuid())
+  offerId   String
+  fullName  String
+  email     String
+  phone     String
+  additionalInfo   String?
+  status     String   @default("Pending")
+  createdAt DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  offer     Offer    @relation(fields: [offerId], references: [id])
 }

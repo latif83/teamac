@@ -8,8 +8,8 @@ import ScholarshipBanner from "@/components/ScholarshipBanner";
 import SocialSidebar from "@/components/socialIconsSideBar";
 import Testimonials from "@/components/testimonials";
 import { TopBar } from "@/components/topBar";
-import { faFacebookF, faInstagram, faLinkedinIn, faTwitter } from "@fortawesome/free-brands-svg-icons";
-import { faArrowRight, faBarsStaggered } from "@fortawesome/free-solid-svg-icons";
+import { faFacebookF, faInstagram, faLinkedinIn, faTwitter, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { faArrowRight, faBarsStaggered, faPhoneAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
@@ -23,8 +23,8 @@ export default function Home() {
     return (
         <>
             <SocialSidebar />
-           
-           <TopBar />
+
+            <TopBar />
 
             <RecentOffers />
 
@@ -65,30 +65,38 @@ export default function Home() {
 
                     {/* Social Icons */}
                     <div className="flex items-center gap-4 mt-8">
-                        <a
-                            href="#"
+                        <Link
+                            href="tel:+905338479200"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-9 h-9 flex items-center justify-center rounded-full border border-white hover:bg-white hover:text-[#00B4D8] transition-all duration-300"
+                        >
+                            <FontAwesomeIcon icon={faPhoneAlt} />
+                        </Link>
+                        <Link
+                            href="https://www.facebook.com/share/17dTdp3osn/?mibextid=wwXIfr"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="w-9 h-9 flex items-center justify-center rounded-full border border-white hover:bg-white hover:text-[#00B4D8] transition-all duration-300"
                         >
                             <FontAwesomeIcon icon={faFacebookF} />
-                        </a>
-                        <a
-                            href="#"
+                        </Link>
+                        <Link
+                            href="https://www.facebook.com/share/17dTdp3osn/?mibextid=wwXIfr"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="w-9 h-9 flex items-center justify-center rounded-full border border-white hover:bg-white hover:text-[#00B4D8] transition-all duration-300"
                         >
                             <FontAwesomeIcon icon={faInstagram} />
-                        </a>
-                        <a
-                            href="#"
+                        </Link>
+                         <Link
+                         href="https://wa.me/905338479200"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
                             className="w-9 h-9 flex items-center justify-center rounded-full border border-white hover:bg-white hover:text-[#00B4D8] transition-all duration-300"
                         >
-                            <FontAwesomeIcon icon={faTwitter} />
-                        </a>
-                        <a
-                            href="#"
-                            className="w-9 h-9 flex items-center justify-center rounded-full border border-white hover:bg-white hover:text-[#00B4D8] transition-all duration-300"
-                        >
-                            <FontAwesomeIcon icon={faLinkedinIn} />
-                        </a>
+                            <FontAwesomeIcon icon={faWhatsapp} />
+                        </Link>
                     </div>
                 </div>
 

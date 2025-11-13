@@ -179,6 +179,18 @@ exports.Prisma.ConsultationScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.ApplicationsScalarFieldEnum = {
+  id: 'id',
+  offerId: 'offerId',
+  fullName: 'fullName',
+  email: 'email',
+  phone: 'phone',
+  additionalInfo: 'additionalInfo',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -210,7 +222,8 @@ exports.Prisma.ModelName = {
   Service: 'Service',
   Offer: 'Offer',
   Admin: 'Admin',
-  Consultation: 'Consultation'
+  Consultation: 'Consultation',
+  Applications: 'Applications'
 };
 
 /**
