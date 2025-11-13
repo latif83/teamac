@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { ApplyNowModal } from "./Apply";
 import { SuccessApplication } from "./ConfirmedApplication";
+import Link from "next/link";
 
 
 export default function OfferDetails() {
@@ -45,6 +46,24 @@ export default function OfferDetails() {
 
     const [closeSuccess, setCloseSuccess] = useState(false)
 
+    // ✅ Replace with your official WhatsApp number (in international format, no "+", no spaces)
+    const businessNumber = "905338479200";
+
+    //   const message = `Hello Teamac, I am interested in learning more about your "${offer?.title}" offer in ${offer?.country?.name}. Could you please provide more details?`;
+
+    const message = `
+Hello Teamac 👋,
+I’m interested in the offer *${offer?.title}* (${offer?.service?.name}) in ${offer?.country?.name}.
+Price: ${offer?.priceLabel || "N/A"}
+
+Can you share more details or next steps?
+Here’s the link I’m viewing: 
+`;
+
+// ${window.location.href}
+
+    const whatsappUrl = `https://wa.me/${businessNumber}?text=${encodeURIComponent(message)}`;
+
     return (
         <>
             <Header />
@@ -75,7 +94,7 @@ export default function OfferDetails() {
                         {/* <button disabled={loading} type="button" className="bg-orange-600 hover:opacity-80 cursor-pointer transition-all duration-500 text-white text-sm p-3 rounded-md disabled:opacity-50">
                             Request a Callback
                         </button> */}
-                        <button disabled={loading} type="button" className="bg-green-600 hover:opacity-80 cursor-pointer transition-all duration-500 text-white text-sm p-3 rounded-md disabled:opacity-50 flex flex-col">
+                        <button onClick={() => router.push(whatsappUrl)} disabled={loading} type="button" className="bg-green-600 hover:opacity-80 cursor-pointer transition-all duration-500 text-white text-sm p-3 rounded-md disabled:opacity-50 flex flex-col">
                             <span>Make Enquires</span>
                             <span className="text-xs">Ask on Whatsapp</span>
                         </button>
@@ -206,7 +225,7 @@ export default function OfferDetails() {
                 <div className={`md:hidden flex flex-col md:flex-row gap-4 mt-6 ${loading && 'animate-pulse'}`}>
 
                     {/* Apply Button */}
-                    <button type="button" disabled={loading} className="w-full disabled:opacity-50 md:w-auto bg-[#00B4D8] hover:bg-[#0092b3] text-white font-semibold px-6 py-3 rounded-md transition text-sm">
+                    <button onClick={() => setApplyNow(true)} type="button" disabled={loading} className="w-full disabled:opacity-50 md:w-auto bg-[#00B4D8] hover:bg-[#0092b3] text-white font-semibold px-6 py-3 rounded-md transition text-sm">
                         Apply For This Offer
                     </button>
 
@@ -216,15 +235,15 @@ export default function OfferDetails() {
                     </button> */}
 
                     {/* WhatsApp Inquiry */}
-                    <a
-                        href={`https://wa.me/233542233444?text=Hello, I am interested in the "${offer?.title}" offer. Can you provide more details?`}
+                    <Link
+                        href={whatsappUrl}
                         target="_blank"
                         className="w-full md:w-auto bg-[#25D366] hover:bg-[#1EBE5B] text-white font-semibold px-6 py-3 rounded-md transition flex items-center justify-center text-sm flex-col"
                     >
                         <span>Make Enquires</span>
                         <span className="text-xs">Ask on WhatsApp</span>
                         {/* <span className="text-lg">💬</span> */}
-                    </a>
+                    </Link>
 
                 </div>
 

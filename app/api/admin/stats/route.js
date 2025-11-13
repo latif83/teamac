@@ -4,12 +4,13 @@ import prisma from "@/config/prisma";
 export async function GET() {
   try {
     // Run multiple Prisma count queries in parallel for performance
-    const [offersCount, activeOffers, servicesCount] = await Promise.all([
+    const [offersCount, activeOffers, servicesCount,applicantsCount] = await Promise.all([
       prisma.offer.count(),
       prisma.offer.count({
         where: { validity: { gte: new Date() } }, // Example of 'active' offers
       }),
       prisma.service.count(),
+      prisma.Applications.count()
       // You can add more like consultations or applicants later
     ]);
 
@@ -20,7 +21,7 @@ export async function GET() {
           activeOffers,
           services: servicesCount,
           consultations: 0, // Placeholder
-          applicants: 0, // Placeholder
+          applicants: applicantsCount, // Placeholder
         },
       },
       { status: 200 }
