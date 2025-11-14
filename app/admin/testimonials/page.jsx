@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
+import { FeedbackDetails } from "./Details"
 
 export default function Feedbacks() {
 
@@ -27,14 +28,13 @@ export default function Feedbacks() {
         getFeedbacks()
     }, [])
 
+    const [viewFeedback, setViewFeedback] = useState(false)
+    const [feedback, setFeedback] = useState()
+
     return (
         <section className="p-3 md:p-6">
-            {/* {viewApplicant && (
-                <ApplicantDetails
-                  applicant={applicant}
-                  setViewApplicant={setViewApplicant}
-                />
-              )} */}
+
+            {viewFeedback && <FeedbackDetails feedback={feedback} setViewFeedback={setViewFeedback} />}
 
             <div className="flex justify-between items-center mb-6">
                 <h1 className="sm:text-xl font-bold text-[#0d4785]">Feedbacks / Testimonials</h1>
@@ -117,10 +117,10 @@ export default function Feedbacks() {
                                         <td className="px-6 py-4 text-right">
                                             <button
                                                 type="button"
-                                                // onClick={() => {
-                                                //   setApplicant(applicant);
-                                                //   setViewApplicant(true);
-                                                // }}
+                                                onClick={() => {
+                                                    setFeedback(feedback);
+                                                    setViewFeedback(true);
+                                                }}
                                                 className="font-medium text-blue-600 hover:underline cursor-pointer"
                                             >
                                                 View Details
