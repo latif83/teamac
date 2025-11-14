@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { ApplicantDetails } from "./Details";
 
 export default function Applicants() {
   const [loading, setLoading] = useState();
@@ -30,8 +31,18 @@ export default function Applicants() {
     getApplicants();
   }, []);
 
+  const [viewApplicant, setViewApplicant] = useState(false);
+  const [applicant, setApplicant] = useState(null);
+
   return (
     <section className="p-3 md:p-6">
+      {viewApplicant && (
+        <ApplicantDetails
+          applicant={applicant}
+          setViewApplicant={setViewApplicant}
+        />
+      )}
+
       <div className="flex justify-between items-center mb-6">
         <h1 className="sm:text-xl font-bold text-[#0d4785]">Applicants</h1>
         {/* <button onClick={() => setAddCountry(true)} type="button" className="border cursor-pointer hover:text-[#fff] px-4 py-3 rounded-xl hover:bg-[#000] transition text-sm flex items-center gap-2">
@@ -100,15 +111,25 @@ export default function Applicants() {
                       {applicant.fullName}
                     </th>
 
-                    <td className="px-6 py-4">
-                      {applicant.offer?.title}
-                    </td>
+                    <td className="px-6 py-4">{applicant.offer?.title}</td>
 
-                    <td className="px-6 py-4">{applicant.status}</td>
+                    <td
+                      className={`px-6 py-4 ${
+                        applicant.status == "Pending"
+                          ? "text-orange-700"
+                          : "text-green-700"
+                      }`}
+                    >
+                      {applicant.status}
+                    </td>
 
                     <td className="px-6 py-4 text-right">
                       <button
                         type="button"
+                        onClick={() => {
+                          setApplicant(applicant);
+                          setViewApplicant(true);
+                        }}
                         className="font-medium text-blue-600 hover:underline cursor-pointer"
                       >
                         View Details
