@@ -2,6 +2,9 @@
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuoteLeft, faQuoteRight } from "@fortawesome/free-solid-svg-icons";
+import { TestimonialForm } from "./NewFeedback";
+import { useState } from "react";
+import { TestimonialSuccessMessage } from "./FeedbackSuccess";
 
 const Testimonials = () => {
     const testimonials = [
@@ -39,8 +42,15 @@ const Testimonials = () => {
         },
     ];
 
+    const [giveFeedback, setGiveFeedback] = useState(false)
+    const [feedbackSuccess,setFeedbackSuccess] = useState(false)
+
     return (
         <section className="bg-[#F4E1D2]/40 bg-[url('/bg2.jpg')] bg-cover bg-center bg-fixed relative py-16 px-6 md:px-12">
+
+            {giveFeedback && <TestimonialForm setGiveFeedback={setGiveFeedback} onSuccess={setFeedbackSuccess} />}
+            {feedbackSuccess && <TestimonialSuccessMessage onClose={setFeedbackSuccess} />}
+
             <div className="absolute h-full w-full bg-[#000]/40 top-0 left-0 z-0"></div>
             {/* Header */}
             <div className="text-center relative z-10 max-w-3xl mx-auto mb-12">
@@ -60,7 +70,7 @@ const Testimonials = () => {
             </div>
 
             {/* Testimonials Grid */}
-            <div className="grid md:grid-cols-2 gap-8 mb-10">
+            <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-8 mb-10">
                 {testimonials.map((t) => (
                     <figure
                         key={t.id}
@@ -75,9 +85,6 @@ const Testimonials = () => {
                                 icon={faQuoteLeft}
                                 className="text-[#00B4D8] text-xl mb-3"
                             />
-                            <h3 className="text-lg font-semibold text-[#0d4785] mb-2">
-                                {t.title}
-                            </h3>
                             <p className="text-gray-700 text-sm md:text-base italic leading-relaxed">
                                 “{t.quote}”
                             </p>
@@ -113,12 +120,13 @@ const Testimonials = () => {
                     >
                         View More
                     </a>
-                    <a
-                        href="#"
-                        className="py-2.5 px-6 text-sm font-medium text-black bg-white rounded-lg hover:font-bold transition-all duration-300"
+                    <button
+                        type="button"
+                        onClick={() => setGiveFeedback(true)}
+                        className="py-2.5 px-6 text-sm font-medium text-black bg-white rounded-lg hover:font-bold transition-all duration-300 cursor-pointer hover:opacity-80"
                     >
                         Give Feedback
-                    </a>
+                    </button>
                 </div>
             </div>
         </section>

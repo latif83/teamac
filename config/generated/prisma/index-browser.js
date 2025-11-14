@@ -193,6 +193,17 @@ exports.Prisma.ApplicationsScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.FeedbackScalarFieldEnum = {
+  id: 'id',
+  fullName: 'fullName',
+  email: 'email',
+  country: 'country',
+  city: 'city',
+  comment: 'comment',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -225,7 +236,8 @@ exports.Prisma.ModelName = {
   Offer: 'Offer',
   Admin: 'Admin',
   Consultation: 'Consultation',
-  Applications: 'Applications'
+  Applications: 'Applications',
+  Feedback: 'Feedback'
 };
 
 /**

@@ -95,3 +95,23 @@ model Applications {
   updatedAt  DateTime @updatedAt
   offer     Offer    @relation(fields: [offerId], references: [id])
 }
+
+
+model Feedback {
+  // Primary Key and ID
+   id        String   @id @default(cuid())
+
+  // Client Details
+  fullName    String
+  email       String
+  
+  // Location
+  country     String
+  city        String
+  
+  // Content
+  comment     String
+  
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
