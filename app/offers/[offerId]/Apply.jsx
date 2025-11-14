@@ -114,7 +114,7 @@ export const ApplyNowModal = ({ offer, setApplyNow,setCloseSuccess }) => {
                     {/* Telephone number */}
                     <div>
                         <label className="block text-sm text-gray-700 mb-1 font-semibold">
-                            Tel <span className="text-red-600">*</span>
+                            Tel (Whatsapp Preffered) <span className="text-red-600">*</span>
                         </label>
                         <PhoneInput
                             country={'gh'}
