@@ -1,11 +1,6 @@
 import { AdminHeader } from "@/components/adminHeader";
 import { AdminSidebar } from "@/components/adminSidebar";
 import { SidebarProvider } from "@/providers/sidebarProvider";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../api/auth/[...nextauth]/route";
-import { redirect } from "next/navigation";
-import { SessionProvider } from "next-auth/react";
-import ProtectedRoute from "@/components/checkLogin";
 
 export const metadata = {
   title: {
