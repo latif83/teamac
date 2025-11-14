@@ -1,10 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import Select from "react-select";
+import countryList from "react-select-country-list";
 // Replaced FontAwesome imports with inline SVG components to avoid dependency errors
 import { toast } from "react-toastify";
 
 export const TestimonialForm = ({ setGiveFeedback, onSuccess }) => {
+
+    const options = useMemo(() => countryList().getData(), []);
 
     const [formData, setFormData] = useState({
         fullName: "",
@@ -122,15 +126,22 @@ export const TestimonialForm = ({ setGiveFeedback, onSuccess }) => {
                             <label className="block text-sm font-semibold text-gray-600 mb-1">
                                 Country
                             </label>
-                            <input
+                            {/* <input
                                 type="text"
-                                name="country"
+                                name="country" 
                                 required
                                 value={formData.country}
                                 onChange={handleChange}
                                 className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#00B4D8] outline-none"
                                 placeholder="e.g., Ghana"
-                            />
+                            /> */}
+                            <Select
+                                                        options={options}
+                                                        value={formData.country}
+                                                        onChange={(val)=>setFormData((prevData)=>({...prevData,country : val.label}))}
+                                                        placeholder="Select a country"
+                                                        className="text-sm"
+                                                    />
                         </div>
 
                         {/* City */}

@@ -3,11 +3,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuoteLeft, faQuoteRight } from "@fortawesome/free-solid-svg-icons";
 import { TestimonialForm } from "./NewFeedback";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TestimonialSuccessMessage } from "./FeedbackSuccess";
+import { toast } from "react-toastify";
 
 const Testimonials = () => {
-    const testimonials = [
+    const [testimonials, setTestimonials] = useState([
         {
             id: 1,
             title: "Smooth Visa Processing",
@@ -40,10 +41,36 @@ const Testimonials = () => {
             name: "Thabo Mokoena",
             location: "Johannesburg, South Africa",
         },
-    ];
+    ])
+
+    const [loading, setLoading] = useState(false)
+
+    const getFeaturedFeedbacks = async () => {
+        try {
+            setLoading(true)
+
+            const res = await fetch(`/api/feedbacks`)
+            const data = await res.json()
+            if (!res.ok) {
+                return toast.error(data.msg)
+            }
+
+            setTestimonials(data.feedbacks)
+
+        } catch (e) {
+            console.log(e)
+            toast.error("An unexpected error happened while fetching Testimonials!")
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    useEffect(() => {
+        // getFeaturedFeedbacks()
+    }, [])
 
     const [giveFeedback, setGiveFeedback] = useState(false)
-    const [feedbackSuccess,setFeedbackSuccess] = useState(false)
+    const [feedbackSuccess, setFeedbackSuccess] = useState(false)
 
     return (
         <section className="bg-[#F4E1D2]/40 bg-[url('/bg2.jpg')] bg-cover bg-center bg-fixed relative py-16 px-6 md:px-12">

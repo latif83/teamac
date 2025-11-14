@@ -45,9 +45,6 @@ export default function Applicants() {
 
       <div className="flex justify-between items-center mb-6">
         <h1 className="sm:text-xl font-bold text-[#0d4785]">Applicants</h1>
-        {/* <button onClick={() => setAddCountry(true)} type="button" className="border cursor-pointer hover:text-[#fff] px-4 py-3 rounded-xl hover:bg-[#000] transition text-sm flex items-center gap-2">
-                    <FontAwesomeIcon icon={faPlusCircle} /> New Country
-                </button> */}
       </div>
 
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -98,7 +95,7 @@ export default function Applicants() {
                     </td>
                   </tr>
                 ))
-              : applicants.length > 0 &&
+              : applicants.length > 0 ?
                 applicants.map((applicant, index) => (
                   <tr
                     key={index}
@@ -136,7 +133,8 @@ export default function Applicants() {
                       </button>
                     </td>
                   </tr>
-                ))}
+                )) : <tr>
+                                <td className="px-6 py-4 text-center" colSpan={4}>No data found</td></tr>}
           </tbody>
         </table>
       </div>
