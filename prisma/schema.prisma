@@ -89,6 +89,8 @@ model Applications {
   phone     String
   additionalInfo   String?
   status     String   @default("Pending")
+  countryCode String?
+  countryName String?
   createdAt DateTime @default(now())
   updatedAt  DateTime @updatedAt
   offer     Offer    @relation(fields: [offerId], references: [id])

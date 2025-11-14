@@ -19,7 +19,7 @@ export async function GET() {
 
 export async function POST(req) {
   try {
-    const { offerId, fullName, email, phone, additionalInfo } =
+    const { offerId, fullName, email, phone, additionalInfo, countryCode , countryName } =
       await req.json();
 
     if (!offerId || !fullName || !email || !phone)
@@ -29,7 +29,7 @@ export async function POST(req) {
       );
 
     await prisma.Applications.create({
-      data: { offerId, fullName, email, phone, additionalInfo },
+      data: { offerId, fullName, email, phone, additionalInfo,countryCode , countryName },
     });
 
     return NextResponse.json(

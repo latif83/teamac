@@ -6887,6 +6887,8 @@ export namespace Prisma {
     phone: string | null
     additionalInfo: string | null
     status: string | null
+    countryCode: string | null
+    countryName: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -6899,6 +6901,8 @@ export namespace Prisma {
     phone: string | null
     additionalInfo: string | null
     status: string | null
+    countryCode: string | null
+    countryName: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -6911,6 +6915,8 @@ export namespace Prisma {
     phone: number
     additionalInfo: number
     status: number
+    countryCode: number
+    countryName: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -6925,6 +6931,8 @@ export namespace Prisma {
     phone?: true
     additionalInfo?: true
     status?: true
+    countryCode?: true
+    countryName?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -6937,6 +6945,8 @@ export namespace Prisma {
     phone?: true
     additionalInfo?: true
     status?: true
+    countryCode?: true
+    countryName?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -6949,6 +6959,8 @@ export namespace Prisma {
     phone?: true
     additionalInfo?: true
     status?: true
+    countryCode?: true
+    countryName?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -7034,6 +7046,8 @@ export namespace Prisma {
     phone: string
     additionalInfo: string | null
     status: string
+    countryCode: string | null
+    countryName: string | null
     createdAt: Date
     updatedAt: Date
     _count: ApplicationsCountAggregateOutputType | null
@@ -7063,6 +7077,8 @@ export namespace Prisma {
     phone?: boolean
     additionalInfo?: boolean
     status?: boolean
+    countryCode?: boolean
+    countryName?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     offer?: boolean | OfferDefaultArgs<ExtArgs>
@@ -7076,6 +7092,8 @@ export namespace Prisma {
     phone?: boolean
     additionalInfo?: boolean
     status?: boolean
+    countryCode?: boolean
+    countryName?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     offer?: boolean | OfferDefaultArgs<ExtArgs>
@@ -7089,6 +7107,8 @@ export namespace Prisma {
     phone?: boolean
     additionalInfo?: boolean
     status?: boolean
+    countryCode?: boolean
+    countryName?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     offer?: boolean | OfferDefaultArgs<ExtArgs>
@@ -7102,11 +7122,13 @@ export namespace Prisma {
     phone?: boolean
     additionalInfo?: boolean
     status?: boolean
+    countryCode?: boolean
+    countryName?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ApplicationsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "offerId" | "fullName" | "email" | "phone" | "additionalInfo" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["applications"]>
+  export type ApplicationsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "offerId" | "fullName" | "email" | "phone" | "additionalInfo" | "status" | "countryCode" | "countryName" | "createdAt" | "updatedAt", ExtArgs["result"]["applications"]>
   export type ApplicationsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     offer?: boolean | OfferDefaultArgs<ExtArgs>
   }
@@ -7130,6 +7152,8 @@ export namespace Prisma {
       phone: string
       additionalInfo: string | null
       status: string
+      countryCode: string | null
+      countryName: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["applications"]>
@@ -7563,6 +7587,8 @@ export namespace Prisma {
     readonly phone: FieldRef<"Applications", 'String'>
     readonly additionalInfo: FieldRef<"Applications", 'String'>
     readonly status: FieldRef<"Applications", 'String'>
+    readonly countryCode: FieldRef<"Applications", 'String'>
+    readonly countryName: FieldRef<"Applications", 'String'>
     readonly createdAt: FieldRef<"Applications", 'DateTime'>
     readonly updatedAt: FieldRef<"Applications", 'DateTime'>
   }
@@ -8075,6 +8101,8 @@ export namespace Prisma {
     phone: 'phone',
     additionalInfo: 'additionalInfo',
     status: 'status',
+    countryCode: 'countryCode',
+    countryName: 'countryName',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -8574,6 +8602,8 @@ export namespace Prisma {
     phone?: StringFilter<"Applications"> | string
     additionalInfo?: StringNullableFilter<"Applications"> | string | null
     status?: StringFilter<"Applications"> | string
+    countryCode?: StringNullableFilter<"Applications"> | string | null
+    countryName?: StringNullableFilter<"Applications"> | string | null
     createdAt?: DateTimeFilter<"Applications"> | Date | string
     updatedAt?: DateTimeFilter<"Applications"> | Date | string
     offer?: XOR<OfferScalarRelationFilter, OfferWhereInput>
@@ -8587,6 +8617,8 @@ export namespace Prisma {
     phone?: SortOrder
     additionalInfo?: SortOrderInput | SortOrder
     status?: SortOrder
+    countryCode?: SortOrderInput | SortOrder
+    countryName?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     offer?: OfferOrderByWithRelationInput
@@ -8603,6 +8635,8 @@ export namespace Prisma {
     phone?: StringFilter<"Applications"> | string
     additionalInfo?: StringNullableFilter<"Applications"> | string | null
     status?: StringFilter<"Applications"> | string
+    countryCode?: StringNullableFilter<"Applications"> | string | null
+    countryName?: StringNullableFilter<"Applications"> | string | null
     createdAt?: DateTimeFilter<"Applications"> | Date | string
     updatedAt?: DateTimeFilter<"Applications"> | Date | string
     offer?: XOR<OfferScalarRelationFilter, OfferWhereInput>
@@ -8616,6 +8650,8 @@ export namespace Prisma {
     phone?: SortOrder
     additionalInfo?: SortOrderInput | SortOrder
     status?: SortOrder
+    countryCode?: SortOrderInput | SortOrder
+    countryName?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ApplicationsCountOrderByAggregateInput
@@ -8634,6 +8670,8 @@ export namespace Prisma {
     phone?: StringWithAggregatesFilter<"Applications"> | string
     additionalInfo?: StringNullableWithAggregatesFilter<"Applications"> | string | null
     status?: StringWithAggregatesFilter<"Applications"> | string
+    countryCode?: StringNullableWithAggregatesFilter<"Applications"> | string | null
+    countryName?: StringNullableWithAggregatesFilter<"Applications"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Applications"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Applications"> | Date | string
   }
@@ -9068,6 +9106,8 @@ export namespace Prisma {
     phone: string
     additionalInfo?: string | null
     status?: string
+    countryCode?: string | null
+    countryName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     offer: OfferCreateNestedOneWithoutApplicationsInput
@@ -9081,6 +9121,8 @@ export namespace Prisma {
     phone: string
     additionalInfo?: string | null
     status?: string
+    countryCode?: string | null
+    countryName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -9092,6 +9134,8 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    countryCode?: NullableStringFieldUpdateOperationsInput | string | null
+    countryName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     offer?: OfferUpdateOneRequiredWithoutApplicationsNestedInput
@@ -9105,6 +9149,8 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    countryCode?: NullableStringFieldUpdateOperationsInput | string | null
+    countryName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -9117,6 +9163,8 @@ export namespace Prisma {
     phone: string
     additionalInfo?: string | null
     status?: string
+    countryCode?: string | null
+    countryName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -9128,6 +9176,8 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    countryCode?: NullableStringFieldUpdateOperationsInput | string | null
+    countryName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -9140,6 +9190,8 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    countryCode?: NullableStringFieldUpdateOperationsInput | string | null
+    countryName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -9541,6 +9593,8 @@ export namespace Prisma {
     phone?: SortOrder
     additionalInfo?: SortOrder
     status?: SortOrder
+    countryCode?: SortOrder
+    countryName?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -9553,6 +9607,8 @@ export namespace Prisma {
     phone?: SortOrder
     additionalInfo?: SortOrder
     status?: SortOrder
+    countryCode?: SortOrder
+    countryName?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -9565,6 +9621,8 @@ export namespace Prisma {
     phone?: SortOrder
     additionalInfo?: SortOrder
     status?: SortOrder
+    countryCode?: SortOrder
+    countryName?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -10122,6 +10180,8 @@ export namespace Prisma {
     phone: string
     additionalInfo?: string | null
     status?: string
+    countryCode?: string | null
+    countryName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -10133,6 +10193,8 @@ export namespace Prisma {
     phone: string
     additionalInfo?: string | null
     status?: string
+    countryCode?: string | null
+    countryName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -10234,6 +10296,8 @@ export namespace Prisma {
     phone?: StringFilter<"Applications"> | string
     additionalInfo?: StringNullableFilter<"Applications"> | string | null
     status?: StringFilter<"Applications"> | string
+    countryCode?: StringNullableFilter<"Applications"> | string | null
+    countryName?: StringNullableFilter<"Applications"> | string | null
     createdAt?: DateTimeFilter<"Applications"> | Date | string
     updatedAt?: DateTimeFilter<"Applications"> | Date | string
   }
@@ -10461,6 +10525,8 @@ export namespace Prisma {
     phone: string
     additionalInfo?: string | null
     status?: string
+    countryCode?: string | null
+    countryName?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -10472,6 +10538,8 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    countryCode?: NullableStringFieldUpdateOperationsInput | string | null
+    countryName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10483,6 +10551,8 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    countryCode?: NullableStringFieldUpdateOperationsInput | string | null
+    countryName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10494,6 +10564,8 @@ export namespace Prisma {
     phone?: StringFieldUpdateOperationsInput | string
     additionalInfo?: NullableStringFieldUpdateOperationsInput | string | null
     status?: StringFieldUpdateOperationsInput | string
+    countryCode?: NullableStringFieldUpdateOperationsInput | string | null
+    countryName?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

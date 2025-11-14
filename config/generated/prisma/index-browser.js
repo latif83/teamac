@@ -187,6 +187,8 @@ exports.Prisma.ApplicationsScalarFieldEnum = {
   phone: 'phone',
   additionalInfo: 'additionalInfo',
   status: 'status',
+  countryCode: 'countryCode',
+  countryName: 'countryName',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
