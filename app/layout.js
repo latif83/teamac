@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Poppins } from "next/font/google";
 import { ToastContainer } from "react-toastify";
+import { GoogleTranslate } from "@/components/googleTranslateScript";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -86,6 +87,7 @@ export default function RootLayout({ children }) {
           hideProgressBar={false}
           stacked
         />
+        <GoogleTranslate />
         {children}
       </body>
     </html>

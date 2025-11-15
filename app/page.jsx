@@ -55,13 +55,13 @@ export default function Home() {
                     </p>
 
                     {/* CTA Button */}
-                    <a
-                        href="#"
+                    <Link
+                        href="/offers"
                         className="inline-flex items-center text-[#00B4D8] bg-white hover:bg-gray-100 focus:ring-4 focus:ring-white/40 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all duration-300"
                     >
                         Get Started
                         <FontAwesomeIcon icon={faArrowRight} className="ml-2 w-4 h-4" />
-                    </a>
+                    </Link>
 
                     {/* Social Icons */}
                     <div className="flex items-center gap-4 mt-8">

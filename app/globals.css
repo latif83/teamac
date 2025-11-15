@@ -22,5 +22,45 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
+   top: 0px !important;
+  position: static !important;
+}
+
+.goog-te-combo {
+  display: none;
+}
+
+.VIpgJd-ZVi9od-ORHb-OEVmcd {
+  display: none;
+}
+
+.goog-te-gadget-icon {
+  display: inline-flex;
+}
+
+.goog-te-gadget-simple {
+  background-color: #ecebf0 !important;
+  border: 0 !important;
+  font-size: 5pt;
+  font-weight: 500;
+  display: inner-flex;
+  padding: 5px 5px !important;
+  cursor: pointer;
+  font-family: "Poppins";
+  border-radius: 5%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 99999999999999999;
+  /* display: flex; */
+  /* width: 100%; */
+}
+
+.goog-te-gadget-simple a {
+  display: inline-flex;
+}
+
+.goog-te-gadget-simple span {
+  color: #3e3065 !important;
 }

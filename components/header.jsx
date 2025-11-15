@@ -11,14 +11,53 @@ import {
   faGlobe,
   faDollarSign,
 } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
+  const router = useRouter()
   const [menuOpen, setMenuOpen] = useState(false);
-  const [language, setLanguage] = useState("EN");
+  const [language, setLanguage] = useState("en");
   const [currency, setCurrency] = useState("USD");
 
-  const languages = ["EN", "FR", "ES"];
+  const languages = [
+    { code: "en", name: "English" },
+    { code: "fr", name: "French" },
+    { code: "es", name: "Spanish" },
+    { code: "de", name: "German" },
+    { code: "ar", name: "Arabic" },
+    { code: "zh-CN", name: "Chinese (Simplified)" },
+    { code: "zh-TW", name: "Chinese (Traditional)" },
+    { code: "ja", name: "Japanese" },
+    { code: "ko", name: "Korean" },
+    { code: "pt", name: "Portuguese" },
+    { code: "it", name: "Italian" },
+    { code: "nl", name: "Dutch" },
+    { code: "sv", name: "Swedish" },
+    { code: "pl", name: "Polish" },
+    { code: "ru", name: "Russian" },
+    { code: "hi", name: "Hindi" },
+    { code: "bn", name: "Bengali" },
+    { code: "tr", name: "Turkish" },
+    { code: "fa", name: "Persian" },
+    { code: "id", name: "Indonesian" },
+    { code: "ms", name: "Malay" },
+    { code: "th", name: "Thai" },
+    { code: "vi", name: "Vietnamese" },
+    { code: "sw", name: "Swahili" },
+    { code: "am", name: "Amharic" },
+    { code: "yo", name: "Yoruba" },
+    { code: "ha", name: "Hausa" },
+    { code: "ig", name: "Igbo" },
+  ];
+
   const currencies = ["USD", "EUR", "GHS", "NGN"];
+
+  const translateTo = (lang) => {
+    document.cookie = `googtrans=/en/${lang}; path=/`;
+    document.cookie = `googtrans=/en/${lang}; path=/; domain=${window.location.hostname}`;
+    window.location.reload();
+  }
+
 
   return (
     <header className="w-full left-0 bg-[#f2f2f2] z-50 flex justify-between items-center md:px-12 sm:px-6 px-3 py-3">
@@ -67,19 +106,31 @@ const Header = () => {
             <span>{language}</span>
             <FontAwesomeIcon icon={faChevronDown} className="text-xs mt-0.5" />
           </button>
-          <div className="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-2 w-24 text-sm z-50">
-            {languages.map((lang) => (
+          <div className="absolute hidden group-hover:block bg-white shadow-lg rounded-md mt-1 w-24 text-sm z-50">
+            {languages.map((lang,index) => (
               <button
-                key={lang}
-                onClick={() => setLanguage(lang)}
+                key={index}
+                onClick={() => { translateTo(lang.code); setLanguage(lang.code) }}
                 className={`block w-full text-left px-4 py-2 hover:bg-gray-100 ${language === lang ? "text-[#00B4D8] font-medium" : "text-gray-700"
                   }`}
               >
-                {lang}
+                {lang.name}
               </button>
             ))}
           </div>
         </div>
+
+        {/* <select
+          onChange={(e) => translateTo(e.target.value)}
+          className="p-2 rounded-md border border-gray-300"
+        >
+          {languages.map((lang,index) => (
+            <option value={lang.code}>
+              {lang.name}
+            </option>
+          ))}
+        </select> */}
+
 
         {/* Currency Dropdown */}
         {/* <div className="relative group">
