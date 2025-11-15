@@ -23,7 +23,7 @@ const Header = () => {
   return (
     <header className="w-full left-0 bg-[#f2f2f2] z-50 flex justify-between items-center md:px-12 sm:px-6 px-3 py-3">
       {/* Logo */}
-      <Link href="/" className="flex items-center gap-2">
+      <Link href="/" className="flex flex-col justify-center items-center gap-2">
         <Image
           src="/logo.png"
           alt="Teamac Logo"
@@ -31,6 +31,12 @@ const Header = () => {
           height={1000}
           className="rounded-md md:w-[90px] w-[80px]"
         />
+        <div className="uppercase text-center w-full">
+          <h1 className="text-[#00B4D8] font-extrabold text-xl m-0 p-0">Teamac</h1>
+          <p className="text-xs text-[#FF6F61] font-semibold m-0 p-0">
+            Global LTD
+          </p>
+        </div>
       </Link>
 
       {/* Desktop Navigation */}
@@ -66,9 +72,8 @@ const Header = () => {
               <button
                 key={lang}
                 onClick={() => setLanguage(lang)}
-                className={`block w-full text-left px-4 py-2 hover:bg-gray-100 ${
-                  language === lang ? "text-[#00B4D8] font-medium" : "text-gray-700"
-                }`}
+                className={`block w-full text-left px-4 py-2 hover:bg-gray-100 ${language === lang ? "text-[#00B4D8] font-medium" : "text-gray-700"
+                  }`}
               >
                 {lang}
               </button>

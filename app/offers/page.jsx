@@ -14,7 +14,7 @@ const LoadingRender = () => {
         [1, 2, 3, 4, 5, 6].map((num) => (
             <div
                 key={num}
-                className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden h-auto grow-0 animate-pulse"
+                className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden h-auto grow-0 animate-pulse sm:col-span-2 lg:col-span-3"
             >
                 <div className="h-52 bg-gray-200 w-full"></div>
                 <div className="p-2 mt-3">
