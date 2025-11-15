@@ -23,7 +23,7 @@ const Header = () => {
   return (
     <header className="w-full left-0 bg-[#f2f2f2] z-50 flex justify-between items-center md:px-12 sm:px-6 px-3 py-3">
       {/* Logo */}
-      <Link href="/" className="flex flex-col justify-center items-center gap-2">
+      <Link href="/" className="flex flex-col justify-center items-center">
         <Image
           src="/logo.png"
           alt="Teamac Logo"

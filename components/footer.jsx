@@ -24,8 +24,13 @@ const Footer = () => {
                 height={40}
                 className="mr-3"
               />
-              <span className="self-center text-2xl font-bold text-white">
-                Teamac
+              <span className="flex items-center justify-center flex-col">
+                <span className="self-center uppercase text-xl font-bold text-white">
+                  Teamac
+                </span>
+                <span className="uppercase text-sm">
+                  GLOBAL LTD
+                </span>
               </span>
             </a>
             <p className="mt-3 text-sm text-gray-300 leading-relaxed">
@@ -49,22 +54,22 @@ const Footer = () => {
               </h2>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <a href="#" className="hover:text-[#00B4D8] transition">
+                  <a href="/" className="hover:text-[#00B4D8] transition">
                     Home
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-[#00B4D8] transition">
+                  <a href="/about-us" className="hover:text-[#00B4D8] transition">
                     About Us
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-[#00B4D8] transition">
+                  <a href="/our-services" className="hover:text-[#00B4D8] transition">
                     Services
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-[#00B4D8] transition">
+                  <a href="/offers" className="hover:text-[#00B4D8] transition">
                     Offers
                   </a>
                 </li>
@@ -77,17 +82,17 @@ const Footer = () => {
               </h2>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <a href="#" className="hover:text-[#00B4D8] transition">
+                  <a href="/contact-us" className="hover:text-[#00B4D8] transition">
                     Contact Us
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-[#00B4D8] transition">
+                  <a href="/contact-us" className="hover:text-[#00B4D8] transition">
                     FAQs
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-[#00B4D8] transition">
+                  <a href="/testimonials" className="hover:text-[#00B4D8] transition">
                     Testimonials
                   </a>
                 </li>

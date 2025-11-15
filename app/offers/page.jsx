@@ -14,7 +14,7 @@ const LoadingRender = () => {
         [1, 2, 3, 4, 5, 6].map((num) => (
             <div
                 key={num}
-                className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden h-auto grow-0 animate-pulse sm:col-span-2 lg:col-span-3"
+                className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden animate-pulse"
             >
                 <div className="h-52 bg-gray-200 w-full"></div>
                 <div className="p-2 mt-3">
@@ -218,7 +218,7 @@ const OffersPage = () => {
                     {/* flex-1 md:py-5 px-4 */}
 
                     {/* Main Offers Grid */}
-                    <div className="md:w-3/4 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:py-5 self-start">
+                    <div className="md:w-3/4 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:py-5 w-full self-start">
                         {loadingOffers ? <LoadingRender /> : offers.length > 0 ? offers.map((offer) => (
                             <div
                                 key={offer.id}
