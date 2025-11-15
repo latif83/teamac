@@ -34,13 +34,16 @@ export const TestimonialForm = ({ setGiveFeedback, onSuccess }) => {
 
         setLoading(true);
         try {
+
+            const sData = {...formData,country:formData?.country?.label}
+
             // NOTE: Targeting a new endpoint for feedback submission
             const res = await fetch(`/api/feedback`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(sData)
             });
             
             const data = await res.json();
@@ -138,7 +141,7 @@ export const TestimonialForm = ({ setGiveFeedback, onSuccess }) => {
                             <Select
                                                         options={options}
                                                         value={formData.country}
-                                                        onChange={(val)=>setFormData((prevData)=>({...prevData,country : val.label}))}
+                                                        onChange={(val)=>setFormData((prevData)=>({...prevData,country : val}))}
                                                         placeholder="Select a country"
                                                         className="text-sm"
                                                     />

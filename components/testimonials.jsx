@@ -6,42 +6,10 @@ import { TestimonialForm } from "./NewFeedback";
 import { useEffect, useState } from "react";
 import { TestimonialSuccessMessage } from "./FeedbackSuccess";
 import { toast } from "react-toastify";
+import Link from "next/link";
 
 const Testimonials = () => {
-    const [testimonials, setTestimonials] = useState([
-        {
-            id: 1,
-            title: "Smooth Visa Processing",
-            quote:
-                "Thanks to Teamac, I secured admission in Canada with smooth visa processing. Their guidance made the entire journey stress-free!",
-            name: "Ama Serwaa",
-            location: "Accra, Ghana",
-        },
-        {
-            id: 2,
-            title: "Reliable Travel Arrangements",
-            quote:
-                "Teamac handled my travel arrangements perfectly. Everything from ticketing to accommodation was seamless and affordable.",
-            name: "Kwesi Mensah",
-            location: "Kumasi, Ghana",
-        },
-        {
-            id: 3,
-            title: "Professional Consultants",
-            quote:
-                "Their consultants are professional and supportive. I’m now studying in the UK — couldn’t have done it without them!",
-            name: "Chidinma Okafor",
-            location: "Lagos, Nigeria",
-        },
-        {
-            id: 4,
-            title: "Highly Recommended",
-            quote:
-                "I highly recommend Teamac. The process was transparent and they were available every step of the way — truly reliable!",
-            name: "Thabo Mokoena",
-            location: "Johannesburg, South Africa",
-        },
-    ])
+    const [testimonials, setTestimonials] = useState([])
 
     const [loading, setLoading] = useState(false)
 
@@ -49,13 +17,13 @@ const Testimonials = () => {
         try {
             setLoading(true)
 
-            const res = await fetch(`/api/feedbacks`)
+            const res = await fetch(`/api/feedback/featured`)
             const data = await res.json()
             if (!res.ok) {
                 return toast.error(data.msg)
             }
 
-            setTestimonials(data.feedbacks)
+            setTestimonials(data.featuredFeedbacks)
 
         } catch (e) {
             console.log(e)
@@ -66,7 +34,7 @@ const Testimonials = () => {
     }
 
     useEffect(() => {
-        // getFeaturedFeedbacks()
+        getFeaturedFeedbacks()
     }, [])
 
     const [giveFeedback, setGiveFeedback] = useState(false)
@@ -97,8 +65,39 @@ const Testimonials = () => {
             </div>
 
             {/* Testimonials Grid */}
-            <div className="grid md:grid-cols-4 sm:grid-cols-2 gap-8 mb-10">
-                {testimonials.map((t) => (
+            <div className="grid md:grid-cols-2 sm:grid-cols-2 gap-4 mb-10">
+                {loading ? [1, 2, 3, 4].map((num) => (<div
+                    key={num}
+                    className="relative flex flex-col justify-center items-center text-center p-8 md:p-12 bg-[url('/bg1.png')] bg-cover bg-center rounded-xl shadow-md hover:shadow-xl transition-all duration-500 animate-pulse"
+                >
+                    <div className="absolute inset-0 bg-white/85 rounded-xl"></div>
+
+                    <div className="relative z-10 w-full">
+
+                        <FontAwesomeIcon
+                            icon={faQuoteLeft}
+                            className="text-[#00B4D8] text-xl mb-3"
+                        />
+
+                        <p className="h-16 w-full bg-black rounded-lg">
+
+                        </p>
+
+                        <FontAwesomeIcon
+                            icon={faQuoteRight}
+                            className="text-[#FF6F61] text-sm mt-3"
+                        />
+
+                        <p className="h-6 w-full bg-black rounded-lg mt-8">
+
+
+                        </p>
+
+                        <p className="h-6 w-full bg-black rounded-lg mt-2"></p>
+
+                    </div>
+
+                </div>)) : testimonials.length > 0 ? testimonials.map((t) => (
                     <figure
                         key={t.id}
                         className="relative flex flex-col justify-center items-center text-center p-8 md:p-12 bg-[url('/bg1.png')] bg-cover bg-center rounded-xl shadow-md hover:shadow-xl transition-all duration-500"
@@ -113,7 +112,7 @@ const Testimonials = () => {
                                 className="text-[#00B4D8] text-xl mb-3"
                             />
                             <p className="text-gray-700 text-sm md:text-base italic leading-relaxed">
-                                “{t.quote}”
+                                “{t.comment}”
                             </p>
                             <FontAwesomeIcon
                                 icon={faQuoteRight}
@@ -123,11 +122,11 @@ const Testimonials = () => {
 
                         {/* Name + Location */}
                         <figcaption className="relative z-10 mt-4">
-                            <div className="font-medium text-[#0d4785]">{t.name}</div>
-                            <div className="text-gray-500 text-sm">{t.location}</div>
+                            <div className="font-medium text-[#0d4785]">{t.fullName}</div>
+                            <div className="text-gray-500 text-sm">{t.city}, {t.country}</div>
                         </figcaption>
                     </figure>
-                ))}
+                )) : <div className="md:col-span-4 sm:col-span-2 text-center bg-white p-3 relative z-50 rounded text-sm"> <p className="font-bold">No data found at this moment.</p> <p>Please try again later!</p> </div>}
             </div>
 
             {/* Buttons + Feedback Prompt */}
@@ -141,12 +140,12 @@ const Testimonials = () => {
                 </p>
 
                 <div className="flex justify-center items-center gap-4">
-                    <a
-                        href="#"
+                    <Link
+                        href="/testimonials"
                         className="py-2.5 px-6 text-sm font-medium text-white bg-[#00B4D8] rounded-lg shadow hover:bg-[#0092b3] transition-all duration-300"
                     >
                         View More
-                    </a>
+                    </Link>
                     <button
                         type="button"
                         onClick={() => setGiveFeedback(true)}

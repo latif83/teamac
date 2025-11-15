@@ -61,3 +61,19 @@ export async function POST(req) {
         );
     }
 }
+
+export async function GET() {
+  try {
+    const feedbacks = await prisma.feedback.findMany({
+      orderBy: { createdAt: "desc" },
+    });
+
+    return NextResponse.json({ feedbacks }, { status: 200 });
+  } catch (error) {
+    console.error("Error fetching feedbacks:", error);
+    return NextResponse.json(
+      { message: "Internal server error." },
+      { status: 500 }
+    );
+  }
+}
