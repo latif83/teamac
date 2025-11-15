@@ -4,9 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Image from "next/image"
 import Link from "next/link"
 import { MobileNav } from "./mobileNav"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { BookConsultation } from "./BookConsultation"
 import { SuccessConsultation } from "./successConsultation"
+import { toast } from "react-toastify"
+import { HomeFilters } from "./homeFilters"
 
 export const TopBar = () => {
 
@@ -104,52 +106,7 @@ export const TopBar = () => {
 
             <div className="md:absolute md:-bottom-32 w-full left-0 md:px-12 px-3 mt-8 md:mt-0">
 
-                <div className="bg-[#f2f2f2]/70 border border-[#FF6F61] md:w-2/3 w-full rounded-md py-4 md:px-10 px-3">
-                    <h3 className="font-bold"> Find Available Offers. </h3>
-
-                    <form className="mt-3">
-                        <div className="flex gap-4 text-sm">
-                            <div className="flex-1">
-                                <select
-                                    name="service"
-                                    //   value={filters.service}
-                                    //   onChange={handleChange}
-                                    className="mt-1 p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#00B4D8] outline-none block w-full"
-                                >
-                                    <option value="">All Services</option>
-                                    <option value="study">Study Abroad</option>
-                                    <option value="travel">Travel Packages</option>
-                                    <option value="accommodation">Accommodation</option>
-                                    <option value="consultation">Consultation</option>
-                                </select>
-                            </div>
-
-                            <div className="flex-1">
-                                <select
-                                    name="service"
-                                    //   value={filters.service}
-                                    //   onChange={handleChange}
-                                    className="mt-1 p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-[#00B4D8] outline-none block w-full"
-                                >
-                                    <option value="">All Contries</option>
-                                    <option value="study">Study Abroad</option>
-                                    <option value="travel">Travel Packages</option>
-                                    <option value="accommodation">Accommodation</option>
-                                    <option value="consultation">Consultation</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div className="flex justify-end mt-3">
-                            <button type="button" className="bg-[#FF6F61] to-[#00B4D8] p-3 px-6 text-sm rounded-md flex items-center gap-2">
-                                <FontAwesomeIcon icon={faSearch} />
-
-                                <span>Search</span>
-                            </button>
-                        </div>
-                    </form>
-
-                </div>
+               <HomeFilters />
 
             </div>
 
