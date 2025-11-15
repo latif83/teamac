@@ -63,7 +63,7 @@ const AboutUs = () => {
           <div
             className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-4 flex flex-col items-center"
           >
-            <div className="w-24 h-24 rounded-full bg-gray-200 mb-4"></div>
+            <div className="w-24 h-24 rounded-full border mb-4"><Image src={'/woman_avatar.png'} width={500} height={500} className="w-full h-full" alt="Avatar Image" /></div>
             <h3 className="font-semibold text-[#0d4785]">Testimony Chukwu
             </h3>
             <p className="text-lg text-gray-900 font-bold">CEO</p>
@@ -96,7 +96,7 @@ const AboutUs = () => {
           <div
             className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-4 flex flex-col items-center"
           >
-            <div className="w-24 h-24 rounded-full bg-gray-200 mb-4"></div>
+            <div className="w-24 h-24 rounded-full border mb-4"><Image src={'/woman_avatar.png'} width={500} height={500} className="w-full h-full" alt="Avatar Image" /></div>
             <h3 className="font-semibold text-[#0d4785]">Winifred Azuaru
             </h3>
             <p className="text-lg text-gray-900 font-bold">Creative Manager</p>
@@ -129,7 +129,7 @@ const AboutUs = () => {
           <div
             className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-4 flex flex-col items-center"
           >
-            <div className="w-24 h-24 rounded-full bg-gray-200 mb-4"></div>
+            <div className="w-24 h-24 rounded-full border mb-4"><Image src={'/woman_avatar.png'} width={500} height={500} className="w-full h-full" alt="Avatar Image" /></div>
             <h3 className="font-semibold text-[#0d4785]">Mrs Gibson Ime
             </h3>
             <p className="text-lg text-gray-900 font-bold">Recruitment Consultant</p>

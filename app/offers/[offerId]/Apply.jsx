@@ -49,7 +49,7 @@ export const ApplyNowModal = ({ offer, setApplyNow,setCloseSuccess }) => {
     };
 
     return (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center sm:px-4 px-3 md:pt-12">
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center sm:px-4 md:pt-12 pt-6">
             <div className="bg-white rounded-t-lg overflow-y-auto shadow-lg w-full h-full max-w-2xl relative md:p-6 p-3">
 
                 <div className="flex justify-between items-center">

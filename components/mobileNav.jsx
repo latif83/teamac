@@ -22,13 +22,13 @@ export const MobileNav = ({ setViewMNav }) => {
 
                     <Link href="/">
                         HOME</Link>
-                    <Link href="/">
+                    <Link href="/our-services">
                         OUR SERVICES</Link>
-                    <Link href="/">
+                    <Link href="/about-us">
                         ABOUT US</Link>
-                    <Link href="/">
+                    <Link href="/contact-us">
                         CONTACT US</Link>
-                    <Link href="/">
+                    <Link href="/testimonials">
                         TESTIMONIALS</Link>
 
                 </nav>

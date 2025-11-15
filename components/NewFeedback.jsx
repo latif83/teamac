@@ -68,10 +68,10 @@ export const TestimonialForm = ({ setGiveFeedback, onSuccess }) => {
     };
 
     return (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center sm:px-4 px-3 md:pt-12 pt-6">
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center sm:px-4 md:pt-12 pt-6">
             <div className="bg-white rounded-t-2xl shadow-2xl w-full max-w-2xl relative overflow-y-auto h-full transition-all duration-300">
                 {/* Header */}
-                <div className="flex justify-between items-center px-6 py-4 border-b border-gray-200 sticky top-0 bg-white">
+                <div className="flex justify-between items-center md:px-6 px-3 py-4 border-b border-gray-200 sticky top-0 bg-white">
                     <h2 className="font-bold text-[#0d4785]">
                         Your Feedback
                     </h2>
@@ -88,7 +88,7 @@ export const TestimonialForm = ({ setGiveFeedback, onSuccess }) => {
                 </div>
 
                 {/* Form */}
-                <form onSubmit={handleSubmit} className="p-6 space-y-5">
+                <form onSubmit={handleSubmit} className="md:p-6 p-3 space-y-5">
                     <div className="grid md:grid-cols-2 gap-4">
                         {/* Full Name */}
                         <div>
