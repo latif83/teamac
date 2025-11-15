@@ -26,7 +26,16 @@ export const TopBar = () => {
 
             <header className="px-3 md:px-6 md:py-0 py-4 lg:px-12 relative z-10 flex justify-between items-center md:h-2/10">
 
-                <Image className="md:w-[90px] w-[80px] h-auto" src={'/logo.png'} width={200} height={200} alt="Logo" />
+                <div className="flex flex-col items-center justify-center">
+                    <Image className="md:w-[90px] w-[85px] h-auto" src={'/logo.png'} width={200} height={200} alt="Logo" />
+
+                    <div className="uppercase text-center w-full">
+                        <h1 className="text-[#00B4D8] font-extrabold text-xl m-0 p-0">Teamac</h1>
+                        <p className="text-xs text-[#FF6F61] font-semibold m-0 p-0">
+                            Global LTD
+                        </p>
+                    </div>
+                </div>
 
                 <nav className="hidden md:flex text-gray-600 items-center gap-6 font-semibold text-sm">
 
