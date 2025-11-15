@@ -20,15 +20,15 @@ const Footer = () => {
               <Image
                 src="/logo.png"
                 alt="Teamac Logo"
-                width={40}
-                height={40}
+                width={60}
+                height={60}
                 className="mr-3"
               />
               <span className="flex items-center justify-center flex-col">
                 <span className="self-center uppercase text-xl font-bold text-white">
                   Teamac
                 </span>
-                <span className="uppercase text-sm">
+                <span className="uppercase text-xs font-semibold">
                   GLOBAL LTD
                 </span>
               </span>
@@ -125,7 +125,7 @@ const Footer = () => {
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
           <span className="text-sm text-gray-300 text-center sm:text-left">
             © {new Date().getFullYear()}{" "}
-            <span className="text-[#00B4D8] font-semibold">Teamac</span>. All
+            <span className="text-[#00B4D8] font-semibold uppercase">Teamac</span>. All
             Rights Reserved.
           </span>
 

@@ -31,9 +31,9 @@ const Header = () => {
           height={1000}
           className="rounded-md md:w-[90px] w-[80px]"
         />
-        <div className="uppercase text-center w-full">
-          <h1 className="text-[#00B4D8] font-extrabold text-xl m-0 p-0">Teamac</h1>
-          <p className="text-xs text-[#FF6F61] font-semibold m-0 p-0">
+        <div className="uppercase text-center w-full mt-1">
+          <h1 className="text-[#00B4D8] font-extrabold text-xl m-0 p-0 leading-none">Teamac</h1>
+          <p className="text-xs text-[#FF6F61] font-semibold m-0 p-0 leading-none">
             Global LTD
           </p>
         </div>
