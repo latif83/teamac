@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTag, faGlobe, faCalendarAlt, faTimes, faFilter, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Link from "next/link";
 import Select from "react-select";
@@ -57,7 +57,15 @@ const LoadingRender = () => {
     )
 }
 
-const OffersPage = () => {
+export default function OffersPage(){
+     return (
+            <Suspense fallback={<div>Loading...</div>}>
+                <Offers />
+            </Suspense>
+        );
+}
+
+const Offers = () => {
 
     const [showFilter, setShowFilter] = useState(false);
 
@@ -454,4 +462,3 @@ const OffersPage = () => {
     );
 };
 
-export default OffersPage;
