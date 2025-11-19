@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
 import prisma from "@/config/prisma";
+import {
+  sendAdminAppointmentNotification,
+  sendAppointmentEmail,
+} from "@/actions/sendEmailNotifications";
 
 export async function POST(req) {
   try {
@@ -11,21 +15,10 @@ export async function POST(req) {
       countryName,
       mode,
       date,
-      message
+      message,
     } = await req.json();
 
-    console.log({
-      name,
-      email,
-      phone,
-      countryCode,
-      countryName,
-      mode,
-      date,
-      message
-    });
-
-    // ✅ Validate required fields
+    // Validate required fields
     if (!name || !email || !phone || !countryCode || !mode || !date) {
       return NextResponse.json(
         { msg: "Missing required fields." },
@@ -33,7 +26,7 @@ export async function POST(req) {
       );
     }
 
-    // ✅ Create the consultation entry
+    // Create consultation entry
     const newConsultation = await prisma.consultation.create({
       data: {
         name,
@@ -45,6 +38,31 @@ export async function POST(req) {
         date: new Date(date),
         message,
       },
+    });
+
+    // --------------------------
+    // 📩 SEND EMAIL NOTIFICATION
+    // --------------------------
+    await sendAppointmentEmail({
+      name,
+      email,
+      mode,
+      date,
+      countryName,
+      countryCode,
+      message,
+    });
+
+    // Send admin email
+    await sendAdminAppointmentNotification({
+      name,
+      email,
+      phone,
+      countryCode,
+      countryName,
+      mode,
+      date,
+      message,
     });
 
     return NextResponse.json(
