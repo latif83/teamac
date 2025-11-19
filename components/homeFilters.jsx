@@ -4,10 +4,13 @@ import { useEffect, useState } from "react";
 import Select from "react-select";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useRouter } from "next/navigation";
 
 export const HomeFilters = () => {
   const [services, setServices] = useState([]);
   const [countries, setCountries] = useState([]);
+
+  const router = useRouter()
 
   const [loading, setLoading] = useState(true);
 
@@ -49,6 +52,10 @@ export const HomeFilters = () => {
 
   const handleSearch = () => {
     console.log("Final filters:", filters);
+    const queryParams = new URLSearchParams();
+    if (filters.service) queryParams.append("service", filters.service);
+    if (filters.country) queryParams.append("country", filters.country);
+    router.push(`/offers?${queryParams.toString()}`);
   };
 
   return (

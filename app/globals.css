@@ -50,7 +50,7 @@ body {
   font-family: "Poppins";
   border-radius: 5%;
   position: fixed;
-  top: 0;
+  bottom: 0;
   right: 0;
   z-index: 99999999999999999;
   /* display: flex; */

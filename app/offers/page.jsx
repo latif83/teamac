@@ -8,6 +8,8 @@ import Footer from "@/components/footer";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import Link from "next/link";
+import Select from "react-select";
+import { useSearchParams } from "next/navigation";
 
 const LoadingRender = () => {
     return (
@@ -62,11 +64,33 @@ const OffersPage = () => {
     const [loadingOffers, setLoadingOffers] = useState(false)
     const [offers, setOffers] = useState([])
 
+    const [services, setServices] = useState([]);
+    const [countries, setCountries] = useState([]);
+
+    const [filters, setFilters] = useState({
+        service: null,
+        country: null,
+        sortBy: null,
+        _initialized: false
+    });
+
+    const searchParams = useSearchParams();
+
+    const [loadingFilterData, setLoadingFilterData] = useState(true)
+
     const getOffers = async () => {
         try {
             setLoadingOffers(true)
 
-            const res = await fetch(`/api/admin/offers`)
+
+            // Build query params based on filters
+            const params = new URLSearchParams();
+
+            if (filters.country) params.append("country", filters.country);
+            if (filters.service) params.append("service", filters.service);
+            if (filters.sortBy) params.append("sort", filters.sortBy);
+
+            const res = await fetch(`/api/offers?${params.toString()}`);
             const data = await res.json()
             if (!res.ok) {
                 return toast.error(data.msg || "Unable to fetch offers!")
@@ -84,8 +108,61 @@ const OffersPage = () => {
     }
 
     useEffect(() => {
-        getOffers()
+        async function fetchFilters() {
+            try {
+                const res = await fetch("/api/filters");
+                const data = await res.json();
+
+                if (data.success) {
+                    setServices(
+                        data.data.services.map((s) => ({
+                            value: s.id,
+                            label: s.name,
+                        }))
+                    );
+
+                    setCountries(
+                        data.data.countries.map((c) => ({
+                            value: c.id,
+                            label: c.name,
+                        }))
+                    );
+                }
+            } catch (err) {
+                console.error("Error fetching filters:", err);
+            } finally {
+                setLoadingFilterData(false);
+            }
+        }
+
+        const country = searchParams.get("country");
+        const service = searchParams.get("service");
+
+        setFilters(prev => ({
+            ...prev,
+            country: country || null,
+            service: service || null,
+            _initialized: true
+        }));
+
+        fetchFilters();
+
+        if (filters._initialized) {
+            getOffers();
+        }
     }, [])
+
+    const applyFilters = async () => {
+        try {
+            // alert(JSON.stringify(filters))
+            // awai
+            getOffers()
+        }
+        catch (e) {
+            console.log(e)
+        }
+    }
+
 
     return (
         <>
@@ -114,57 +191,87 @@ const OffersPage = () => {
                 {/* Layout Container */}
                 <div className="flex flex-col md:flex-row md:px-12 px-4 gap-8">
 
-                    {/* Toggle Button — visible only on mobile */}
-                    <button
-                        onClick={() => setShowFilter(!showFilter)}
-                        className="md:hidden flex items-center gap-2 bg-[#00B4D8] text-white text-sm font-medium px-4 py-2 rounded-md mt-4 flex justify-between items-center"
-                    >
-                        <span className="flex gap-2 items-center"><FontAwesomeIcon icon={showFilter ? faTimes : faFilter} />
-                            {showFilter ? "Hide Filters" : "Show Filters"}</span>
-                        <FontAwesomeIcon icon={faCaretDown} />
-                    </button>
+                    <div>
+                        {/* Toggle Button — visible only on mobile */}
+                        <button
+                            onClick={() => setShowFilter(!showFilter)}
+                            className="md:hidden flex items-center w-full gap-2 bg-[#00B4D8] text-white text-sm font-medium px-4 py-2 rounded-t-md mt-4 flex justify-between items-center"
+                        >
+                            <span className="flex gap-2 items-center"><FontAwesomeIcon icon={showFilter ? faTimes : faFilter} />
+                                {showFilter ? "Hide Filters" : "Show Filters"}</span>
+                            <FontAwesomeIcon icon={faCaretDown} />
+                        </button>
 
-                    {/* Filter Sidebar */}
-                    {showFilter && (
-                        <aside className="md:w-1/4 md:border-r-2 md:h-svh md:sticky top-0 z-50 py-5 md:pr-3 bg-white md:bg-transparent p-4 md:p-0 shadow-md md:shadow-none rounded-md md:rounded-none">
-                            <h2 className="text-lg font-bold text-[#0d4785] mb-4">Filter Offers</h2>
+                        {/* Filter Sidebar */}
+                        {showFilter && (
+                            <aside className="md:w-1/4 md:border-r-2 md:h-svh md:sticky top-0 z-50 py-3 md:pr-3 bg-white md:bg-transparent p-4 md:p-0 shadow-md md:shadow-none rounded-b-md md:rounded-none">
+                                <h2 className="text-lg font-bold text-[#0d4785] mb-4">Filter Offers</h2>
 
-                            <div className="space-y-4">
-                                <div>
-                                    <label className="block text-sm text-gray-600 mb-1">Service</label>
-                                    <select className="w-full bg-white border border-gray-300 rounded-md text-sm px-3 py-2 focus:ring-2 focus:ring-[#00B4D8] focus:outline-none">
-                                        <option>All Services</option>
-                                        <option>Study Abroad</option>
-                                        <option>Travel</option>
-                                        <option>Accommodation</option>
-                                        <option>Consultation</option>
-                                    </select>
+                                <div className="space-y-4">
+
+                                    {/* Service Filter */}
+                                    <Select
+                                        isClearable
+                                        isLoading={loadingFilterData}
+                                        options={services}
+                                        placeholder={loadingFilterData ? "Loading services..." : "All Services"}
+                                        onChange={(selected) =>
+                                            setFilters((prev) => ({ ...prev, service: selected?.value || "" }))
+                                        }
+                                        className="text-sm"
+                                        styles={{
+                                            control: (base) => ({
+                                                ...base,
+                                                borderColor: "#ccc",
+                                                padding: "2px",
+                                                boxShadow: "none",
+                                                backgroundColor: 'transparent',
+                                                "&:hover": { borderColor: "#00B4D8" },
+                                            }),
+                                        }}
+                                    />
+
+                                    {/* Country Filter */}
+                                    <Select
+                                        isClearable
+                                        isLoading={loadingFilterData}
+                                        options={countries}
+                                        placeholder={loadingFilterData ? "Loading countries..." : "All Countries"}
+                                        onChange={(selected) =>
+                                            setFilters((prev) => ({ ...prev, country: selected?.value || "" }))
+                                        }
+                                        className="text-sm"
+                                        styles={{
+                                            control: (base) => ({
+                                                ...base,
+                                                borderColor: "#ccc",
+                                                padding: "2px",
+                                                boxShadow: "none",
+                                                backgroundColor: 'transparent',
+                                                "&:hover": { borderColor: "#00B4D8" },
+                                            }),
+                                        }}
+                                    />
+
+                                    <div>
+                                        <label className="block text-sm text-gray-600 mb-1">
+                                            Sort by
+                                        </label>
+                                        <select value={filters.sortBy} onChange={(e) =>
+                                            setFilters((prev) => ({ ...prev, sortBy: e.target.value }))
+                                        } className="w-full bg-white border border-gray-300 rounded-md text-sm px-3 py-2 focus:ring-2 focus:ring-[#00B4D8] focus:outline-none">
+                                            <option value={'newest'}>Newest</option>
+                                            <option value={'oldest'}>Oldest</option>
+                                        </select>
+                                    </div>
+
+
+                                    <button onClick={() => { setShowFilter(!showFilter); applyFilters(); }} className="w-full bg-[#00B4D8] text-white py-2 text-sm font-medium rounded-md hover:bg-[#0092b3] transition">
+                                        Apply Filters
+                                    </button>
                                 </div>
-
-                                <div>
-                                    <label className="block text-sm text-gray-600 mb-1">Country</label>
-                                    <select className="w-full bg-white border border-gray-300 rounded-md text-sm px-3 py-2 focus:ring-2 focus:ring-[#00B4D8] focus:outline-none">
-                                        <option>All Countries</option>
-                                        <option>Canada</option>
-                                        <option>UK</option>
-                                        <option>Ghana</option>
-                                        <option>UAE</option>
-                                    </select>
-                                </div>
-
-                                <div>
-                                    <label className="block text-sm text-gray-600 mb-1">Sort by</label>
-                                    <select className="w-full bg-white border border-gray-300 rounded-md text-sm px-3 py-2 focus:ring-2 focus:ring-[#00B4D8] focus:outline-none">
-                                        <option>Newest</option>
-                                        <option>Oldest</option>
-                                    </select>
-                                </div>
-
-                                <button className="w-full bg-[#00B4D8] text-white py-2 text-sm font-medium rounded-md hover:bg-[#0092b3] transition">
-                                    Apply Filters
-                                </button>
-                            </div>
-                        </aside>)}
+                            </aside>)}
+                    </div>
 
                     {/* Sidebar / Filters */}
                     <aside className="md:w-1/4 md:border-r-2 md:block hidden md:h-svh md:sticky top-0 z-50 py-5 md:pr-3">
@@ -173,43 +280,63 @@ const OffersPage = () => {
                         </h2>
 
                         <div className="space-y-4">
-                            <div>
-                                <label className="block text-sm text-gray-600 mb-1">
-                                    Service
-                                </label>
-                                <select className="w-full bg-white border border-gray-300 rounded-md text-sm px-3 py-2 focus:ring-2 focus:ring-[#00B4D8] focus:outline-none">
-                                    <option>All Services</option>
-                                    <option>Study Abroad</option>
-                                    <option>Travel</option>
-                                    <option>Accommodation</option>
-                                    <option>Consultation</option>
-                                </select>
-                            </div>
+                            {/* Service Filter */}
+                            <Select
+                                isClearable
+                                isLoading={loadingFilterData}
+                                options={services}
+                                placeholder={loadingFilterData ? "Loading services..." : "All Services"}
+                                onChange={(selected) =>
+                                    setFilters((prev) => ({ ...prev, service: selected?.value || "" }))
+                                }
+                                className="text-sm"
+                                styles={{
+                                    control: (base) => ({
+                                        ...base,
+                                        borderColor: "#ccc",
+                                        padding: "2px",
+                                        boxShadow: "none",
+                                        backgroundColor: 'transparent',
+                                        "&:hover": { borderColor: "#00B4D8" },
+                                    }),
+                                }}
+                            />
 
-                            <div>
-                                <label className="block text-sm text-gray-600 mb-1">
-                                    Country
-                                </label>
-                                <select className="w-full bg-white border border-gray-300 rounded-md text-sm px-3 py-2 focus:ring-2 focus:ring-[#00B4D8] focus:outline-none">
-                                    <option>All Countries</option>
-                                    <option>Canada</option>
-                                    <option>UK</option>
-                                    <option>Ghana</option>
-                                    <option>UAE</option>
-                                </select>
-                            </div>
+                            {/* Country Filter */}
+                            <Select
+                                isClearable
+                                isLoading={loadingFilterData}
+                                options={countries}
+                                placeholder={loadingFilterData ? "Loading countries..." : "All Countries"}
+                                onChange={(selected) =>
+                                    setFilters((prev) => ({ ...prev, country: selected?.value || "" }))
+                                }
+                                className="text-sm"
+                                styles={{
+                                    control: (base) => ({
+                                        ...base,
+                                        borderColor: "#ccc",
+                                        padding: "2px",
+                                        boxShadow: "none",
+                                        backgroundColor: 'transparent',
+                                        "&:hover": { borderColor: "#00B4D8" },
+                                    }),
+                                }}
+                            />
 
                             <div>
                                 <label className="block text-sm text-gray-600 mb-1">
                                     Sort by
                                 </label>
-                                <select className="w-full bg-white border border-gray-300 rounded-md text-sm px-3 py-2 focus:ring-2 focus:ring-[#00B4D8] focus:outline-none">
-                                    <option>Newest</option>
-                                    <option>Oldest</option>
+                                <select value={filters.sortBy} onChange={(e) =>
+                                    setFilters((prev) => ({ ...prev, sortBy: e.target.value }))
+                                } className="w-full bg-white border border-gray-300 rounded-md text-sm px-3 py-2 focus:ring-2 focus:ring-[#00B4D8] focus:outline-none">
+                                    <option value={'newest'}>Newest</option>
+                                    <option value={'oldest'}>Oldest</option>
                                 </select>
                             </div>
 
-                            <button className="w-full bg-[#00B4D8] text-white py-2 text-sm font-medium rounded-md hover:bg-[#0092b3] transition">
+                            <button onClick={applyFilters} className="w-full bg-[#00B4D8] text-white py-2 text-sm font-medium rounded-md hover:bg-[#0092b3] transition">
                                 Apply Filters
                             </button>
                         </div>
