@@ -126,7 +126,7 @@ export default function ContactPage() {
             />
             <div>
               <h3 className="font-semibold text-[#0d4785]">Email Us</h3>
-              <p>info@teamacglobal.com</p>
+              <p>info@teamacgloballtd.com</p>
             </div>
           </div>
 
@@ -137,7 +137,7 @@ export default function ContactPage() {
             />
             <div>
               <h3 className="font-semibold text-[#0d4785]">Call Us</h3>
-              <p>+233 24 000 0000</p>
+              <p>+90 533 847 92 00</p>
             </div>
           </div>
 
@@ -148,7 +148,7 @@ export default function ContactPage() {
             />
             <div>
               <h3 className="font-semibold text-[#0d4785]">Visit Us</h3>
-              <p>East Legon, Accra, Ghana</p>
+              <p>Lefke, North Cyprus</p>
             </div>
           </div>
 
