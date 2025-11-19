@@ -37,13 +37,13 @@ export default function AboutUs() {
                         <span className="bg-gradient-to-r from-[#fff] to-[#00B4D8] w-3 h-3 rounded-full absolute left-6 -top-1"></span>
                     </div>
                     <p className="mt-4 text-gray-600 leading-relaxed text-sm md:text-base">
-                        Teamac was founded to simplify the journey of studying, working, and
+                        TEAMAC was founded to simplify the journey of studying, working, and
                         living abroad. We realized that thousands of students and
                         professionals dream of global opportunities but are held back by
                         complicated processes, lack of guidance, and misinformation.
                         <br /><br />
                         Our mission is simple — to provide clear, reliable, and personalized
-                        support for every step of your international journey. Today, Teamac
+                        support for every step of your international journey. Today, TEAMAC
                         proudly connects people to global education, travel, accommodation,
                         and consultation services with honesty and excellence.
                     </p>

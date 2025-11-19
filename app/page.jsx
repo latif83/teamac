@@ -50,7 +50,7 @@ export default function Home() {
                     <p className="mb-6 font-medium text-white/90 md:text-lg text-sm leading-relaxed">
                         Whether you’re planning to study abroad, travel for leisure, or find
                         accommodation overseas,{" "}
-                        <span className="font-semibold">Teamac</span> is here to guide you
+                        <span className="font-semibold">TEAMAC</span> is here to guide you
                         every step of the way — trusted, transparent, and tailored for you.
                     </p>
 
