@@ -89,7 +89,7 @@ const Header = () => {
         <Link href="/services" className="text-gray-700 hover:text-[#00B4D8] transition">
           Services
         </Link>
-        <Link href="/about" className="text-gray-700 hover:text-[#00B4D8] transition">
+        <Link href="/about-us" className="text-gray-700 hover:text-[#00B4D8] transition">
           About Us
         </Link>
         <Link href="/contact" className="text-gray-700 hover:text-[#00B4D8] transition">
@@ -176,7 +176,7 @@ const Header = () => {
             <Link href="/services" onClick={() => setMenuOpen(false)} className="text-gray-700 hover:text-[#00B4D8]">
               Services
             </Link>
-            <Link href="/about" onClick={() => setMenuOpen(false)} className="text-gray-700 hover:text-[#00B4D8]">
+            <Link href="/about-us" onClick={() => setMenuOpen(false)} className="text-gray-700 hover:text-[#00B4D8]">
               About Us
             </Link>
             <Link href="/contact" onClick={() => setMenuOpen(false)} className="text-gray-700 hover:text-[#00B4D8]">

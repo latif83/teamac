@@ -45,7 +45,7 @@ export const TopBar = () => {
                         OUR SERVICES</Link>
                     <Link href="/about-us">
                         ABOUT US</Link>
-                    <Link href="/contact-us">
+                    <Link href="/contact">
                         CONTACT US</Link>
                     <Link href="/testimonials">
                         TESTIMONIALS</Link>
