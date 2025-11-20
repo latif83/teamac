@@ -37,6 +37,8 @@ export default function Feedbacks() {
     const [viewFeedback, setViewFeedback] = useState(false)
     const [feedback, setFeedback] = useState()
 
+    const [featureFeedbackLoading, setFeatureFeedbackLoading] = useState(false)
+
     return (
         <section className="p-3 md:p-6">
 
@@ -120,7 +122,44 @@ export default function Feedbacks() {
                                         <td className="px-6 py-4">{feedback.country}</td>
                                         <td className="px-6 py-4">{feedback.city}</td>
 
-                                        <td className="px-6 py-4 text-right">
+                                        <td className="px-6 py-4 text-right flex items-center justify-end gap-4 flex-col">
+
+                                             <label
+                                                    onClick={(e) => e.stopPropagation()}
+                                                    className="bg-white/80 px-2 py-1 rounded-md flex items-center gap-1 cursor-pointer hover:bg-white"
+                                                >
+                                                    <input
+                                                        type="checkbox"
+                                                        checked={feedback.featured}
+                                                        hidden={featureFeedbackLoading}
+                                                        onChange={async (e) => {
+                                                            const checked = e.target.checked;
+                                                            setFeatureFeedbackLoading(true)
+                                                            try {
+                                                                const res = await fetch(`/api/admin/testimonials/feature`, {
+                                                                    method: "PATCH",
+                                                                    headers: { "Content-Type": "application/json" },
+                                                                    body: JSON.stringify({ featured: checked, id:feedback.id }),
+                                                                });
+                    
+                                                                const data = await res.json()
+                    
+                                                                if (!res.ok) {
+                                                                    return toast.error(data.msg || "Failed to update");
+                                                                }
+                                                                toast.success(`Feedback ${checked ? "featured" : "unfeatured"}!`);
+                                                                setFetchData(true)
+                                                            } catch (err) {
+                                                                toast.error(err.message);
+                                                            } finally {
+                                                                setFeatureFeedbackLoading(false)
+                                                            }
+                                                        }}
+                                                        className="accent-[#00B4D8] cursor-pointer"
+                                                    />
+                                                    {featureFeedbackLoading ? <span className="p-2 rounded-lg bg-gray-400 animate-pulse text-xs font-semibold"> Processing... </span> : <span className="text-xs font-semibold text-gray-700">{feedback.featured ? 'Featured' : 'Feature'}</span>}
+                                                </label>
+
                                             <button
                                                 type="button"
                                                 onClick={() => {
