@@ -111,6 +111,7 @@ model Feedback {
   
   // Content
   comment     String
+  featured  Boolean  @default(false)
   
   createdAt   DateTime       @default(now())
   updatedAt   DateTime       @updatedAt

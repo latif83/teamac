@@ -64,7 +64,7 @@ export default function Testimonials() {
                     </div>
                     <p className="mt-3 text-gray-50 text-sm md:text-base">
                         Real stories from students and professionals who trusted{" "}
-                        <span className="text-[#00B4D8] font-bold">Teamac</span> to guide
+                        <span className="text-[#00B4D8] font-bold">TEAMAC</span> to guide
                         their journeys abroad.
                     </p>
 
@@ -139,7 +139,7 @@ export default function Testimonials() {
                 <div className="text-center relative z-10 max-w-xl mx-auto">
                     <p className="text-gray-50 text-sm md:text-base mb-6">
                         Have you used{" "}
-                        <span className="text-[#00B4D8] font-bold">Teamac</span> before?
+                        <span className="text-[#00B4D8] font-bold">TEAMAC</span> before?
                         Or has our team helped you with travel, study abroad, or
                         accommodation? We’d love to hear your feedback — share your experience
                         with us!

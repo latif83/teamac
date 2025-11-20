@@ -8,6 +8,8 @@ export default function Feedbacks() {
     const [loading, setLoading] = useState(false)
     const [feedbacks, setFeedbacks] = useState([])
 
+    const [fetchData, setFetchData] = useState(true)
+
     const getFeedbacks = async () => {
         try {
             setLoading(true)
@@ -25,8 +27,12 @@ export default function Feedbacks() {
     }
 
     useEffect(() => {
-        getFeedbacks()
-    }, [])
+        if (fetchData) {
+            getFeedbacks()
+            setFetchData(false)
+        }
+
+    }, [fetchData])
 
     const [viewFeedback, setViewFeedback] = useState(false)
     const [feedback, setFeedback] = useState()
@@ -34,7 +40,7 @@ export default function Feedbacks() {
     return (
         <section className="p-3 md:p-6">
 
-            {viewFeedback && <FeedbackDetails feedback={feedback} setViewFeedback={setViewFeedback} />}
+            {viewFeedback && <FeedbackDetails feedback={feedback} setViewFeedback={setViewFeedback} setFetchData={setFetchData} />}
 
             <div className="flex justify-between items-center mb-6">
                 <h1 className="sm:text-xl font-bold text-[#0d4785]">Feedbacks / Testimonials</h1>
