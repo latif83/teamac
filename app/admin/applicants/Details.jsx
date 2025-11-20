@@ -1,3 +1,4 @@
+import { ContactEmailModal } from "@/components/contactEmailModal"
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons"
 import { faTimes } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -8,7 +9,7 @@ export const ApplicantDetails = ({ applicant, setViewApplicant }) => {
 
     const [updatingStatus, setUpdatingStatus] = useState(false)
 
-    const [applicantData,setApplicantData] = useState(applicant)
+    const [applicantData, setApplicantData] = useState(applicant)
 
     const updateOfferStatus = async (status) => {
         try {
@@ -44,8 +45,12 @@ export const ApplicantDetails = ({ applicant, setViewApplicant }) => {
         }
     }
 
+    const [showContactEmailModal, setShowContactEmailModal] = useState(false)
+
     return (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center md:px-4 px-2 md:pt-12 pt-6">
+
+            {showContactEmailModal && <ContactEmailModal name={applicant.fullName} email={applicant.email} setShowContactEmailModal={setShowContactEmailModal} />}
 
             <div className="bg-white rounded-t-lg overflow-y-auto shadow-lg w-full h-full max-w-3xl relative md:p-6 p-3">
 
@@ -148,7 +153,7 @@ export const ApplicantDetails = ({ applicant, setViewApplicant }) => {
                 <div className="mt-4">
                     <h1 className="text-lg font-bold">Contact:</h1>
                     <div className="mt-1 grid md:grid-cols-2 gap-4">
-                        <button type="button" className="text-sm flex items-center gap-2 bg-gray-100 border hover:opacity-80 cursor-pointer py-2 px-4 rounded-lg justify-center">
+                        <button onClick={() => setShowContactEmailModal(true)} type="button" className="text-sm flex items-center gap-2 bg-gray-100 border hover:opacity-80 cursor-pointer py-2 px-4 rounded-lg justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                             </svg>

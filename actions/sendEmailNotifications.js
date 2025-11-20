@@ -15,45 +15,51 @@ const baseUrl = "https://teamac.vercel.app";
 const senderEmail = "latifm8360@gmail.com";
 const platformLogo =
   "https://teamac.vercel.app/logo.png"; // Change to your real logo URL
-  const adminEmail = "anonylatif@gmail.com"//"info@teamacgloballtd.com"; // CHANGE THIS to the real admin email
+const adminEmail = "anonylatif@gmail.com"//"info@teamacgloballtd.com"; // CHANGE THIS to the real admin email
 
 // ----------- UNIVERSAL EMAIL TEMPLATE WRAPPER ---------------
-const wrapEmail = (title, content) => {
+const wrapEmail = (content) => {
   return `
-  <table width="100%" cellspacing="0" cellpadding="0" style="background:#f5f5f5; padding:30px;">
-    <tr>
-      <td align="center">
-        <table width="600" cellspacing="0" cellpadding="0" style="background:#ffffff; border-radius:10px; overflow:hidden;">
-          
-          <!-- HEADER -->
-          <tr>
-            <td style="background:#1a202c; padding:25px; text-align:center;">
-              <img src="${platformLogo}" alt="${platformName}" style="width:120px; margin-bottom:10px;" />
-              <h2 style="color:#ffffff; font-family:Arial; margin:0;">${title}</h2>
-            </td>
-          </tr>
+  <div style="width:100%; background:#f7f9fb; padding:40px 0; font-family:Arial, sans-serif;">
+  
+  <div style="max-width:600px; margin:0 auto; background:#ffffff; border-radius:14px; box-shadow:0 2px 10px rgba(0,0,0,0.08); overflow:hidden;">
 
-          <!-- CONTENT -->
-          <tr>
-            <td style="padding:30px; font-family:Arial; color:#333; font-size:15px; line-height:1.6;">
-              ${content}
-            </td>
-          </tr>
+    <!-- HEADER -->
+    <div style="padding:25px 20px; text-align:center; border-bottom:1px solid #e5e7eb;">
+      <div style="display:flex; align-items:center; justify-content:center; gap:12px;">
+        <img src="${platformLogo}" alt="${platformName}" style="width:60px; height:auto;" />
 
-          <!-- FOOTER -->
-          <tr>
-            <td style="background:#f0f0f0; padding:15px; text-align:center; font-family:Arial; font-size:12px; color:#777;">
-              <p style="margin:0;">© ${new Date().getFullYear()} ${platformName}. All rights reserved.</p>
-              <p style="margin:0;">
-                <a href="${baseUrl}" style="color:#4c51bf; text-decoration:none;">Visit Website</a>
-              </p>
-            </td>
-          </tr>
+        <!-- Company Name -->
+        <div style="text-transform:uppercase; line-height:1; margin-left:4px;">
+          <div style="color:#00B4D8; font-weight:800; font-size:20px; margin:0; padding:0;">
+            TEAMAC
+          </div>
+          <div style="font-size:12px; font-weight:600; color:#FF6F61; margin:0; padding:0;">
+            GLOBAL LTD
+          </div>
+        </div>
+      </div>
+    </div>
 
-        </table>
-      </td>
-    </tr>
-  </table>
+    <!-- BODY CONTENT -->
+    <div style="padding:30px 25px; color:#333333; font-size:15px; line-height:1.7;">
+      ${content}
+    </div>
+
+    <!-- FOOTER -->
+    <div style="background:#f1f5f9; padding:20px; text-align:center; color:#64748b; font-size:12px; line-height:1.5;">
+      <div style="margin-bottom:4px;">
+        © ${new Date().getFullYear()} ${platformName}. All rights reserved.
+      </div>
+
+      <a href="${baseUrl}" style="color:#00B4D8; text-decoration:none; font-weight:600;">
+        Visit Website
+      </a>
+    </div>
+
+  </div>
+
+</div>
   `;
 };
 
@@ -76,29 +82,28 @@ export const sendAppointmentEmail = async (data) => {
     const bodyContent = `
       <p>Hello <strong>${data.name}</strong>,</p>
 
-      <p>Thank you for booking a consultation/appointment with us.</p>
+      <p>Thank you for booking a consultation with us.</p>
 
-      <p><strong>Appointment Details:</strong></p>
+      <p><strong>Booking Details:</strong></p>
 
       <p>
         <strong>Date:</strong> ${formattedDate}<br>
-        <strong>Time:</strong> ${formattedTime}<br>
         <strong>Mode:</strong> ${data.mode}<br>
         <strong>Country:</strong> ${data.countryName || data.countryCode}
       </p>
 
-      ${data.message ? `<p><strong>Message:</strong> ${data.message}</p>` : ""}
+      ${data.message ? `<p><strong>Message:</strong> ${data.message}</p>` : "N/A"}
 
       <p>We look forward to speaking with you!</p>
 
-      <p>Best regards,<br>The ${platformName} Team</p>
+      <p>Best regards.</p>
     `;
 
     await mailer.sendMail({
       from: `${platformName} <${senderEmail}>`,
       to: data.email,
       subject: `Your Appointment Has Been Booked – ${platformName}`,
-      html: wrapEmail("Appointment Confirmed", bodyContent),
+      html: wrapEmail(bodyContent),
     });
 
     console.log(`Appointment email sent to ${data.email}`);
@@ -132,7 +137,7 @@ export const sendAdminAppointmentNotification = async (data) => {
       <p>
         <strong>Name:</strong> ${data.name}<br>
         <strong>Email:</strong> ${data.email}<br>
-        <strong>Phone:</strong> ${data.countryCode} ${data.phone}<br>
+        <strong>Phone:</strong>${data.phone}<br>
         <strong>Country:</strong> ${data.countryName || "N/A"}<br>
       </p>
 
@@ -141,12 +146,11 @@ export const sendAdminAppointmentNotification = async (data) => {
       <p>
         <strong>Mode:</strong> ${data.mode}<br>
         <strong>Date:</strong> ${formattedDate}<br>
-        <strong>Time:</strong> ${formattedTime}<br>
       </p>
 
-      ${data.message ? `<p><strong>Message:</strong> ${data.message}</p>` : ""}
+      ${data.message ? `<p><strong>Message:</strong> ${data.message}</p>` : "N/A"}
 
-      <p>Please follow up as soon as possible.</p>
+      <p>Please visit the site to follow up as soon as possible.</p>
 
       <p>Regards,<br>Automated Notification System – ${platformName}</p>
     `;
@@ -155,7 +159,7 @@ export const sendAdminAppointmentNotification = async (data) => {
       from: `${platformName} <${senderEmail}>`,
       to: adminEmail,
       subject: `NEW Appointment Booked – ${data.name}`,
-      html: wrapEmail("New Appointment Notification", bodyContent),
+      html: wrapEmail(bodyContent),
     });
 
     console.log(`Admin notified about appointment from ${data.name}`);
@@ -173,7 +177,7 @@ export const sendOfferApplicationEmail = async (data) => {
     const bodyContent = `
       <p>Hello <strong>${data.fullName || data.email}</strong>,</p>
 
-      <p>Thank you for applying for the following offer:</p>
+      <p>Thank you for applying for this offer:</p>
 
       <p><strong>${data.offerTitle}</strong></p>
 
@@ -190,14 +194,14 @@ export const sendOfferApplicationEmail = async (data) => {
       <p>You can view or track other offers here:</p>
       <a href="${baseUrl}/offers" style="color:#4c51bf;">View Offers</a>
 
-      <p>Best regards,<br>The ${platformName} Team</p>
+      <p>Best regards.</p>
     `;
 
     await mailer.sendMail({
       from: `${platformName} <${senderEmail}>`,
       to: data.email,
       subject: `Application Received – ${data.offerTitle}`,
-      html: wrapEmail("Application Received", bodyContent),
+      html: wrapEmail(bodyContent),
     });
 
     console.log(`Application email sent to applicant: ${data.email}`);
@@ -236,7 +240,7 @@ export const sendOfferAdminNotification = async (data) => {
       from: `${platformName} <${senderEmail}>`,
       to: adminEmail, // admin email
       subject: `New Offer Application – ${data.offerTitle}`,
-      html: wrapEmail("New Offer Application", bodyContent),
+      html: wrapEmail(bodyContent),
     });
 
     console.log(`Admin notified of application for: ${data.offerTitle}`);
@@ -246,3 +250,25 @@ export const sendOfferAdminNotification = async (data) => {
   }
 };
 
+// ---- Send Custom Email Notification -----
+export const sendCustomAdminEmail = async ({ to, subject, message }) => {
+  try {
+    const formattedMessage = message.replace(/\n/g, "<br/>");
+    const bodyContent = `
+      <p>Hello,</p>
+      <p>${formattedMessage}</p>
+    `;
+
+    await mailer.sendMail({
+      from: `${platformName} <${senderEmail}>`,
+      to,
+      subject,
+      html: wrapEmail(bodyContent),
+    });
+
+    return { success: true };
+  } catch (err) {
+    console.error("Email error:", err);
+    return { success: false, error: "Failed to send email" };
+  }
+};
