@@ -43,9 +43,7 @@ export async function POST(req) {
       !title ||
       !description ||
       !serviceId ||
-      !countryId ||
-      !city ||
-      !validity
+      !countryId
     ) {
       return NextResponse.json(
         { msg: "Missing required fields." },

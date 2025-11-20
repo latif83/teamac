@@ -60,7 +60,7 @@ Can you share more details or next steps?
 Here’s the link I’m viewing: 
 `;
 
-// ${window.location.href}
+    // ${window.location.href}
 
     const whatsappUrl = `https://wa.me/${businessNumber}?text=${encodeURIComponent(message)}`;
 
@@ -130,19 +130,21 @@ Here’s the link I’m viewing:
 
                                 </span>
                             </div>
-                            <div className="flex items-center gap-2">
-                                <FontAwesomeIcon
-                                    icon={faCalendarAlt}
-                                    className="text-[#00B4D8] text-lg"
-                                />
-                                <span className="flex flex-col gap-1">
-                                    <span className="text-xs">
-                                        Valid Until:
+                            {offer?.validity && (
+                                <div className="flex items-center gap-2">
+                                    <FontAwesomeIcon
+                                        icon={faCalendarAlt}
+                                        className="text-[#00B4D8] text-lg"
+                                    />
+                                    <span className="flex flex-col gap-1">
+                                        <span className="text-xs">Valid Until:</span>
+                                        <span className="text-sm font-bold text-black">
+                                            {new Date(offer.validity).toDateString()}
+                                        </span>
                                     </span>
-                                    <span className="text-sm font-bold text-black bg-gray-200 h-4 w-24 rounded-lg">
-                                    </span>
-                                </span>
-                            </div>
+                                </div>
+                            )}
+
                         </div>
 
                         <div className="mt-4">
@@ -169,7 +171,10 @@ Here’s the link I’m viewing:
                                         className="text-[#00B4D8] text-lg"
                                     />
                                     <span className="flex flex-col">
-                                        <span className="text-gray-500 text-xs">{offer.city},</span>
+                                        {offer?.city && (
+                                            <span className="text-gray-500 text-xs">{offer.city},</span>
+                                        )}
+
                                         <span className="text-sm text-black font-bold">{offer.country?.name}
                                         </span>
                                     </span>
@@ -199,8 +204,16 @@ Here’s the link I’m viewing:
                         </div>
 
                         <div className="mt-4">
-                            <p className="text-xl text-black font-medium">{offer.priceLabel}</p>
-                            <p className="text-sm text-gray-500 font-medium">{offer.priceDescription}</p>
+                            <p className="text-xl text-black font-medium">
+                                {offer?.priceLabel || "Custom Pricing"}
+                            </p>
+
+                            {offer?.priceDescription && (
+                                <p className="text-sm text-gray-500 font-medium">
+                                    {offer.priceDescription}
+                                </p>
+                            )}
+
                         </div>
                     </div>
                 </div>}

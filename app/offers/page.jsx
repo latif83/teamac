@@ -57,12 +57,12 @@ const LoadingRender = () => {
     )
 }
 
-export default function OffersPage(){
-     return (
-            <Suspense fallback={<div>Loading...</div>}>
-                <Offers />
-            </Suspense>
-        );
+export default function OffersPage() {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <Offers />
+        </Suspense>
+    );
 }
 
 const Offers = () => {
@@ -78,7 +78,7 @@ const Offers = () => {
     const [filters, setFilters] = useState({
         service: null,
         country: null,
-        sortBy: null,
+        sortBy: "",
         _initialized: false
     });
 
@@ -143,6 +143,12 @@ const Offers = () => {
             }
         }
 
+        fetchFilters()
+    }, [])
+
+    const [initialized, setInitialized] = useState(false)
+
+    useEffect(() => {
         const country = searchParams.get("country");
         const service = searchParams.get("service");
 
@@ -150,15 +156,17 @@ const Offers = () => {
             ...prev,
             country: country || null,
             service: service || null,
-            _initialized: true
         }));
 
-        fetchFilters();
+        setInitialized(true);
+    }, [searchParams]);
 
-        if (filters._initialized) {
+    useEffect(() => {
+        if (initialized) {
             getOffers();
         }
-    }, [])
+    }, [initialized]);
+
 
     const applyFilters = async () => {
         try {

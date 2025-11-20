@@ -190,7 +190,7 @@ export const NewOfferModal = ({ setAddOffer, setFetchData }) => {
                         <label className="block text-sm text-gray-700 mb-1 font-semibold">
                             Category / Service
                         </label>
-                        <select value={formData.serviceId}
+                        <select required value={formData.serviceId}
                             onChange={(e) => setFormData((prevData) => ({ ...prevData, serviceId: e.target.value }))} className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#00B4D8] outline-none">
                             <option>Select Service</option>
                             {servicesLoading ? <option>Loading Services...</option> : services.length > 0 ? services.map((service) => (
@@ -204,7 +204,7 @@ export const NewOfferModal = ({ setAddOffer, setFetchData }) => {
                         <label className="block text-sm text-gray-700 mb-1 font-semibold">
                             Country
                         </label>
-                        <select value={formData.countryId}
+                        <select required value={formData.countryId}
                             onChange={(e) => setFormData((prevData) => ({ ...prevData, countryId: e.target.value }))} className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#00B4D8] outline-none">
                             <option>Select Country</option>
                             {countriesLoading ? <option>Loading Countries...</option> : countries.length > 0 ? countries.map((country) => (
@@ -215,15 +215,15 @@ export const NewOfferModal = ({ setAddOffer, setFetchData }) => {
 
                     {/* City */}
                     <div>
-                        <label className="block text-sm text-gray-700 mb-1 font-semibold">
-                            City
+                        <label className="text-sm text-gray-700 mb-1 font-semibold flex items-center gap-2">
+                            <span>City</span>
+                            <span className="inline-flex items-center rounded-md bg-gray-400/10 px-2 py-1 text-xs font-medium text-gray-400 inset-ring inset-ring-gray-400/20">**Optional</span>
                         </label>
                         <input
                             type="text"
                             name="city"
                             value={formData.city}
                             onChange={(e) => setFormData((prevData) => ({ ...prevData, city: e.target.value }))}
-                            required
                             className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#00B4D8] outline-none"
                             placeholder="e.g., San Jose, Toronto, Melbourne, London"
                         />
@@ -257,9 +257,12 @@ export const NewOfferModal = ({ setAddOffer, setFetchData }) => {
                     </div>
 
                     <div>
-                        <label className="block text-sm text-gray-700 mb-1 font-semibold">
-                            Price / Label
+
+                        <label className="text-sm text-gray-700 mb-1 font-semibold flex items-center gap-2">
+                            <span>Price / Label</span>
+                            <span className="inline-flex items-center rounded-md bg-gray-400/10 px-2 py-1 text-xs font-medium text-gray-400 inset-ring inset-ring-gray-400/20">**Optional</span>
                         </label>
+
                         <input
                             type="text"
                             name="price"
@@ -272,9 +275,12 @@ export const NewOfferModal = ({ setAddOffer, setFetchData }) => {
                     </div>
 
                     <div>
-                        <label className="block text-sm text-gray-700 mb-1 font-semibold">
-                            Price / Description
+
+                        <label className="text-sm text-gray-700 mb-1 font-semibold flex items-center gap-2">
+                            <span>Price / Description</span>
+                            <span className="inline-flex items-center rounded-md bg-gray-400/10 px-2 py-1 text-xs font-medium text-gray-400 inset-ring inset-ring-gray-400/20">**Optional</span>
                         </label>
+
                         <input
                             type="text"
                             name="price"
@@ -287,9 +293,12 @@ export const NewOfferModal = ({ setAddOffer, setFetchData }) => {
                     </div>
 
                     <div>
-                        <label className="block text-sm text-gray-700 mb-1 font-semibold">
-                            Valid Until
+
+                        <label className="text-sm text-gray-700 mb-1 font-semibold flex items-center gap-2">
+                            <span>Valid Until</span>
+                            <span className="inline-flex items-center rounded-md bg-gray-400/10 px-2 py-1 text-xs font-medium text-gray-400 inset-ring inset-ring-gray-400/20">**Optional</span>
                         </label>
+
                         <input
                             type="date"
                             name="price"

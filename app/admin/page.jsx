@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Package, Globe, Users, Clock, Zap, DollarSign, PhoneCall } from 'lucide-react';
 import { toast } from 'react-toastify';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { UpcomingAppointments } from '@/components/upcomingAppointments';
 
 // Define the color palette for easy access
 const COLORS = {
@@ -135,30 +136,7 @@ export default function AdminPage() {
 
             {/* Recent Activity / Quick Actions Section */}
             <section className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-                {/* Upcoming Appointments (Left - Wider Column) */}
-                <div className="lg:col-span-2 bg-white md:p-6 p-3 rounded-xl shadow-xl">
-                    <h2 className="md:text-2xl font-bold text-textDark mb-4 border-b pb-2">
-                        Upcoming Consultations
-                    </h2>
-                    <ul className="space-y-3 text-sm">
-                        <li className="flex justify-between items-center p-3 bg-gray-50 rounded-lg border-l-4 border-accent">
-                            <span className="font-semibold">Sarah K.</span>
-                            <span className="text-gray-600">Tomorrow at 10:00 AM</span>
-                            <button className="text-primary hover:underline">View</button>
-                        </li>
-                        <li className="flex justify-between items-center p-3 bg-gray-50 rounded-lg border-l-4 border-primary">
-                            <span className="font-semibold">John B.</span>
-                            <span className="text-gray-600">Monday at 2:00 PM</span>
-                            <button className="text-primary hover:underline">View</button>
-                        </li>
-                    </ul>
-                    <div className="text-center mt-6">
-                        <a href="#" className="text-sm font-semibold text-primary hover:text-accent transition">
-                            View All Appointments &rarr;
-                        </a>
-                    </div>
-                </div>
+<UpcomingAppointments />
 
                 {/* Quick Actions (Right - Single Column) */}
                 <div className="lg:col-span-1 bg-white md:p-6 p-3 rounded-xl shadow-xl">

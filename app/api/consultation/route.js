@@ -80,3 +80,20 @@ export async function POST(req) {
     );
   }
 }
+
+
+export async function GET() {
+  try {
+    const consultations = await prisma.consultation.findMany({
+      orderBy: { date: "asc" }
+    });
+
+    return NextResponse.json({ consultations });
+  } catch (error) {
+    console.error("Error fetching consultations:", error);
+    return NextResponse.json(
+      { msg: "Failed to fetch consultations" },
+      { status: 500 }
+    );
+  }
+}

@@ -1,7 +1,7 @@
 "use client"
 import { useSidebar } from "@/providers/sidebarProvider"
 import { faServicestack } from "@fortawesome/free-brands-svg-icons"
-import { faChartLine, faClipboardList, faClockRotateLeft, faCommentDots, faDashboard, faGlobe, faPlusCircle, faS, faUsers } from "@fortawesome/free-solid-svg-icons"
+import { faCalendarDays, faChartLine, faClipboardList, faClockRotateLeft, faCommentDots, faDashboard, faGlobe, faPlusCircle, faS, faUsers } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { signOut } from "next-auth/react"
 import Image from "next/image"
@@ -19,6 +19,13 @@ export const AdminSidebar = () => {
             {openSidebar && <div className="bg-[#1e629a] w-[230px] shrink-0 sticky top-0 h-svh transition duration-1000">
                 <div className="p-3 flex flex-col gap-2 text-gray-50 justify-center items-center border-b-2 border-dotted" >
                     <Image src={'/logo.png'} width={500} height={500} alt="Teamac LOGO" className="w-[80px] h-auto bg-white p-2 rounded-lg" />
+
+                    <div className="uppercase text-center flex flex-col items-center justify-center gap-0 w-full mt-1">
+                        <span className="text-[#00B4D8] font-extrabold text-xl m-0 p-0 leading-none">Teamac</span>
+                        <span className="text-xs text-[#FF6F61] font-semibold m-0 p-0 leading-none">
+                            Global LTD
+                        </span>
+                    </div>
                 </div>
 
                 <div className="flex flex-col gap-3 pl-5 py-5 mt-5 text-sm">
@@ -45,6 +52,10 @@ export const AdminSidebar = () => {
                     <Link onClick={()=>{mobileScreen && setOpenSidebar(false)}} className={`w-full ${pathname == "/admin/testimonials" ? "bg-[#f2f2f2] text-gray-800" : "text-gray-50"} rounded-l sm:p-2 p-2 py-4 flex gap-1.5 items-center hover:font-bold`} href={'/admin/testimonials'}>
                         <FontAwesomeIcon icon={faCommentDots} width={20} height={20} className="text-lg" />
                         <span>Feedbacks</span>
+                    </Link>
+                    <Link onClick={()=>{mobileScreen && setOpenSidebar(false)}} className={`w-full ${pathname == "/admin/appointment" ? "bg-[#f2f2f2] text-gray-800" : "text-gray-50"} rounded-l sm:p-2 p-2 py-4 flex gap-1.5 items-center hover:font-bold`} href={'/admin/appointment'}>
+                        <FontAwesomeIcon icon={faCalendarDays} width={20} height={20} className="text-lg" />
+                        <span>Appointments</span>
                     </Link>
                 </div>
 
