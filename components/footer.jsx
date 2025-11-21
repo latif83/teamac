@@ -6,8 +6,11 @@ import {
   faInstagram,
   faTwitter,
   faLinkedinIn,
+  faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
 import Image from "next/image";
+import Link from "next/link";
+import { faPhoneAlt } from "@fortawesome/free-solid-svg-icons";
 
 const Footer = () => {
   return (
@@ -64,7 +67,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="/our-services" className="hover:text-[#00B4D8] transition">
+                  <a href="/services" className="hover:text-[#00B4D8] transition">
                     Services
                   </a>
                 </li>
@@ -82,12 +85,12 @@ const Footer = () => {
               </h2>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <a href="/contact-us" className="hover:text-[#00B4D8] transition">
+                  <a href="/contact" className="hover:text-[#00B4D8] transition">
                     Contact Us
                   </a>
                 </li>
                 <li>
-                  <a href="/contact-us" className="hover:text-[#00B4D8] transition">
+                  <a href="/contact" className="hover:text-[#00B4D8] transition">
                     FAQs
                   </a>
                 </li>
@@ -130,30 +133,48 @@ const Footer = () => {
           </span>
 
           <div className="flex space-x-4">
-            <a
-              href="#"
-              className="text-gray-300 hover:text-[#00B4D8] transition"
+            {/* Call */}
+            <Link
+              href="tel:+905338479200"
+              className="text-white hover:translate-x-[-6px] transition-all duration-300 flex items-center justify-center"
+              title="Call Us"
             >
-              <FontAwesomeIcon icon={faFacebookF} />
-            </a>
-            <a
-              href="#"
-              className="text-gray-300 hover:text-[#00B4D8] transition"
+              <FontAwesomeIcon icon={faPhoneAlt} width={25} height={25} />
+            </Link>
+
+            {/* Facebook */}
+            <Link
+              href="https://www.facebook.com/share/17dTdp3osn/?mibextid=wwXIfr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:translate-x-[-6px] transition-all duration-300 flex items-center justify-center"
+              title="Facebook"
             >
-              <FontAwesomeIcon icon={faInstagram} />
-            </a>
-            <a
-              href="#"
-              className="text-gray-300 hover:text-[#00B4D8] transition"
+              <FontAwesomeIcon icon={faFacebookF} width={25} height={25} />
+            </Link>
+
+            {/* Instagram */}
+
+            <Link
+              href="https://www.instagram.com/teamac_global_ltd?igsh=MTJmeHpubGpjZThzdw%3D%3D&utm_source=qr"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:translate-x-[-6px] transition-all duration-300 flex items-center justify-center"
+              title="Instagram"
             >
-              <FontAwesomeIcon icon={faTwitter} />
-            </a>
-            <a
-              href="#"
-              className="text-gray-300 hover:text-[#00B4D8] transition"
+              <FontAwesomeIcon icon={faInstagram} width={25} height={25} />
+            </Link>
+
+            {/* WhatsApp */}
+            <Link
+              href="https://wa.me/905338479200"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white hover:translate-x-[-6px] transition-all duration-300 flex items-center justify-center"
+              title="WhatsApp"
             >
-              <FontAwesomeIcon icon={faLinkedinIn} />
-            </a>
+              <FontAwesomeIcon icon={faWhatsapp} width={25} height={25} />
+            </Link>
           </div>
         </div>
       </div>
