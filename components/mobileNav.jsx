@@ -12,7 +12,15 @@ export const MobileNav = ({ setViewMNav }) => {
             <div className="relative z-50">
 
                 <div className="flex items-center py-5 justify-between">
-                    <Image src="/logo.png" alt="Teamac Logo" className="w-[70px] h-auto" width={500} height={500} />
+                    <div className="flex justify-center items-center flex-col">
+                        <Image src="/logo.png" alt="Teamac Logo" className="w-[70px] h-auto" width={500} height={500} />
+                        <div className="uppercase text-center flex flex-col items-center justify-center gap-0 w-full mt-1">
+                        <span className="text-[#00B4D8] font-extrabold text-xl m-0 p-0 leading-none">Teamac</span>
+                        <span className="text-xs text-[#FF6F61] font-semibold m-0 p-0 leading-none">
+                            Global LTD
+                        </span>
+                    </div>
+                    </div>
                     <button onClick={() => { setViewMNav(false) }} type="button" className="text-red-600">
                         <FontAwesomeIcon icon={faXmark} className="text-2xl" />
                     </button>
@@ -22,16 +30,26 @@ export const MobileNav = ({ setViewMNav }) => {
 
                     <Link href="/">
                         HOME</Link>
-                    <Link href="/our-services">
+                    <Link href="/services">
                         OUR SERVICES</Link>
                     <Link href="/about-us">
                         ABOUT US</Link>
-                    <Link href="/contact-us">
+                    <Link href="/contact">
                         CONTACT US</Link>
                     <Link href="/testimonials">
                         TESTIMONIALS</Link>
 
                 </nav>
+
+                <div className="mt-5">
+                     <Link href={'/offers'} className="bg-[#FF6F61] hover:bg-black cursor-pointer transition duration-2000 text-sm rounded-md shadow-lg text-white p-3 px-6 md:flex hidden items-center justify-center gap-2" type="button">
+                    <span>View Offers</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m9 12.75 3 3m0 0 3-3m-3 3v-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+
+                </Link>
+                </div>
 
             </div>
 
