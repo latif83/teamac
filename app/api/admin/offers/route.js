@@ -76,7 +76,7 @@ export async function POST(req) {
         thumbnail,
         city,
         requirements,
-        validity: new Date(validity),
+        validity: validity ? new Date(validity) : null,
       },
       include: {
         service: true,

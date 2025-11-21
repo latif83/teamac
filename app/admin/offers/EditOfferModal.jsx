@@ -5,7 +5,7 @@ import Image from "next/image"
 import { useEffect, useState, useRef } from "react"
 import { toast } from "react-toastify"
 
-export const EditOfferModal = ({ setEditOffer, setFetchData, offerData,setViewOffer }) => {
+export const EditOfferModal = ({ setEditOffer, setFetchData, offerData, setViewOffer }) => {
 
     const [formData, setFormData] = useState({
         title: "",
@@ -225,7 +225,7 @@ export const EditOfferModal = ({ setEditOffer, setFetchData, offerData,setViewOf
                             name="city"
                             value={formData.city}
                             onChange={(e) => setFormData((prevData) => ({ ...prevData, city: e.target.value }))}
-                            required
+
                             className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#00B4D8] outline-none"
                             placeholder="e.g., San Jose, Toronto, Melbourne, London"
                         />
@@ -265,7 +265,7 @@ export const EditOfferModal = ({ setEditOffer, setFetchData, offerData,setViewOf
                         <input
                             type="text"
                             name="price"
-                            required
+
                             value={formData.priceLabel}
                             onChange={(e) => setFormData((prevData) => ({ ...prevData, priceLabel: e.target.value }))}
                             className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#00B4D8] outline-none"
@@ -282,7 +282,7 @@ export const EditOfferModal = ({ setEditOffer, setFetchData, offerData,setViewOf
                             name="price"
                             value={formData.priceDescription}
                             onChange={(e) => setFormData((prevData) => ({ ...prevData, priceDescription: e.target.value }))}
-                            required
+
                             className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#00B4D8] outline-none"
                             placeholder="Explain what the pricing covers or excludes..."
                         />
@@ -295,7 +295,6 @@ export const EditOfferModal = ({ setEditOffer, setFetchData, offerData,setViewOf
                         <input
                             type="date"
                             name="validity"
-                            required
                             value={
                                 formData.validity
                                     ? new Date(formData.validity).toISOString().split("T")[0]
@@ -319,9 +318,6 @@ export const EditOfferModal = ({ setEditOffer, setFetchData, offerData,setViewOf
                                     <label htmlFor="thumbnail" className="px-2 py-1 rounded bg-blue-500 hover:bg-blue-700 transition-all duration-500 text-sm cursor-pointer">
                                         <FontAwesomeIcon icon={faRepeat} className="text-white" />
                                     </label>
-                                    <button type="button" className="px-2 py-1 rounded bg-green-500 hover:bg-green-700 transition-all duration-500 text-sm cursor-pointer">
-                                        <FontAwesomeIcon icon={faExpand} className="text-white" />
-                                    </button>
                                     <button onClick={() => setFormData((prevData) => ({ ...prevData, image: "" }))} type="button" className="px-2 py-1 rounded bg-red-500 hover:bg-red-700 transition-all duration-500 text-sm cursor-pointer">
                                         <FontAwesomeIcon icon={faTrash} className="text-white" />
                                     </button>

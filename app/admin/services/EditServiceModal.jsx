@@ -158,9 +158,6 @@ export function EditServiceModal({ setEditService, serviceData, setFetchService 
                                     <label htmlFor="image" className="px-2 py-1 rounded bg-blue-500 hover:bg-blue-700 transition-all duration-500 text-sm cursor-pointer">
                                         <FontAwesomeIcon icon={faRepeat} className="text-white" />
                                     </label>
-                                    <button type="button" className="px-2 py-1 rounded bg-green-500 hover:bg-green-700 transition-all duration-500 text-sm cursor-pointer">
-                                        <FontAwesomeIcon icon={faExpand} className="text-white" />
-                                    </button>
                                     <button onClick={() => setFormData((prevData) => ({ ...prevData, image: "" }))} type="button" className="px-2 py-1 rounded bg-red-500 hover:bg-red-700 transition-all duration-500 text-sm cursor-pointer">
                                         <FontAwesomeIcon icon={faTrash} className="text-white" />
                                     </button>
