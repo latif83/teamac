@@ -70,11 +70,12 @@ const RecentOffers = () => {
                 loop={true}
                 pagination={{ clickable: true }}
                 autoplay={{ delay: 2500, disableOnInteraction: false }}
+                navigation={true}
                 modules={[Pagination, Autoplay, Navigation, EffectFade]}
                 className="mySwiper mt-5"
                 breakpoints={{
-                    0: { slidesPerView: 1.2, spaceBetween: 16 },
-                    480: { slidesPerView: 1.3, spaceBetween: 20 },
+                    0: { slidesPerView: 1, spaceBetween: 16 },
+                    480: { slidesPerView: 1, spaceBetween: 20 },
                     768: { slidesPerView: 2.3, spaceBetween: 25 },
                     1024: { slidesPerView: 2.5, spaceBetween: 30 },
                 }}
