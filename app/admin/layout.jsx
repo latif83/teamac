@@ -1,6 +1,8 @@
 import { AdminHeader } from "@/components/adminHeader";
 import { AdminSidebar } from "@/components/adminSidebar";
+import { AuthProvider } from "@/context/AuthContext";
 import { SidebarProvider } from "@/providers/sidebarProvider";
+
 
 export const metadata = {
   title: {
@@ -53,16 +55,16 @@ export const metadata = {
 };
 
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
 
     return (
-        // <ProtectedRoute>
+        <AuthProvider>
         <SidebarProvider>
-            <div className="flex h-svh gap-1.5 w-full relative overflow-hidden">
+            <div className="flex h-svh gap-1.5 w-full relative z-10 overflow-hidden">
 
                 <AdminSidebar />
 
-                <div className="sm:flex-1 w-full shrink-0 relative flex flex-col h-svh">
+                <div className="sm:flex-1 w-full shrink-0 relative z-10 flex flex-col h-svh">
                     <AdminHeader />
                     <div className="overflow-y-auto flex-1">
                         {children}
@@ -71,6 +73,6 @@ export default function RootLayout({ children }) {
 
             </div>
         </SidebarProvider>
-        // </ProtectedRoute>
+        </AuthProvider>
     )
 }

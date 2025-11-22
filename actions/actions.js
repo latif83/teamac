@@ -1,5 +1,6 @@
 "use server"
 import { v2 as cloudinary } from "cloudinary";
+import jwt from "jsonwebtoken";
 
 cloudinary.config({
   cloud_name: "dqnpplwcg",
@@ -43,4 +44,15 @@ export const uploadOfferThumbnail = async(base64Image) => {
       }
     });
   });
+};
+
+export const verifyToken = async(token) => {
+  try {
+    const decodedToken = jwt.verify(token, "your-secret-key");
+    return { status: true, decodedToken };
+  } catch (err) {
+    // cookies().delete('access-token')
+    // console.log(err)
+    return { status: false };
+  }
 };
