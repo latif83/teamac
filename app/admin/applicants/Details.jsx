@@ -1,12 +1,13 @@
 import { ContactEmailModal } from "@/components/contactEmailModal"
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons"
-import { faTimes } from "@fortawesome/free-solid-svg-icons"
+import { faTimes, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
+import { DeleteApplicant } from "./DeleteApplicantModal"
 
-export const ApplicantDetails = ({ applicant, setViewApplicant }) => {
+export const ApplicantDetails = ({ applicant, setViewApplicant,setFetchApplicant }) => {
 
     const [updatingStatus, setUpdatingStatus] = useState(false)
 
@@ -59,10 +60,15 @@ export const ApplicantDetails = ({ applicant, setViewApplicant }) => {
 
     const [showContactEmailModal, setShowContactEmailModal] = useState(false)
 
+    const [deleteApplicant,setDeleteApplicant] = useState(false)
+
+
     return (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center md:px-4 px-2 md:pt-12 pt-6">
 
             {showContactEmailModal && <ContactEmailModal name={applicant.fullName} email={applicant.email} setShowContactEmailModal={setShowContactEmailModal} />}
+
+            {deleteApplicant && <DeleteApplicant setDeleteApplicant={setDeleteApplicant} applicantId={applicant.id} setFetchApplicant={setFetchApplicant} />}
 
             <div className="bg-white rounded-t-lg overflow-y-auto shadow-lg w-full h-full max-w-3xl relative md:p-6 p-3">
 
@@ -198,6 +204,18 @@ export const ApplicantDetails = ({ applicant, setViewApplicant }) => {
                     </div>
                 </div>
 
+                <div  className="mt-3">
+                    <div className="mt-1 grid md:grid-cols-2 gap-4">
+                        <button onClick={() => setDeleteApplicant(true)} type="button" className="text-sm flex items-center gap-2 bg-red-100 border hover:opacity-80 cursor-pointer py-2 px-4 rounded-lg justify-center">
+
+                            <FontAwesomeIcon icon={faTrash} className="text-lg" />
+
+
+                            <span>Remove Applicant</span>
+                        </button>
+                </div>
+
+            </div>
             </div>
         </div>
 

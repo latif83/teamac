@@ -45,3 +45,32 @@ export async function PATCH(req) {
     );
   }
 }
+
+export async function DELETE(req) {
+  try {
+    const { id } = await req.json();
+
+    // ✅ Check if application exists
+    const application = await prisma.applications.findUnique({ where: { id } });
+    if (!application) {
+      return NextResponse.json(
+        { msg: "Application not found." },
+        { status: 404 }
+      );
+    }
+
+    // ✅ Delete the application
+    await prisma.applications.delete({ where: { id } });
+
+    return NextResponse.json(
+      { msg: "Application deleted successfully!" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error deleting application:", error);
+    return NextResponse.json(
+      { msg: "Internal server error." },
+      { status: 500 }
+    );
+  }
+}

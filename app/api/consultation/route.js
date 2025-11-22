@@ -97,3 +97,34 @@ export async function GET() {
     );
   }
 }
+
+
+
+export async function DELETE(req) {
+  try {
+    const { id } = await req.json();
+
+    // ✅ Check if application exists
+    const consultation = await prisma.consultation.findUnique({ where: { id } });
+    if (!consultation) {
+      return NextResponse.json(
+        { msg: "Appointment not found." },
+        { status: 404 }
+      );
+    }
+
+    // ✅ Delete the consultation
+    await prisma.consultation.delete({ where: { id } });
+
+    return NextResponse.json(
+      { msg: "Appointment deleted successfully!" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error deleting appoinment:", error);
+    return NextResponse.json(
+      { msg: "Internal server error." },
+      { status: 500 }
+    );
+  }
+}

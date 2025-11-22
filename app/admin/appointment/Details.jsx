@@ -5,8 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
+import { DeleteAppointment } from "./DeleteAppointmentModal"
 
-export const AppointmentDetails = ({ appointment, setViewAppointment }) => {
+export const AppointmentDetails = ({ appointment, setViewAppointment,setFetchAppointment }) => {
 
     const [updatingStatus, setUpdatingStatus] = useState(false)
 
@@ -63,11 +64,15 @@ export const AppointmentDetails = ({ appointment, setViewAppointment }) => {
 
     const [showContactEmailModal, setShowContactEmailModal] = useState(false)
 
+    const [deleteAppointment,setDeleteAppointment] = useState(false)
+
 
     return (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center md:px-4 px-2 md:pt-12 pt-6">
 
             {showContactEmailModal && <ContactEmailModal name={appointmentData.name} email={appointmentData.email} setShowContactEmailModal={setShowContactEmailModal} />}
+
+            {deleteAppointment && <DeleteAppointment  setDeleteAppointment={setDeleteAppointment} appointmentId={appointmentData.id} setFetchAppointment={setFetchAppointment} />}
 
             <div className="bg-white rounded-t-lg overflow-y-auto shadow-lg w-full h-full max-w-3xl relative md:p-6 p-3">
 
@@ -211,6 +216,19 @@ export const AppointmentDetails = ({ appointment, setViewAppointment }) => {
 
                     </div>
                 </div>
+
+                <div  className="mt-3">
+                                    <div className="mt-1 grid md:grid-cols-2 gap-4">
+                                        <button onClick={() => setDeleteAppointment(true)} type="button" className="text-sm flex items-center gap-2 bg-red-100 border hover:opacity-80 cursor-pointer py-2 px-4 rounded-lg justify-center">
+                
+                                            <FontAwesomeIcon icon={faTrash} className="text-lg" />
+                
+                
+                                            <span>Remove Appointment</span>
+                                        </button>
+                                </div>
+                
+                            </div>
 
             </div>
         </div>

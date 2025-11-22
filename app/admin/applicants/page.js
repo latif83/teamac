@@ -27,9 +27,11 @@ export default function Applicants() {
     }
   };
 
+  const [fetchApplicant,setFetchApplicant] = useState(true)
+
   useEffect(() => {
-    getApplicants();
-  }, []);
+    fetchApplicant && getApplicants() && setFetchApplicant(false)
+  }, [fetchApplicant]);
 
   const [viewApplicant, setViewApplicant] = useState(false);
   const [applicant, setApplicant] = useState(null);
@@ -40,6 +42,7 @@ export default function Applicants() {
         <ApplicantDetails
           applicant={applicant}
           setViewApplicant={setViewApplicant}
+          setFetchApplicant={setFetchApplicant}
         />
       )}
 
