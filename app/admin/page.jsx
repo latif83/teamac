@@ -122,14 +122,14 @@ export default function AdminPage() {
                     loading={loading}
                 />
 
-                <StatCard
+                {/* <StatCard
                     title="Pending Callback Requests"
                     value="7"
                     icon={<PhoneCall size={24} className="text-blue-100" />}
                     iconBgClass="bg-blue-600"
                     valueColorClass="text-blue-600"
                     loading={loading}
-                />
+                /> */}
 
 
             </div>
