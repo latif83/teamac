@@ -1,6 +1,6 @@
 import { ContactEmailModal } from "@/components/contactEmailModal"
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons"
-import { faTimes } from "@fortawesome/free-solid-svg-icons"
+import { faTimes, faTrash } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Link from "next/link"
 import { useEffect, useState } from "react"

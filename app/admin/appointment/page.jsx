@@ -23,9 +23,11 @@ export default function AppointmentsPage() {
     }
   };
 
+  const [fetchAppointment, setFetchAppointment] = useState(true)
+
   useEffect(() => {
-    fetchAppointments();
-  }, []);
+    fetchAppointment && fetchAppointments() && setFetchAppointment(false);
+  }, [fetchAppointment]);
 
   // Determine Upcoming / Today / Past
   const checkStatus = (date) => {
@@ -50,7 +52,7 @@ export default function AppointmentsPage() {
 
   return (
     <section className="p-3 md:p-6">
-      {viewAppointment && <AppointmentDetails setViewAppointment={setViewAppointment} appointment={appointment} />}
+      {viewAppointment && <AppointmentDetails setViewAppointment={setViewAppointment} appointment={appointment} setFetchAppointment={setFetchAppointment} />}
       <div className="flex justify-between items-center mb-6">
         <h1 className="sm:text-xl font-bold text-[#0d4785]">Consultations</h1>
       </div>

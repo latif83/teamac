@@ -11,7 +11,7 @@ export const DeleteAppointment = ({ setDeleteAppointment, appointmentId, setFetc
         try {
             setLoading(true)
 
-            const res = await fetch(`/api/admin/applicants`, {
+            const res = await fetch(`/api/consultation`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
