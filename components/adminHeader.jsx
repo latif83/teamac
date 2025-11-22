@@ -28,7 +28,7 @@ export const AdminHeader = () => {
                 </svg>
 
                 {authLoading ? <span className="w-32 h-5 rounded-lg bg-gray-200 animate-pulse"></span> : <span className="sm:block hidden">
-                    {user.name}
+                    {user?.name}
                 </span>}
 
             </button>
