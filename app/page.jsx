@@ -1,5 +1,6 @@
 import AboutUs from "@/components/about";
 import WhyChooseUs from "@/components/chooseUs";
+import { FAQs } from "@/components/faq";
 import ServiceCountryFilter from "@/components/filter";
 import Footer from "@/components/footer";
 import QuickServices from "@/components/quickServices";
@@ -103,6 +104,8 @@ export default function Home() {
             </section>
 
             <AboutUs />
+
+            <FAQs />
 
 
             <Footer />

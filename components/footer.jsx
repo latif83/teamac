@@ -90,7 +90,7 @@ const Footer = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="/contact" className="hover:text-[#00B4D8] transition">
+                  <a href="/faq" className="hover:text-[#00B4D8] transition">
                     FAQs
                   </a>
                 </li>
@@ -108,14 +108,14 @@ const Footer = () => {
               </h2>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <a href="#" className="hover:text-[#00B4D8] transition">
+                  <Link href="/privacy-policy" className="hover:text-[#00B4D8] transition">
                     Privacy Policy
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-[#00B4D8] transition">
+                  <Link href="/terms" className="hover:text-[#00B4D8] transition">
                     Terms & Conditions
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
