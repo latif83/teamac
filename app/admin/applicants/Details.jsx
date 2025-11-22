@@ -68,7 +68,7 @@ export const ApplicantDetails = ({ applicant, setViewApplicant,setFetchApplicant
 
             {showContactEmailModal && <ContactEmailModal name={applicant.fullName} email={applicant.email} setShowContactEmailModal={setShowContactEmailModal} />}
 
-            {deleteApplicant && <DeleteApplicant setDeleteApplicant={setDeleteApplicant} applicantId={applicant.id} setFetchApplicant={setFetchApplicant} />}
+            {deleteApplicant && <DeleteApplicant setDeleteApplicant={setDeleteApplicant} applicantId={applicant.id} setFetchApplicant={setFetchApplicant} setViewApplicant={setViewApplicant} />}
 
             <div className="bg-white rounded-t-lg overflow-y-auto shadow-lg w-full h-full max-w-3xl relative md:p-6 p-3">
 

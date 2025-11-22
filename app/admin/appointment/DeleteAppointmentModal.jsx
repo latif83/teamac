@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState } from "react"
 import { toast } from "react-toastify"
 
-export const DeleteAppointment = ({ setDeleteAppointment, appointmentId, setFetchAppointment }) => {
+export const DeleteAppointment = ({ setDeleteAppointment, appointmentId, setFetchAppointment,setViewAppointment }) => {
 
     const [loading, setLoading] = useState(false)
 
@@ -29,6 +29,7 @@ export const DeleteAppointment = ({ setDeleteAppointment, appointmentId, setFetc
             toast.success(data.msg || 'appointment deleted successfully!')
             setFetchAppointment(true)
             setDeleteAppointment(false)
+            setViewAppointment(false)
 
         }
         catch (e) {

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState } from "react"
 import { toast } from "react-toastify"
 
-export const DeleteApplicant = ({ setDeleteApplicant, applicantId, setFetchApplicant }) => {
+export const DeleteApplicant = ({ setDeleteApplicant, applicantId, setFetchApplicant, setViewApplicant }) => {
 
     const [loading, setLoading] = useState(false)
 
@@ -29,6 +29,7 @@ export const DeleteApplicant = ({ setDeleteApplicant, applicantId, setFetchAppli
             toast.success(data.msg || 'Applicant deleted successfully!')
             setFetchApplicant(true)
             setDeleteApplicant(false)
+            setViewApplicant(false)
 
         }
         catch (e) {

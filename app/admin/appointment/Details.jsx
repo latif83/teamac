@@ -72,7 +72,7 @@ export const AppointmentDetails = ({ appointment, setViewAppointment,setFetchApp
 
             {showContactEmailModal && <ContactEmailModal name={appointmentData.name} email={appointmentData.email} setShowContactEmailModal={setShowContactEmailModal} />}
 
-            {deleteAppointment && <DeleteAppointment  setDeleteAppointment={setDeleteAppointment} appointmentId={appointmentData.id} setFetchAppointment={setFetchAppointment} />}
+            {deleteAppointment && <DeleteAppointment  setDeleteAppointment={setDeleteAppointment} appointmentId={appointmentData.id} setFetchAppointment={setFetchAppointment} setViewAppointment={setViewAppointment} />}
 
             <div className="bg-white rounded-t-lg overflow-y-auto shadow-lg w-full h-full max-w-3xl relative md:p-6 p-3">
 
