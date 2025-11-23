@@ -78,12 +78,12 @@ export default function Home() {
                             href="https://www.facebook.com/share/17dTdp3osn/?mibextid=wwXIfr"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-9 h-9 flex items-center justify-center rounded-full border border-white hover:bg-white hover:text-[#00B4D8] transition-all duration-300"
+                            className="w-9 h-9 flex items-center justify-center rounded-full border border-white hover:bg-white hover:text-[#00B4D8] transiti on-all duration-300"
                         >
                             <FontAwesomeIcon icon={faFacebookF} />
                         </Link>
                         <Link
-                            href="https://www.facebook.com/share/17dTdp3osn/?mibextid=wwXIfr"
+                            href="https://www.instagram.com/teamac_global_ltd?igsh=MTJmeHpubGpjZThzdw%3D%3D&utm_source=qr"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="w-9 h-9 flex items-center justify-center rounded-full border border-white hover:bg-white hover:text-[#00B4D8] transition-all duration-300"
