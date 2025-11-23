@@ -201,9 +201,9 @@ Here’s the link I’m viewing:
                         </div>
 
                         <div className="mt-4">
-                            <p className="text-xl text-black font-medium">
+                            {offer?.priceLabel && <p className="text-xl text-black font-medium">
                                 {offer?.priceLabel || "Custom Pricing"}
-                            </p>
+                            </p>}
 
                             {offer?.priceDescription && (
                                 <p className="text-sm text-gray-500 font-medium">
