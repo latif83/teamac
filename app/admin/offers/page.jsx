@@ -271,7 +271,7 @@ const AdminOffers = () => {
                                 <div className="flex items-center gap-1">
                                     <FontAwesomeIcon icon={faUsers} />
                                     {/* <span>{offer.applicants} applicants</span> */}
-                                    12
+                                    <span>{offer?.Applications?.length}</span>
                                 </div>
                                 <div className="flex items-center gap-1">
                                     <FontAwesomeIcon icon={faCalendarAlt} />
@@ -288,15 +288,14 @@ const AdminOffers = () => {
 
                                 </span>
                                 {/* Status */}
-                                <span
+                                {/* <span
                                     className={`inline-block px-3 py-1 text-xs rounded-full font-medium ${offer.status !== "Active"
                                         ? "bg-green-100 text-green-700"
                                         : "bg-red-100 text-red-600"
                                         }`}
                                 >
-                                    {/* {offer.status} */}
                                     Active
-                                </span>
+                                </span> */}
                             </div>
 
 

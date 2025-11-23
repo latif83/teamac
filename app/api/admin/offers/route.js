@@ -7,6 +7,7 @@ export async function GET() {
       include: {
         service: true,
         country: true,
+        Applications : true
       },
       orderBy: {
         datePosted: "desc", // optional: newest first
@@ -159,6 +160,7 @@ export async function PUT(req) {
       include: {
         service: true,
         country: true,
+        Applications : true
       },
     });
 

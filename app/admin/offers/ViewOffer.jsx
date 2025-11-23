@@ -64,31 +64,31 @@ export const ViewOffer = ({ setViewOffer, setFetchData, selectedOffer }) => {
                                 <p className="text-gray-700 text-sm">{selectedOffer?.country?.name}</p>
                             </div>
 
-                            <div>
+                            {selectedOffer.city && <div>
                                 <h4 className="font-semibold text-xs text-red-600 mb-1">City:</h4>
                                 <p className="text-gray-700 text-sm">{selectedOffer.city}</p>
-                            </div>
+                            </div>}
 
-                            <div>
+                            {selectedOffer.validity && <div>
                                 <h4 className="font-semibold text-xs text-red-600 mb-1">Validity:</h4>
                                 <p className="text-gray-700 text-sm">{new Date(selectedOffer.validity).toDateString()}</p>
-                            </div>
+                            </div>}
 
-                            <div>
+                            {selectedOffer.priceLabel && <div>
                                 <h4 className="font-semibold text-xs text-red-600 mb-1">Price Label:</h4>
                                 <p className="text-gray-700 text-sm">{selectedOffer.priceLabel}</p>
-                            </div>
+                            </div>}
 
-                            <div>
+                            {selectedOffer.priceDescription && <div>
                                 <h4 className="font-semibold text-xs text-red-600 mb-1">Price Description:</h4>
                                 <p className="text-gray-700 text-sm">{selectedOffer.priceDescription}</p>
-                            </div>
+                            </div>}
 
 
 
                         </div>
 
-                        <div className="mt-4">
+                        {selectedOffer.requirements.length > 0 && <div className="mt-4">
                             <h4 className="font-semibold text-xs text-red-600 mb-1">Requirements:</h4>
                             {
                                 selectedOffer.requirements ? selectedOffer.requirements.map((req, index) => (
@@ -97,13 +97,13 @@ export const ViewOffer = ({ setViewOffer, setFetchData, selectedOffer }) => {
                                     <p className="text-gray-700 text-sm">No specific requirements.</p>
                                 )
                             }
-                        </div>
+                        </div>}
 
                         <div className="flex justify-between items-center mt-3">
 
-                            <span className="text-sm bg-green-500 text-green-800 px-2 py-1 rounded-full font-medium">
+                            {/* <span className="text-sm bg-green-500 text-green-800 px-2 py-1 rounded-full font-medium">
                                 Active
-                            </span>
+                            </span> */}
 
                             <span className="text-sm flex flex-col text-gray-500">
                                 <span>Posted At:</span>

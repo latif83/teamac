@@ -399,13 +399,13 @@ const Offers = () => {
                                             />
                                             {offer.service?.name}
                                         </div>
-                                        <div>
+                                        {offer.validity && <div>
                                             <FontAwesomeIcon
                                                 icon={faCalendarAlt}
                                                 className="text-[#00B4D8] mr-2"
                                             />
                                             {offer.validity ? new Date(offer.validity).toDateString() : 'N/A'}
-                                        </div>
+                                        </div>}
                                     </div>
 
                                     <Link href={`/offers/${offer.id}`} className="mt-4 bg-[#00B4D8] hover:bg-[#0092b3] text-white text-sm font-medium p-2 rounded-md transition-all duration-300 w-full cursor-pointer block text-center">

@@ -130,7 +130,6 @@ Here’s the link I’m viewing:
 
                                 </span>
                             </div>
-                            {offer?.validity && (
                                 <div className="flex items-center gap-2">
                                     <FontAwesomeIcon
                                         icon={faCalendarAlt}
@@ -139,11 +138,9 @@ Here’s the link I’m viewing:
                                     <span className="flex flex-col gap-1">
                                         <span className="text-xs">Valid Until:</span>
                                         <span className="text-sm font-bold text-black">
-                                            {new Date(offer.validity).toDateString()}
                                         </span>
                                     </span>
                                 </div>
-                            )}
 
                         </div>
 
@@ -187,7 +184,7 @@ Here’s the link I’m viewing:
                                 />
                                 {offer.service?.name}
                             </div>
-                            <div className="flex items-center gap-2">
+                            {offer?.validity && <div className="flex items-center gap-2">
                                 <FontAwesomeIcon
                                     icon={faCalendarAlt}
                                     className="text-[#00B4D8] text-lg"
@@ -200,7 +197,7 @@ Here’s the link I’m viewing:
                                         {offer.validity ? new Date(offer.validity).toDateString() : 'N/A'}
                                     </span>
                                 </span>
-                            </div>
+                            </div>}
                         </div>
 
                         <div className="mt-4">
@@ -225,14 +222,13 @@ Here’s the link I’m viewing:
                         {loading ? <p className="h-16 rounded-lg w-full bg-gray-200 animate-pulse"></p> : <p className="text-sm">{offer?.description}</p>}
                     </div>
 
-                    <div className="border-l border-red-500 pl-5">
+                    {offer?.requirements.length > 0 && <div className="border-l border-red-500 pl-5">
                         <p className="text-xs text-red-600 font-bold">Requirements:</p>
                         {offer?.requirements.map((req, index) => (
                             <p key={index} className="text-sm"> {index + 1}. {req} </p>
                         ))}
                         {loading && [1, 2, 3, 4].map((num) => (<p key={num} className="h-4 w-full bg-gray-200 animate-pulse rounded-lg mt-2"></p>))}
-                        {offer?.requirements.length < 1 && <p>...</p>}
-                    </div>
+                    </div>}
                 </div>
 
                 {/* CTA */}

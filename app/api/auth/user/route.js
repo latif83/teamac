@@ -6,7 +6,7 @@ import prisma from "@/config/prisma";
 export async function GET() {
   try {
     // Check if the user has a valid access token
-    const hasCookies = cookies().has("access-token");
+    const hasCookies = await cookies().has("access-token");
 
     if (!hasCookies) {
       console.log("Please login to continue.");
@@ -19,7 +19,7 @@ export async function GET() {
     }
 
     // Get the user details from the access token
-    const cookie = cookies().get("access-token");
+    const cookie = await cookies().get("access-token");
     const verificationResult = await verifyToken(cookie?.value || "");
 
     if (!verificationResult.status) {
