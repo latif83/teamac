@@ -404,7 +404,7 @@ const Offers = () => {
                                                 icon={faCalendarAlt}
                                                 className="text-[#00B4D8] mr-2"
                                             />
-                                            {new Date(offer.validity).toDateString()}
+                                            {offer.validity ? new Date(offer.validity).toDateString() : 'N/A'}
                                         </div>
                                     </div>
 

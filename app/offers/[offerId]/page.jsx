@@ -197,7 +197,7 @@ Here’s the link I’m viewing:
                                         Valid Until:
                                     </span>
                                     <span className="text-sm font-bold text-black">
-                                        {new Date(offer.validity).toDateString()}
+                                        {offer.validity ? new Date(offer.validity).toDateString() : 'N/A'}
                                     </span>
                                 </span>
                             </div>
@@ -231,6 +231,7 @@ Here’s the link I’m viewing:
                             <p key={index} className="text-sm"> {index + 1}. {req} </p>
                         ))}
                         {loading && [1, 2, 3, 4].map((num) => (<p key={num} className="h-4 w-full bg-gray-200 animate-pulse rounded-lg mt-2"></p>))}
+                        {offer?.requirements.length < 1 && <p>...</p>}
                     </div>
                 </div>
 
