@@ -15,7 +15,7 @@ const baseUrl = "https://teamac.vercel.app";
 const senderEmail = "latifm8360@gmail.com";
 const platformLogo =
   "https://teamac.vercel.app/logo.png"; // Change to your real logo URL
-const adminEmail = "anonylatif@gmail.com"//"info@teamacgloballtd.com"; // CHANGE THIS to the real admin email
+const adminEmail = "teamacgloballtd@gmail.com"//"info@teamacgloballtd.com"; // CHANGE THIS to the real admin email
 
 // ----------- UNIVERSAL EMAIL TEMPLATE WRAPPER ---------------
 const wrapEmail = (content) => {
