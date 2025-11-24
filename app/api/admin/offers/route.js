@@ -7,7 +7,7 @@ export async function GET() {
       include: {
         service: true,
         country: true,
-        Applications : true
+        Applications: true
       },
       orderBy: {
         datePosted: "desc", // optional: newest first
@@ -101,7 +101,7 @@ export async function POST(req) {
 
 export async function PUT(req) {
   try {
-    
+
     const {
       id,
       title,
@@ -116,7 +116,7 @@ export async function PUT(req) {
       requirements,
     } = await req.json();
 
-    console.log({validity})
+    console.log({ validity })
 
     // ✅ Validate
     if (!id)
@@ -148,23 +148,24 @@ export async function PUT(req) {
     const updatedOffer = await prisma.offer.update({
       where: { id },
       data: {
-        ...(title && { title }),
-        ...(description && { description }),
-        ...(serviceId && { serviceId }),
-        ...(countryId && { countryId }),
-        ...(priceLabel && { priceLabel }),
-        ...(priceDescription && { priceDescription }),
-        ...(thumbnail && { thumbnail }),
-        ...(city && { city }),
+        title,
+        description,
+        serviceId,
+        countryId,
+        priceLabel,
+        priceDescription,
+        thumbnail,
+        city,
         validity: validity ? new Date(validity) : null,
-        ...(requirements && { requirements }),
+        requirements,
       },
       include: {
         service: true,
         country: true,
-        Applications : true
+        Applications: true,
       },
     });
+
 
     return NextResponse.json(
       { msg: "Offer updated successfully!", data: updatedOffer },
