@@ -3,18 +3,18 @@ import nodemailer from "nodemailer";
 
 
 const mailer = nodemailer.createTransport({
-  host: "smtp.zoho.com",
+  host: "smtp.zoho.eu",
   port: 465,          // SSL
   secure: true,       // true for port 465
   auth: {
     user: "info@teamacgloballtd.com",   // your Zoho Mail address
-    pass: "nutu GdxL rag3",     // ⚠️ MUST be an App Password
+    pass: "P4H2HFguBmF4",     // ⚠️ MUST be an App Password
   },
 });
 
 // Platform information
 const platformName = "TEAMAC GLOBAL LTD";
-const baseUrl = "https://teamac.vercel.app";
+const baseUrl = "teamacgloballtd.com";
 const senderEmail = "info@teamacgloballtd.com";
 const platformLogo =
   "https://teamac.vercel.app/logo.png"; // Change to your real logo URL
