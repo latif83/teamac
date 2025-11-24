@@ -55,13 +55,13 @@ export const AdminProfile = ({ user, setViewAdminProfile }) => {
                 </button>
 
                 {/* Header */}
-                <div className="border-b px-6 py-4">
+                <div className="border-b sm:px-6 px-3 py-4">
                     <h2 className="text-xl font-semibold text-gray-800">Admin Profile</h2>
                     <p className="text-sm text-gray-500">Manage your profile and other admins</p>
                 </div>
 
                 {/* Logged-in Admin Section */}
-                <div className="px-6 py-5">
+                <div className="sm:px-6 px-3 py-5">
                     <h3 className="text-lg font-semibold text-gray-800 mb-3">Your Details</h3>
 
                     <div className="bg-gray-50 border rounded-lg p-4 flex flex-col gap-2 text-sm text-black">

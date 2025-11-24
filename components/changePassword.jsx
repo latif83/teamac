@@ -58,7 +58,7 @@ export const ChangePassword = ({ setChangePassword, setFetchAdminData }) => {
     };
 
     return (
-        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center sm:px-4 sm:pt-12 pt-6">
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center sm:px-4 px-3 sm:pt-12 pt-6">
             <div className="bg-white rounded-2xl shadow-2xl w-full max-w-2xl relative overflow-y-auto transition-all duration-300">
                 
                 {/* Header */}
