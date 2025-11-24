@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Image from "next/image"
 import { useEffect, useState, useRef } from "react"
 import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css";
 import { toast } from "react-toastify"
 
 export const EditOfferModal = ({ setEditOffer, setFetchData, offerData, setViewOffer }) => {
