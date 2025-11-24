@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 export default function ScholarshipBanner() {
   return (
     <section className="bg-[url('/scholarship-bg.jpg')] bg-fixed bg-cover bg-center text-white py-24 px-3 md:px-12 relative">
@@ -17,12 +19,12 @@ export default function ScholarshipBanner() {
           scholarships in top destinations like North Cyprus, the United States, and beyond.
         </p>
 
-        <a
-          href="/offers?type=Scholarship"
+        <Link
+          href={`/offers?service=cmi9aizm6000bwdo4a6c6x6ob`}
           className="inline-block bg-[#00B4D8] hover:bg-[#0092b3] text-white font-semibold px-6 py-3 rounded-lg transition-all duration-300"
         >
           View Scholarship Offers
-        </a>
+        </Link>
       </div>
     </section>
   );

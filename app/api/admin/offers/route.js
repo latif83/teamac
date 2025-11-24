@@ -116,6 +116,8 @@ export async function PUT(req) {
       requirements,
     } = await req.json();
 
+    console.log({validity})
+
     // ✅ Validate
     if (!id)
       return NextResponse.json({ msg: "Offer ID is required." }, { status: 400 });
@@ -154,7 +156,7 @@ export async function PUT(req) {
         ...(priceDescription && { priceDescription }),
         ...(thumbnail && { thumbnail }),
         ...(city && { city }),
-        ...(validity && { validity: new Date(validity) }),
+        validity: validity ? new Date(validity) : null,
         ...(requirements && { requirements }),
       },
       include: {

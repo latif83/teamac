@@ -28,6 +28,8 @@ const RenderLoading = () => {
                         </h2>
                         <p className="text-sm text-gray-600 mt-2 line-clamp-2 h-8 w-full bg-gray-200 rounded-lg">
                         </p>
+
+                        <button className="w-full mt-5 p-5 bg-black rounded-md"></button>
                     </div>
                 </div>))
             }
@@ -92,6 +94,10 @@ const QuickServices = () => {
                             <p className="text-sm text-gray-600 mt-2 line-clamp-2">
                                 {service.description}
                             </p>
+
+                            <Link href={`/offers?service=${service.id}`} className="bg-black block text-center text-white hover:opacity-60 p-3 rounded-md w-full mt-5 cursor-pointer">
+                                View Offers & Apply
+                            </Link>
                         </div>
                     </div>
                 )) : <div className="sm:col-span-2 md:col-span-4 flex flex-col items-center justify-center gap-2 text-sm"> <p className="font-semibold">No Featured Services Found.</p> <p>Please try again shortly.</p> </div>}

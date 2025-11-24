@@ -1,18 +1,21 @@
 "use server"
 import nodemailer from "nodemailer";
 
+
 const mailer = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp.zoho.com",
+  port: 465,          // SSL
+  secure: true,       // true for port 465
   auth: {
-    user: "latifm8360@gmail.com",
-    pass: "fekt bnmq ovja pvhj", // APP PASSWORD!
+    user: "info@teamacgloballtd.com",   // your Zoho Mail address
+    pass: "nutu GdxL rag3",     // ⚠️ MUST be an App Password
   },
 });
 
 // Platform information
 const platformName = "TEAMAC GLOBAL LTD";
 const baseUrl = "https://teamac.vercel.app";
-const senderEmail = "latifm8360@gmail.com";
+const senderEmail = "info@teamacgloballtd.com";
 const platformLogo =
   "https://teamac.vercel.app/logo.png"; // Change to your real logo URL
 const adminEmail = "teamacgloballtd@gmail.com"//"info@teamacgloballtd.com"; // CHANGE THIS to the real admin email
