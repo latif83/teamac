@@ -234,32 +234,67 @@ export const EditOfferModal = ({ setEditOffer, setFetchData, offerData, setViewO
                     {/* Requirements */}
 
                     <div>
-                        <label htmlFor="text" className="block mb-2 text-sm font-medium text-gray-900">Requirements:</label>
-                        <div className="flex flex-col gap-1 text-sm text-gray-400 mb-1">
-                            {formData.requirements.length > 0 && formData.requirements.map((req, index) => (
-                                <span key={index}>{`${index + 1}. ${req}`}</span>
-                            ))}
+                        <label htmlFor="text" className="block mb-2 text-sm font-medium text-gray-900">
+                            Requirements:
+                        </label>
+
+                        <div className="flex flex-col gap-1 text-sm text-gray-700 mb-2">
+                            {formData.requirements.length > 0 &&
+                                formData.requirements.map((req, index) => (
+                                    <div
+                                        key={index}
+                                        className="flex items-center justify-between bg-gray-100 px-3 py-1 rounded-md"
+                                    >
+                                        <span>{index + 1}. {req}</span>
+
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                setFormData(prev => ({
+                                                    ...prev,
+                                                    requirements: prev.requirements.filter((_, i) => i !== index)
+                                                }));
+                                            }}
+                                            className="cursor-pointer text-red-500 hover:text-red-700 ml-2"
+                                        >
+                                            ✖
+                                        </button>
+                                    </div>
+                                ))
+                            }
                         </div>
-                        <input ref={reqRef} type="text" id="text" className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Requirements for this offer..." />
+
+                        <input
+                            ref={reqRef}
+                            type="text"
+                            id="text"
+                            className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+      focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            placeholder="Requirements for this offer..."
+                        />
+
                         <div className="flex justify-between items-center mt-1">
-
-                            <button onClick={() => {
-
-                                const newRequirement = reqRef.current.value.trim()
-
-                                if (newRequirement) {
-                                    setFormData((prevData) => ({ ...prevData, requirements: [...prevData.requirements, newRequirement] }))
-                                }
-
-                                reqRef.current.value = ""
-                            }} type="button" className="text-blue-500 underline text-sm">
+                            <button
+                                onClick={() => {
+                                    const newRequirement = reqRef.current.value.trim();
+                                    if (newRequirement) {
+                                        setFormData(prevData => ({
+                                            ...prevData,
+                                            requirements: [...prevData.requirements, newRequirement],
+                                        }));
+                                    }
+                                    reqRef.current.value = "";
+                                }}
+                                type="button"
+                                className="text-blue-500 underline text-sm"
+                            >
                                 Add
                             </button>
                         </div>
                     </div>
 
                     <div>
-                         <label className="text-sm text-gray-700 mb-1 font-semibold flex items-center gap-2">
+                        <label className="text-sm text-gray-700 mb-1 font-semibold flex items-center gap-2">
                             <span>Price / Label</span>
                             <span className="inline-flex items-center rounded-md bg-gray-400/10 px-2 py-1 text-xs font-medium text-gray-400 inset-ring inset-ring-gray-400/20">**Optional</span>
                         </label>
@@ -275,7 +310,7 @@ export const EditOfferModal = ({ setEditOffer, setFetchData, offerData, setViewO
                     </div>
 
                     <div>
-                         <label className="text-sm text-gray-700 mb-1 font-semibold flex items-center gap-2">
+                        <label className="text-sm text-gray-700 mb-1 font-semibold flex items-center gap-2">
                             <span>Price / Description</span>
                             <span className="inline-flex items-center rounded-md bg-gray-400/10 px-2 py-1 text-xs font-medium text-gray-400 inset-ring inset-ring-gray-400/20">**Optional</span>
                         </label>
