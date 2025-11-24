@@ -3,6 +3,8 @@ import { faExpand, faRepeat, faTimes, faTrash } from "@fortawesome/free-solid-sv
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Image from "next/image"
 import { useEffect, useState, useRef } from "react"
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css";
 import { toast } from "react-toastify"
 
 export const NewOfferModal = ({ setAddOffer, setFetchData }) => {
@@ -15,7 +17,7 @@ export const NewOfferModal = ({ setAddOffer, setFetchData }) => {
         city: "",
         priceLabel: "",
         priceDescription: "",
-        validity: "",
+        validity: null,
         thumbnail: "",
         requirements: []
     })
@@ -327,18 +329,26 @@ export const NewOfferModal = ({ setAddOffer, setFetchData }) => {
                     </div>
 
                     <div>
-
                         <label className="text-sm text-gray-700 mb-1 font-semibold flex items-center gap-2">
                             <span>Valid Until</span>
-                            <span className="inline-flex items-center rounded-md bg-gray-400/10 px-2 py-1 text-xs font-medium text-gray-400 inset-ring inset-ring-gray-400/20">**Optional</span>
+                            <span className="inline-flex items-center rounded-md bg-gray-400/10 px-2 py-1 text-xs font-medium text-gray-400 inset-ring inset-ring-gray-400/20">
+                                Optional
+                            </span>
                         </label>
 
-                        <input
-                            type="date"
-                            name="price"
-                            value={formData.validity}
-                            onChange={(e) => setFormData((prevData) => ({ ...prevData, validity: e.target.value }))}
-                            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#00B4D8] outline-none"
+                        <DatePicker
+                            selected={formData.validity ? new Date(formData.validity) : null}
+                            onChange={(date) =>
+                                setFormData((prevData) => ({
+                                    ...prevData,
+                                    validity: date ? date.toISOString() : null, // store as ISO or null
+                                }))
+                            }
+                            placeholderText="Select a date"
+                            isClearable // gives a built-in clear (X) button
+                            dateFormat="yyyy-MM-dd"
+                            className="w-full block border border-gray-300 rounded-md px-3 py-2 text-sm focus:ring-2 focus:ring-[#00B4D8] outline-none"
+                            wrapperClassName="w-full"
                         />
                     </div>
 
