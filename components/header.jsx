@@ -12,6 +12,7 @@ import {
   faDollarSign,
 } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/navigation";
+import { MobileNav } from "./mobileNav";
 
 const Header = () => {
   const router = useRouter()
@@ -98,9 +99,9 @@ const Header = () => {
       </nav>
 
       {/* Right Controls (Language + Currency + Mobile Toggle) */}
-      <div className="flex items-center gap-4">
+      {/* <div className="flex items-center gap-4"> */}
         {/* Language Dropdown */}
-        <div className="relative group">
+        {/* <div className="relative group">
           <button className="flex items-center gap-1 text-gray-700 hover:text-[#00B4D8] transition">
             <FontAwesomeIcon icon={faGlobe} className="text-lg" />
             <span>{language}</span>
@@ -118,7 +119,7 @@ const Header = () => {
               </button>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* <select
           onChange={(e) => translateTo(e.target.value)}
@@ -154,36 +155,21 @@ const Header = () => {
           </div>
         </div> */}
 
-        {/* Mobile Menu Toggle */}
-        <button
+        
+        
+      {/* </div> */}
+
+{/* Mobile Menu Toggle */}
+      <button
           className="md:hidden text-[#0d4785] text-xl"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           <FontAwesomeIcon icon={menuOpen ? faTimes : faBars} />
         </button>
-      </div>
 
       {/* Mobile Navigation */}
       {menuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-200 shadow-inner">
-          <nav className="flex flex-col items-center py-4 space-y-4">
-            <Link href="/" onClick={() => setMenuOpen(false)} className="text-gray-700 hover:text-[#00B4D8]">
-              Home
-            </Link>
-            <Link href="/offers" onClick={() => setMenuOpen(false)} className="text-gray-700 hover:text-[#00B4D8]">
-              Offers
-            </Link>
-            <Link href="/services" onClick={() => setMenuOpen(false)} className="text-gray-700 hover:text-[#00B4D8]">
-              Services
-            </Link>
-            <Link href="/about-us" onClick={() => setMenuOpen(false)} className="text-gray-700 hover:text-[#00B4D8]">
-              About Us
-            </Link>
-            <Link href="/contact" onClick={() => setMenuOpen(false)} className="text-gray-700 hover:text-[#00B4D8]">
-              Contact
-            </Link>
-          </nav>
-        </div>
+        <MobileNav setViewMNav={setMenuOpen} />
       )}
     </header>
   );
