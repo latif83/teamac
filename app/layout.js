@@ -4,6 +4,8 @@ import { Poppins } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import { GoogleTranslate } from "@/components/googleTranslateScript";
 
+import Script from "next/script";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -75,10 +77,26 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+
+      {/* Google Tag (gtag.js) */}
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-90NF3HX9WQ"
+        strategy="afterInteractive"
+      />
+
+      <Script id="ga4-init" strategy="afterInteractive">
+        {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-90NF3HX9WQ');
+          `}
+      </Script>
+
       <body
         className={`${poppins.className} antialiased`}
       >
-      <ToastContainer
+        <ToastContainer
           position="top-right"
           newestOnTop={true}
           pauseOnHover
