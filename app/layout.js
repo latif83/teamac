@@ -28,8 +28,12 @@ export const metadata = {
   title: "Teamac | Travel, Study Abroad & Accommodation Services",
   description:
     "Teamac is your trusted partner for study abroad, travel packages, and accommodation assistance. Explore opportunities, secure scholarships, and start your global journey today.",
+
   keywords: [
     "Teamac",
+    "Teamac Global",
+    "Teamac Global Ltd",
+    "teamacgloballtd",
     "Study Abroad",
     "Travel Packages",
     "Student Accommodation",
@@ -37,21 +41,41 @@ export const metadata = {
     "Visa Assistance",
     "International Education",
     "Global Opportunities",
+    "Travel Agency",
+    "Education Abroad",
+    "Student Travel",
+    "Accommodation Abroad",
+    "Study Overseas",
+    "Travel Consultancy",
+    "International Travel Services",
+    "Teamac CEO",
+    "Travel Agency",
+    "Education Abroad",
+    "Student Travel",
+    "Accommodation Abroad",
+    "Study Overseas",
+    "Travel Consultancy",
+    "International Travel Services"
   ],
+
+  metadataBase: new URL("https://www.teamacgloballtd.com"),
+  applicationName: "Teamac Global",
   authors: [{ name: "Teamac Global Agency" }],
   creator: "Teamac Global",
-  metadataBase: new URL("https://teamac.com"), // Update this to your actual live domain
+  publisher: "Teamac Global",
+
+  category: "travel",
 
   openGraph: {
     title: "Teamac — Your Trusted Partner for Global Opportunities",
     description:
       "Teamac helps students and professionals achieve their dreams abroad with expert guidance in study abroad, travel, housing, and visa support.",
-    url: "https://teamac.com",
+    url: "https://www.teamacgloballtd.com",
     siteName: "Teamac",
     type: "website",
     images: [
       {
-        url: "/logo.png", // Put this image in your /public/meta folder
+        url: "https://www.teamacgloballtd.com/logo.png",
         width: 1200,
         height: 630,
         alt: "Teamac — Study Abroad & Travel Experts",
@@ -64,14 +88,33 @@ export const metadata = {
     title: "Teamac | Study Abroad, Travel & Accommodation Experts",
     description:
       "Your all-in-one agency for travel, education abroad, and housing. Get expert guidance and exclusive scholarships with Teamac.",
-    creator: "@TeamacGlobal", // your handle if you have one
-    images: ["/meta/og-home.jpg"],
+    creator: "@TeamacGlobal",
+    images: ["https://www.teamacgloballtd.com/logo.png"],
   },
 
   alternates: {
-    canonical: "https://teamac.com",
+    canonical: "https://www.teamacgloballtd.com",
+  },
+
+  icons: {
+    icon: "https://www.teamacgloballtd.com/favicon.ico",
+    apple: "https://www.teamacgloballtd.com/logo.png",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
+
 
 
 export default function RootLayout({ children }) {
