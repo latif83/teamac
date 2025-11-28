@@ -150,6 +150,28 @@ export default function RootLayout({ children }) {
         />
         <GoogleTranslate />
         {children}
+
+        <Script
+          id="structured-data"
+          type="application/ld+json"
+          strategy="afterInteractive"
+        >
+          {`
+  {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    "name": "Teamac Global Ltd",
+    "url": "https://www.teamacgloballtd.com",
+    "logo": "https://www.teamacgloballtd.com/logo.png",
+    "sameAs": [
+      "https://facebook.com/teamac",
+      "https://instagram.com/teamac"
+    ],
+    "description": "Teamac is your trusted partner for study abroad, travel packages, and student accommodation assistance."
+  }
+  `}
+        </Script>
+
       </body>
     </html>
   );
